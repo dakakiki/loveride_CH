@@ -1,0 +1,26 @@
+/*
+* Page: fallback page header (no Page-Hero), editor content, 404
+*/
+
+@use '../abstracts' as *;
+
+.page-header {
+    @include container;
+    @include fluid-prop(padding-top, $section-medium-mobile, $section-medium);
+    @include fluid-prop(padding-bottom, $section-small-mobile, $section-small);
+}
+
+.page-content {
+    @include container;
+    @include fluid-prop(padding-bottom, $section-large-mobile, $section-large);
+}
+
+.error-404 {
+    &__text {
+        margin-top: rem(24);
+    }
+
+    .buttons {
+        margin-top: rem(32);
+    }
+}

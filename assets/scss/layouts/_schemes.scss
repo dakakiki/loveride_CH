@@ -1,0 +1,14 @@
+/*
+* Color schemes: .scheme-weiss / -offwhite / -dunkel / -rot on sections (ACF "farbschema")
+*/
+
+@use '../abstracts' as *;
+
+@each $name, $values in $schemes {
+    .scheme-#{$name} {
+        @include scheme-vars($name);
+
+        color: var(--scheme-text);
+        background-color: var(--scheme-background);
+    }
+}

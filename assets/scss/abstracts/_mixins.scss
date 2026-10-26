@@ -1,0 +1,150 @@
+/*
+* Mixins: container, section spacing, color schemes, fluid properties and small helpers
+*/
+
+@use "sass:list";
+@use "sass:map";
+
+@use "colors" as *;
+@use "variables" as *;
+@use "breakpoints" as *;
+@use "functions" as *;
+
+@mixin trans($properties: all, $duration: 0.2s, $effect: ease-in-out) {
+    transition-property: $properties;
+    transition-duration: $duration;
+    transition-timing-function: $effect;
+}
+
+@mixin fluid-prop($property, $from, $to, $min-vw: $mobile-width, $max-vw: $design-width, $unit: px) {
+    #{$property}: fluid($from, $to, $min-vw, $max-vw, $unit);
+}
+
+@mixin fluid-prop-multi($property, $from-values, $to-values, $min-vw: $mobile-width, $max-vw: $design-width, $unit: px, $base: 16) {
+    @if list.length($from-values) != list.length($to-values) {
+        @error "$from-values and $to-values must have the same length.";
+    }
+
+    $out: ();
+
+    @for $i from 1 through list.length($from-values) {
+        $out: list.append(
+            $out,
+            fluid(list.nth($from-values, $i), list.nth($to-values, $i), $min-vw, $max-vw, $unit, $base),
+            $separator: space
+        );
+    }
+
+    #{$property}: $out;
+}
+
+@mixin container($max-width: $container-large) {
+    width: 100%;
+    max-width: calc(#{$max-width} + (var(--padding-global) * 2));
+    margin-inline: auto;
+    padding-inline: var(--padding-global);
+    box-sizing: border-box;
+}
+
+@mixin container-left-bleed($max-width: $container-large) {
+    box-sizing: border-box;
+    margin-left: max(var(--padding-global), calc((100vw - #{$max-width}) / 2));
+    width: calc(100vw - max(var(--padding-global), calc((100vw - #{$max-width}) / 2)));
+}
+
+@mixin section-padding($size: large) {
+    @if $size == large {
+        @include fluid-prop-multi(padding-block, $section-large-mobile, $section-large);
+    } @else if $size == medium {
+        @include fluid-prop-multi(padding-block, $section-medium-mobile, $section-medium);
+    } @else if $size == small {
+        @include fluid-prop-multi(padding-block, $section-small-mobile, $section-small);
+    } @else {
+        padding-block: 0;
+    }
+}
+
+@mixin scheme-vars($name) {
+    --scheme-text: #{scheme($name, text)};
+    --scheme-background: #{scheme($name, background)};
+    --scheme-foreground: #{scheme($name, foreground)};
+    --scheme-border: #{scheme($name, border)};
+    --scheme-accent: #{scheme($name, accent)};
+
+    @if scheme($name, alternate) {
+        --btn-primary-bg: #{palette(clr-white)};
+        --btn-primary-border: #{palette(clr-white)};
+        --btn-primary-text: #{palette(clr-neutral-darkest)};
+        --btn-primary-hover-bg: #{palette(clr-neutral-darkest)};
+        --btn-primary-hover-border: #{palette(clr-neutral-darkest)};
+        --btn-primary-hover-text: #{palette(clr-white)};
+        --btn-secondary-border: #{palette(clr-white)};
+        --btn-secondary-text: #{palette(clr-white)};
+        --btn-secondary-hover-bg: #{palette(clr-neutral-darkest)};
+        --btn-secondary-hover-border: #{palette(clr-neutral-darkest)};
+        --btn-secondary-hover-text: #{palette(clr-white)};
+        --btn-link-text: #{palette(clr-white)};
+        --focus-color: #{palette(clr-white)};
+    } @else {
+        --btn-primary-bg: #{palette(clr-red)};
+        --btn-primary-border: #{palette(clr-red)};
+        --btn-primary-text: #{palette(clr-white)};
+        --btn-primary-hover-bg: transparent;
+        --btn-primary-hover-border: #{palette(clr-neutral-darkest)};
+        --btn-primary-hover-text: #{palette(clr-neutral-darkest)};
+        --btn-secondary-border: #{palette(clr-neutral-darkest)};
+        --btn-secondary-text: #{palette(clr-neutral-darkest)};
+        --btn-secondary-hover-bg: #{palette(clr-neutral-darkest)};
+        --btn-secondary-hover-border: #{palette(clr-neutral-darkest)};
+        --btn-secondary-hover-text: #{palette(clr-white)};
+        --btn-link-text: #{palette(clr-neutral-darkest)};
+        --focus-color: #{palette(clr-neutral-darkest)};
+    }
+}
+
+@mixin focus-ring($color: var(--focus-color)) {
+    &:focus-visible {
+        outline: 2px solid $color;
+        outline-offset: 2px;
+    }
+}
+
+@mixin visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@mixin break-word {
+    hyphens: auto;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+@mixin image-cover {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+@mixin image-contain {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+}
+
+@mixin reset-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}

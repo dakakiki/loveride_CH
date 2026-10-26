@@ -1,0 +1,52 @@
+/*
+* Functions: fluid() clamp between mobile and desktop artboard, rem(), em()
+*/
+
+@use "sass:math";
+@use "variables" as *;
+
+@function fluid($from, $to, $min-vw: $mobile-width, $max-vw: $design-width, $unit: px, $base: 16) {
+    @if $min-vw == $max-vw {
+        @error "$min-vw and $max-vw must be different.";
+    }
+
+    @if $from == $to {
+        @if $unit == rem {
+            @return #{math.div($from, $base)}rem;
+        }
+
+        @return #{$from}px;
+    }
+
+    @if $unit == rem {
+        $from: math.div($from, $base);
+        $to: math.div($to, $base);
+    }
+
+    $slope: math.div(($to - $from), ($max-vw - $min-vw));
+    $intercept: $from - $slope * $min-vw;
+    $min-value: math.min($from, $to);
+    $max-value: math.max($from, $to);
+
+    @if $unit == rem {
+        @return clamp(
+            #{$min-value}rem,
+            calc(#{$intercept}rem + #{$slope * 100}vw),
+            #{$max-value}rem
+        );
+    }
+
+    @return clamp(
+        #{$min-value}px,
+        calc(#{$intercept}px + #{$slope * 100}vw),
+        #{$max-value}px
+    );
+}
+
+@function rem($px, $base: 16) {
+    @return math.div($px, $base) * 1rem;
+}
+
+@function em($px, $base: 16) {
+    @return math.div($px, $base) * 1em;
+}

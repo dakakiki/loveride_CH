@@ -1,0 +1,94 @@
+/*
+* Typography: Figma text styles H1–H6, Tagline, Text Large–Tiny (Desktop / Mobile)
+*/
+
+@use "fonts" as *;
+@use "functions" as *;
+
+@mixin font-condensed($weight: $fw-extrabold) {
+    font-family: $font-primary;
+    font-stretch: $font-stretch-condensed;
+    font-weight: $weight;
+}
+
+@mixin font-normal($weight: $fw-regular) {
+    font-family: $font-primary;
+    font-stretch: $font-stretch-normal;
+    font-weight: $weight;
+}
+
+@mixin heading-base($weight: $fw-extrabold, $line-height: 0.98, $letter-spacing: 0) {
+    @include font-condensed($weight);
+    line-height: $line-height;
+    letter-spacing: $letter-spacing;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+@mixin t-h1 {
+    @include heading-base;
+    font-size: fluid(40, 64);
+}
+
+@mixin t-h2 {
+    @include heading-base($line-height: 1.2);
+    font-size: fluid(36, 52);
+}
+
+@mixin t-h3 {
+    @include heading-base;
+    font-size: fluid(30, 40);
+}
+
+@mixin t-h4 {
+    @include heading-base;
+    font-size: fluid(26, 32);
+}
+
+@mixin t-h5 {
+    @include heading-base($fw-bold, 1.1, 0.01em);
+    font-size: fluid(22, 24);
+}
+
+@mixin t-h6 {
+    @include heading-base($fw-bold, 1.1, 0.01em);
+    font-size: fluid(19, 20);
+}
+
+@mixin t-tagline {
+    @include font-condensed($fw-bold);
+    font-size: rem(16);
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+@mixin t-text-large($weight: $fw-regular) {
+    @include font-normal($weight);
+    font-size: fluid(20, 22);
+    line-height: 1.5;
+}
+
+@mixin t-text-medium($weight: $fw-regular) {
+    @include font-normal($weight);
+    font-size: fluid(18, 20);
+    line-height: 1.5;
+}
+
+@mixin t-text($weight: $fw-regular) {
+    @include font-normal($weight);
+    font-size: fluid(17, 18);
+    line-height: 1.5;
+}
+
+@mixin t-text-small($weight: $fw-regular) {
+    @include font-normal($weight);
+    font-size: fluid(15, 16);
+    line-height: 1.5;
+}
+
+@mixin t-text-tiny($weight: $fw-regular) {
+    @include font-normal($weight);
+    font-size: rem(14);
+    line-height: 1.5;
+}

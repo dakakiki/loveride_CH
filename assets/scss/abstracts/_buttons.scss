@@ -1,0 +1,95 @@
+/*
+* Buttons: Primary, Secondary, Link (Figma "Button"); colors follow the section scheme, Alternate on Dunkel / Rot
+*/
+
+@use "fonts" as *;
+@use "functions" as *;
+@use "mixins" as *;
+@use "typography" as *;
+
+@mixin btn-base {
+    @include font-normal($fw-bold);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: rem(8);
+
+    width: fit-content;
+    min-height: rem(44);
+    padding: rem(12) rem(24);
+    box-sizing: border-box;
+
+    font-size: rem(18);
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+
+    border: 1px solid transparent;
+    border-radius: 0;
+    background: transparent;
+    cursor: pointer;
+
+    @include trans((background-color, border-color, color));
+    @include focus-ring;
+
+    &:hover,
+    &:focus-visible {
+        text-decoration: none;
+    }
+
+    svg {
+        flex-shrink: 0;
+        width: rem(24);
+        height: rem(24);
+    }
+}
+
+@mixin btn-small {
+    padding: rem(8) rem(20);
+}
+
+@mixin btn-primary {
+    @include btn-base;
+
+    color: var(--btn-primary-text);
+    background-color: var(--btn-primary-bg);
+    border-color: var(--btn-primary-border);
+
+    &:hover,
+    &:focus-visible {
+        color: var(--btn-primary-hover-text);
+        background-color: var(--btn-primary-hover-bg);
+        border-color: var(--btn-primary-hover-border);
+    }
+}
+
+@mixin btn-secondary {
+    @include btn-base;
+
+    color: var(--btn-secondary-text);
+    border-color: var(--btn-secondary-border);
+
+    &:hover,
+    &:focus-visible {
+        color: var(--btn-secondary-hover-text);
+        background-color: var(--btn-secondary-hover-bg);
+        border-color: var(--btn-secondary-hover-border);
+    }
+}
+
+@mixin btn-link {
+    @include btn-base;
+
+    min-height: 0;
+    padding: 0;
+    color: var(--btn-link-text);
+
+    &:hover,
+    &:focus-visible {
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+    }
+}

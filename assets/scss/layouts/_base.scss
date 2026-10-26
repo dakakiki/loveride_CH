@@ -1,0 +1,190 @@
+/*
+* Base: element defaults, typography classes, container, section spacing, rich text (all pages)
+*/
+
+@use '../abstracts' as *;
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: clip;
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height);
+    -webkit-text-size-adjust: 100%;
+
+    @media (prefers-reduced-motion: reduce) {
+        scroll-behavior: auto;
+    }
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: clip;
+
+    @include t-text;
+
+    color: var(--scheme-text);
+    background-color: var(--scheme-background);
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, .h1 { @include t-h1; }
+h2, .h2 { @include t-h2; }
+h3, .h3 { @include t-h3; }
+h4, .h4 { @include t-h4; }
+h5, .h5 { @include t-h5; }
+h6, .h6 { @include t-h6; }
+
+.tagline { @include t-tagline; }
+.text-large { @include t-text-large; }
+.text-medium { @include t-text-medium; }
+.text-small { @include t-text-small; }
+.text-tiny { @include t-text-tiny; }
+
+p {
+    margin: 0 0 1em;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+
+    @include focus-ring;
+}
+
+strong,
+b {
+    font-weight: $fw-bold;
+}
+
+img,
+svg,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+    color: inherit;
+}
+
+button {
+    @include focus-ring;
+}
+
+hr {
+    border: 0;
+    border-top: $border-width solid var(--scheme-border);
+}
+
+::selection {
+    color: palette(clr-white);
+    background-color: palette(clr-red);
+}
+
+.container {
+    @include container;
+}
+
+.container-medium {
+    @include container($container-medium);
+}
+
+.container-small {
+    @include container($container-small);
+}
+
+.pt-gross { @include fluid-prop(padding-top, $section-large-mobile, $section-large); }
+.pt-mittel { @include fluid-prop(padding-top, $section-medium-mobile, $section-medium); }
+.pt-klein { @include fluid-prop(padding-top, $section-small-mobile, $section-small); }
+.pt-kein { padding-top: 0; }
+
+.pb-gross { @include fluid-prop(padding-bottom, $section-large-mobile, $section-large); }
+.pb-mittel { @include fluid-prop(padding-bottom, $section-medium-mobile, $section-medium); }
+.pb-klein { @include fluid-prop(padding-bottom, $section-small-mobile, $section-small); }
+.pb-kein { padding-bottom: 0; }
+
+.wysiwyg {
+    max-width: $max-width-large;
+
+    > * + * {
+        margin-top: 1em;
+    }
+
+    h2, h3, h4, h5, h6 {
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
+    }
+
+    ul,
+    ol {
+        margin: 0 0 1em;
+        padding-left: 1.25em;
+
+        li + li {
+            margin-top: 0.25em;
+        }
+    }
+
+    blockquote {
+        margin: 1.5em 0;
+        padding-left: rem(24);
+        border-left: 4px solid var(--scheme-accent);
+
+        @include t-text-large;
+    }
+
+    a:not([class*="btn--"]):hover {
+        color: var(--scheme-accent);
+    }
+
+    img {
+        display: block;
+    }
+}
+
+.skip-link {
+    @include visually-hidden;
+
+    &:focus {
+        position: fixed !important;
+        top: rem(8);
+        left: rem(8);
+        z-index: 1000;
+        width: auto;
+        height: auto;
+        margin: 0;
+        padding: rem(12) rem(24);
+        clip: auto;
+
+        @include t-text($fw-bold);
+
+        color: palette(clr-white);
+        background-color: palette(clr-neutral-darkest);
+    }
+}
+
+.screen-reader-text {
+    @include visually-hidden;
+}

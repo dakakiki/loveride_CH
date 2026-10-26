@@ -1,0 +1,23 @@
+/*
+* Scroll animations: initial state for .fade-up / .fade-left / .fade-right until GSAP takes over (gsap.js)
+*/
+
+@use '../abstracts' as *;
+
+.js {
+    .fade-up:not(.fade-up-initialized),
+    .fade-left:not(.fade-left-initialized),
+    .fade-right:not(.fade-right-initialized) {
+        visibility: hidden;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .js {
+        .fade-up:not(.fade-up-initialized),
+        .fade-left:not(.fade-left-initialized),
+        .fade-right:not(.fade-right-initialized) {
+            visibility: visible;
+        }
+    }
+}

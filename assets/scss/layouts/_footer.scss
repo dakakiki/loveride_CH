@@ -1,0 +1,43 @@
+/*
+* Footer: dark footer with legal menu and copyright (all pages)
+*/
+
+@use '../abstracts' as *;
+
+.footer {
+    @include scheme-vars(dunkel);
+
+    color: var(--scheme-text);
+    background-color: var(--scheme-background);
+
+    &__bottom {
+        @include container;
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: rem(16);
+
+        padding-block: rem(24);
+        border-top: $border-width solid var(--scheme-border);
+
+        @include t-text-small;
+    }
+
+    &__legal {
+        @include reset-list;
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: rem(24);
+
+        a {
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

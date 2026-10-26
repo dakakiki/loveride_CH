@@ -1,0 +1,64 @@
+/*
+* Header: fixed bar with logo, main navigation and CTAs (all pages)
+*/
+
+@use '../abstracts' as *;
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background-color: palette(clr-white);
+    border-bottom: $border-width solid theme-color(border);
+
+    .admin-bar & {
+        top: 32px;
+
+        @media (max-width: 782px) {
+            top: 46px;
+        }
+    }
+
+    &__inner {
+        @include container;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: rem(32);
+
+        min-height: $navbar-height;
+
+        @include respond-max(lg) {
+            min-height: $navbar-height-mobile;
+        }
+    }
+
+    &__logo {
+        flex-shrink: 0;
+
+        a {
+            display: block;
+            text-decoration: none;
+
+            @include t-h6;
+        }
+
+        img {
+            display: block;
+            width: auto;
+            height: rem(56);
+
+            @include respond-max(lg) {
+                height: rem(40);
+            }
+        }
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: rem(12);
+    }
+}

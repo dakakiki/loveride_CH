@@ -1,0 +1,28 @@
+/*
+* Button classes: .btn--primary / --secondary / --link, .btn--small (ACF "Baustein – Buttons")
+*/
+
+@use '../abstracts' as *;
+
+.btn--primary {
+    @include btn-primary;
+}
+
+.btn--secondary {
+    @include btn-secondary;
+}
+
+.btn--link {
+    @include btn-link;
+}
+
+.btn--small {
+    @include btn-small;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: rem(16);
+}

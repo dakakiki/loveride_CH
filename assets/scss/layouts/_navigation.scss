@@ -1,0 +1,42 @@
+/*
+* Navigation: main menu in the header (menu-main)
+*/
+
+@use '../abstracts' as *;
+
+.nav-main {
+    @include respond-max(lg) {
+        display: none;
+    }
+
+    &__menu {
+        @include reset-list;
+
+        display: flex;
+        align-items: center;
+        gap: rem(32);
+
+        > li {
+            position: relative;
+        }
+
+        a {
+            @include t-text($fw-semibold);
+
+            text-decoration: none;
+
+            &:hover {
+                color: theme-color(accent);
+            }
+        }
+
+        .current-menu-item > a,
+        .current-menu-ancestor > a {
+            color: theme-color(accent);
+        }
+
+        .sub-menu {
+            display: none;
+        }
+    }
+}

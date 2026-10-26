@@ -1,0 +1,20 @@
+/*
+* Root: CSS custom properties (palette, page padding, header height), default scheme Weiss
+*/
+
+@use '../abstracts' as *;
+
+:root {
+    @each $name, $value in $palette {
+        --#{$name}: #{$value};
+    }
+
+    --padding-global: #{fluid($padding-global-mobile, $padding-global)};
+    --header-height: #{$topbar-height + $navbar-height};
+
+    @include scheme-vars(weiss);
+
+    @include respond-max(lg) {
+        --header-height: #{$topbar-height + $navbar-height-mobile};
+    }
+}

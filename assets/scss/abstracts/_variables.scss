@@ -1,0 +1,37 @@
+/*
+* Variables: grid, containers, section spacing and header heights (Figma "Spacing & Sizing", Desktop / Mobile)
+*/
+
+$design-width: 1440;
+$mobile-width: 390;
+
+$container-large: 1280px;
+$container-medium: 1024px;
+$container-small: 768px;
+
+$max-width-xxlarge: 1280px;
+$max-width-xlarge: 1024px;
+$max-width-large: 768px;
+$max-width-medium: 560px;
+$max-width-small: 480px;
+$max-width-xsmall: 400px;
+$max-width-xxsmall: 320px;
+
+$padding-global: 64;
+$padding-global-mobile: 20;
+
+$section-large: 112;
+$section-large-mobile: 64;
+$section-medium: 80;
+$section-medium-mobile: 48;
+$section-small: 48;
+$section-small-mobile: 32;
+
+$topbar-height: 44px;
+$navbar-height: 84px;
+$navbar-height-mobile: 64px;
+
+$border-width: 1px;
+$radius: 0;
+
+$transition: 0.2s ease-in-out;

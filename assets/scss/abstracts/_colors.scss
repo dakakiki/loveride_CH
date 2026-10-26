@@ -1,0 +1,126 @@
+/*
+* Colors: Figma primitives, semantic colors and the four section schemes (Weiss, Off White, Dunkel, Rot)
+*/
+
+@use "sass:color";
+@use "sass:map";
+
+$palette: (
+    clr-white: #FFFFFF,
+    clr-black: #000000,
+
+    clr-neutral-lightest: #F2F0ED,
+    clr-neutral-lighter: #E0DDD8,
+    clr-neutral-light: #B3AFA8,
+    clr-neutral: #555555,
+    clr-neutral-dark: #444444,
+    clr-neutral-darker: #333333,
+    clr-neutral-darkest: #1A1A1A,
+
+    clr-red: #CE0E2D,
+    clr-red-signal: #DC0D15,
+    clr-red-dark: #A50B24,
+    clr-red-lightest: #FBE7EA,
+
+    clr-off-white: #F7F5F2,
+
+    clr-success: #1E7B34,
+    clr-success-lightest: #E3F1E6,
+);
+
+@function palette($name) {
+    @if not map.has-key($palette, $name) {
+        @error "Palette color '#{$name}' not found.";
+    }
+
+    @return map.get($palette, $name);
+}
+
+$colors: (
+    text: palette(clr-neutral-darkest),
+    text-muted: palette(clr-neutral),
+    text-inverse: palette(clr-white),
+
+    heading: palette(clr-neutral-darkest),
+    link: palette(clr-neutral-darkest),
+    accent: palette(clr-red),
+    accent-hover: palette(clr-red-dark),
+
+    bg: palette(clr-white),
+    bg-alt: palette(clr-off-white),
+    bg-dark: palette(clr-neutral-darker),
+    bg-dark-alt: palette(clr-neutral-dark),
+    bg-red: palette(clr-red),
+    bg-note: palette(clr-red-lightest),
+    bg-surface: palette(clr-neutral-lightest),
+
+    border: palette(clr-neutral-lighter),
+    border-strong: palette(clr-neutral-darkest),
+    decor: palette(clr-neutral-light),
+
+    focus: palette(clr-neutral-darkest),
+
+    live: palette(clr-red-signal),
+    error: palette(clr-red-dark),
+    success: palette(clr-success),
+    success-bg: palette(clr-success-lightest),
+);
+
+@function theme-color($name) {
+    @if not map.has-key($colors, $name) {
+        @error "Semantic color '#{$name}' not found.";
+    }
+
+    @return map.get($colors, $name);
+}
+
+@function color-alpha($name, $alpha) {
+    @return rgba(theme-color($name), $alpha);
+}
+
+@function color-darken($name, $amount) {
+    @return color.scale(theme-color($name), $lightness: -$amount);
+}
+
+$schemes: (
+    weiss: (
+        text: palette(clr-neutral-darkest),
+        background: palette(clr-white),
+        foreground: palette(clr-white),
+        border: palette(clr-neutral-lighter),
+        accent: palette(clr-red),
+        alternate: false,
+    ),
+    offwhite: (
+        text: palette(clr-neutral-darkest),
+        background: palette(clr-off-white),
+        foreground: palette(clr-white),
+        border: palette(clr-neutral-lighter),
+        accent: palette(clr-red),
+        alternate: false,
+    ),
+    dunkel: (
+        text: palette(clr-white),
+        background: palette(clr-neutral-darker),
+        foreground: palette(clr-neutral-dark),
+        border: palette(clr-neutral),
+        accent: palette(clr-white),
+        alternate: true,
+    ),
+    rot: (
+        text: palette(clr-white),
+        background: palette(clr-red),
+        foreground: palette(clr-red-dark),
+        border: palette(clr-red-lightest),
+        accent: palette(clr-white),
+        alternate: true,
+    ),
+);
+
+@function scheme($name, $key) {
+    @if not map.has-key($schemes, $name) {
+        @error "Color scheme '#{$name}' not found.";
+    }
+
+    @return map.get($schemes, $name, $key);
+}
