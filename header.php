@@ -1,16 +1,13 @@
 <?php
 /**
- * Header: document head, skip link, site header with logo, main navigation and CTAs.
+ * Header: document head, skip link and the fixed site header (Topbar, Navbar with mega panels, mobile menu).
  *
  * @package loveride
  */
 
-$lr_logo         = lr_get_option( 'logo' );
-$lr_btn_tickets  = lr_get_option( 'button_tickets' );
-$lr_btn_spenden  = lr_get_option( 'button_spenden' );
-$lr_code_head    = lr_get_option( 'code_head', '' );
-$lr_code_body    = lr_get_option( 'code_body', '' );
-$lr_site_name    = get_bloginfo( 'name' );
+$lr_code_head = lr_get_option( 'code_head', '' );
+$lr_code_body = lr_get_option( 'code_body', '' );
+$lr_menu_tree = lr_menu_tree( 'menu-main' );
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -43,51 +40,12 @@ $lr_site_name    = get_bloginfo( 'name' );
 
 <a class="skip-link" href="#main"><?php esc_html_e( 'Zum Inhalt springen', 'loveride' ); ?></a>
 
-<header class="header">
+<header class="header" data-header>
 
-	<div class="header__inner">
+	<?php get_template_part( 'template_parts/global/topbar' ); ?>
 
-		<div class="header__logo">
-			<a href="<?= esc_url( home_url( '/' ) ); ?>" title="<?= esc_attr( $lr_site_name ); ?>">
-				<?php if ( ! empty( $lr_logo ) ) : ?>
-					<?= lr_acf_image( $lr_logo, 'medium', array(
-						'loading'       => 'eager',
-						'fetchpriority' => 'high',
-						'alt'           => $lr_site_name,
-					) ); ?>
-				<?php else : ?>
-					<?= esc_html( $lr_site_name ); ?>
-				<?php endif; ?>
-			</a>
-		</div>
+	<?php get_template_part( 'template_parts/global/navbar', null, array( 'tree' => $lr_menu_tree ) ); ?>
 
-		<nav class="nav-main" aria-label="<?php esc_attr_e( 'Hauptnavigation', 'loveride' ); ?>">
-			<?php
-			wp_nav_menu( array(
-				'theme_location' => 'menu-main',
-				'container'      => false,
-				'menu_class'     => 'nav-main__menu',
-				'depth'          => 2,
-				'fallback_cb'    => false,
-			) );
-			?>
-		</nav>
-
-		<?php if ( ! empty( $lr_btn_tickets['url'] ) || ! empty( $lr_btn_spenden['url'] ) ) : ?>
-			<div class="header__actions">
-				<?php foreach ( array( $lr_btn_tickets, $lr_btn_spenden ) as $lr_button ) : ?>
-					<?php if ( ! empty( $lr_button['url'] ) ) : ?>
-						<a
-							class="btn--primary btn--small"
-							href="<?= esc_url( $lr_button['url'] ); ?>"
-							target="<?= esc_attr( ( $lr_button['target'] ?? '' ) ?: '_self' ); ?>"
-							<?= ( $lr_button['target'] ?? '' ) === '_blank' ? 'rel="noopener"' : ''; ?>
-						><?= esc_html( $lr_button['title'] ); ?></a>
-					<?php endif; ?>
-				<?php endforeach; ?>
-			</div>
-		<?php endif; ?>
-
-	</div>
+	<?php get_template_part( 'template_parts/global/mobile_menu', null, array( 'tree' => $lr_menu_tree ) ); ?>
 
 </header>

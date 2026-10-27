@@ -47,6 +47,22 @@ function lr_inline_svg( string $url, string $prefix = '' ): string {
 	return $svg;
 }
 
+function lr_ui_icon( string $name, string $class = '' ): string {
+
+	$file = LR_THEME_PATH . '/assets/images/ui/' . sanitize_key( $name ) . '.svg';
+
+	if ( ! file_exists( $file ) ) {
+		return '';
+	}
+
+	return (string) preg_replace(
+		'/<svg\b/',
+		'<svg class="icon ' . esc_attr( trim( 'icon--' . $name . ' ' . $class ) ) . '" aria-hidden="true" focusable="false"',
+		file_get_contents( $file ),
+		1
+	);
+}
+
 add_filter( 'upload_mimes', function ( $mimes ) {
 
 	if ( current_user_can( 'manage_options' ) ) {

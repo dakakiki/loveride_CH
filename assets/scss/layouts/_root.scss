@@ -14,7 +14,7 @@
 
     @include scheme-vars(weiss);
 
-    @include respond-max(lg) {
+    @media (max-width: $nav-breakpoint) {
         --header-height: #{$topbar-height + $navbar-height-mobile};
     }
 }

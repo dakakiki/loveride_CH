@@ -60,12 +60,12 @@ add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'lr-style', lr_dist_uri( $css ), array(), lr_dist_ver( $css ) );
 
 	$scripts = array(
-		'lr-custom' => 'js/custom.min.js',
-		'lr-gsap'   => 'js/gsap.min.js',
+		'lr-gsap'   => array( 'js/gsap.min.js', array() ),
+		'lr-custom' => array( 'js/custom.min.js', array( 'lr-gsap' ) ),
 	);
 
-	foreach ( $scripts as $handle => $rel ) {
-		wp_enqueue_script( $handle, lr_dist_uri( $rel ), array(), lr_dist_ver( $rel ), array(
+	foreach ( $scripts as $handle => list( $rel, $deps ) ) {
+		wp_enqueue_script( $handle, lr_dist_uri( $rel ), $deps, lr_dist_ver( $rel ), array(
 			'in_footer' => true,
 			'strategy'  => 'defer',
 		) );
@@ -154,6 +154,8 @@ require_once LR_THEME_PATH . '/inc/helpers/wp_editor_colors.php';
 require_once LR_THEME_PATH . '/inc/helpers/debug.php';
 
 require_once LR_THEME_PATH . '/inc/options-page.php';
+require_once LR_THEME_PATH . '/inc/event.php';
+require_once LR_THEME_PATH . '/inc/menu.php';
 require_once LR_THEME_PATH . '/inc/icons.php';
 require_once LR_THEME_PATH . '/inc/live.php';
 require_once LR_THEME_PATH . '/inc/admin.php';

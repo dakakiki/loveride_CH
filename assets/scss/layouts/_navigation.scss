@@ -1,11 +1,11 @@
 /*
-* Navigation: main menu in the header (menu-main)
+* Navigation: desktop main menu (menu-main) with mega panels dropping below the Navbar
 */
 
 @use '../abstracts' as *;
 
 .nav-main {
-    @include respond-max(lg) {
+    @media (max-width: $nav-breakpoint) {
         display: none;
     }
 
@@ -14,29 +14,187 @@
 
         display: flex;
         align-items: center;
-        gap: rem(32);
+        gap: rem(28);
 
-        > li {
-            position: relative;
+        @media (max-width: $nav-compact) {
+            gap: rem(16);
+        }
+    }
+
+    &__link {
+        @include font-condensed($fw-bold);
+
+        display: block;
+        padding: rem(12) 0;
+
+        font-size: rem(18);
+        line-height: 1.1;
+        letter-spacing: 0.01em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        text-decoration: none;
+        text-underline-offset: 0.35em;
+        text-decoration-thickness: 2px;
+
+        color: palette(clr-neutral-darkest);
+
+        @include trans(color);
+
+        @media (max-width: $nav-compact) {
+            font-size: rem(16);
         }
 
-        a {
-            @include t-text($fw-semibold);
+        &:hover,
+        &[aria-expanded="true"] {
+            color: palette(clr-red);
+        }
+    }
 
+    &__item.is-active > &__link {
+        text-decoration-line: underline;
+        text-decoration-color: palette(clr-red);
+    }
+}
+
+.mega {
+    &__panel {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1;
+
+        background-color: palette(clr-white);
+        border-top: $border-width solid palette(clr-neutral-lighter);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+
+        &[hidden] {
+            display: none;
+        }
+
+        @media (max-width: $nav-breakpoint) {
+            display: none;
+        }
+    }
+
+    &__inner {
+        @include container;
+
+        display: grid;
+        grid-template-columns: rem(280) minmax(0, 1fr) rem(300);
+        align-items: start;
+        gap: rem(64);
+
+        padding-block: rem(48);
+
+        @media (max-width: $nav-compact) {
+            gap: rem(40);
+        }
+    }
+
+    &__title {
+        @include t-h4;
+
+        display: block;
+        color: palette(clr-neutral-darkest);
+        text-decoration: none;
+
+        &:hover {
+            color: palette(clr-red);
+        }
+    }
+
+    &__text {
+        @include t-text;
+
+        margin: rem(12) 0 0;
+        color: palette(clr-neutral-dark);
+    }
+
+    &__links {
+        @include reset-list;
+
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        row-gap: rem(8);
+    }
+
+    &__link {
+        display: flex;
+        flex-direction: column;
+        gap: rem(2);
+
+        padding: rem(12) rem(24) rem(12) 0;
+
+        color: palette(clr-neutral-darkest);
+        text-decoration: none;
+
+        &-title {
+            @include font-normal($fw-bold);
+
+            font-size: rem(18);
+            line-height: 1.2;
+
+            @include trans(color);
+        }
+
+        &-sub {
+            @include font-normal;
+
+            font-size: rem(16);
+            line-height: 1.2;
+            color: palette(clr-neutral-dark);
+        }
+
+        &:hover .mega__link-title,
+        &.is-current .mega__link-title {
+            color: palette(clr-red);
+        }
+    }
+
+    &__box {
+        @include scheme-vars(rot);
+
+        display: flex;
+        flex-direction: column;
+        gap: rem(12);
+
+        padding: rem(28);
+
+        color: var(--scheme-text);
+        background-color: var(--scheme-background);
+
+        &-title {
+            @include t-h5;
+        }
+
+        &-text {
+            @include t-text;
+
+            margin: 0;
+        }
+
+        &-link {
+            @include font-normal($fw-bold);
+
+            display: inline-flex;
+            align-items: center;
+            gap: rem(6);
+
+            font-size: rem(18);
+            line-height: 1.2;
+            color: inherit;
             text-decoration: none;
+            text-underline-offset: 0.2em;
+
+            .icon {
+                width: rem(18);
+                height: rem(18);
+            }
 
             &:hover {
-                color: theme-color(accent);
+                text-decoration: underline;
             }
-        }
-
-        .current-menu-item > a,
-        .current-menu-ancestor > a {
-            color: theme-color(accent);
-        }
-
-        .sub-menu {
-            display: none;
         }
     }
 }

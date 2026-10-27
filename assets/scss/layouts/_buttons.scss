@@ -16,6 +16,10 @@
     @include btn-link;
 }
 
+.btn--dark {
+    @include btn-dark;
+}
+
 .btn--small {
     @include btn-small;
 }

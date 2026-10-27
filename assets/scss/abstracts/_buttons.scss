@@ -2,6 +2,7 @@
 * Buttons: Primary, Secondary, Link (Figma "Button"); colors follow the section scheme, Alternate on Dunkel / Rot
 */
 
+@use "colors" as *;
 @use "fonts" as *;
 @use "functions" as *;
 @use "mixins" as *;
@@ -77,6 +78,21 @@
         color: var(--btn-secondary-hover-text);
         background-color: var(--btn-secondary-hover-bg);
         border-color: var(--btn-secondary-hover-border);
+    }
+}
+
+@mixin btn-dark {
+    @include btn-base;
+
+    color: palette(clr-white);
+    background-color: palette(clr-neutral-darkest);
+    border-color: palette(clr-red);
+
+    &:hover,
+    &:focus-visible {
+        color: palette(clr-neutral-darkest);
+        background-color: transparent;
+        border-color: palette(clr-neutral-darkest);
     }
 }
 

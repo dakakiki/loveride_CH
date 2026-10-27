@@ -1,5 +1,5 @@
 /*
-* Header: fixed bar with logo, main navigation and CTAs (all pages)
+* Header: fixed site header with Navbar (logo, main navigation, CTAs, mobile menu toggle), all pages
 */
 
 @use '../abstracts' as *;
@@ -10,7 +10,6 @@
     z-index: 100;
 
     background-color: palette(clr-white);
-    border-bottom: $border-width solid theme-color(border);
 
     .admin-bar & {
         top: 32px;
@@ -18,41 +17,55 @@
         @media (max-width: 782px) {
             top: 46px;
         }
+
+        @media (max-width: 600px) {
+            top: 0;
+        }
     }
+}
+
+.navbar {
+    position: relative;
+    z-index: 2;
+
+    background-color: palette(clr-white);
 
     &__inner {
-        @include container;
+        @include bar-inner;
 
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: rem(32);
+        gap: rem(24);
 
         min-height: $navbar-height;
+        padding-block: rem(14);
 
-        @include respond-max(lg) {
+        @media (max-width: $nav-breakpoint) {
             min-height: $navbar-height-mobile;
+            padding-block: rem(8);
         }
     }
 
     &__logo {
         flex-shrink: 0;
-
-        a {
-            display: block;
-            text-decoration: none;
-
-            @include t-h6;
-        }
+        display: block;
+        line-height: 0;
 
         img {
             display: block;
             width: auto;
             height: rem(56);
 
-            @include respond-max(lg) {
-                height: rem(40);
+            @media (max-width: $nav-breakpoint) {
+                height: rem(44);
             }
+        }
+
+        .logo-text {
+            @include t-h6;
+
+            color: palette(clr-neutral-darkest);
         }
     }
 
@@ -60,5 +73,55 @@
         display: flex;
         align-items: center;
         gap: rem(12);
+
+        @media (max-width: $nav-breakpoint) {
+            gap: rem(8);
+        }
+    }
+
+    &__tickets-rest,
+    &__spenden {
+        @media (max-width: $nav-breakpoint) {
+            display: none;
+        }
+    }
+
+    &__burger {
+        display: none;
+        align-items: center;
+        justify-content: center;
+
+        width: rem(44);
+        height: rem(44);
+        margin-right: rem(-6);
+        padding: 0;
+
+        color: palette(clr-neutral-darkest);
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+
+        @media (max-width: $nav-breakpoint) {
+            display: inline-flex;
+        }
+
+        .icon {
+            width: rem(28);
+            height: rem(28);
+        }
+
+        .navbar__burger-close {
+            display: none;
+        }
+
+        &[aria-expanded="true"] {
+            .navbar__burger-open {
+                display: none;
+            }
+
+            .navbar__burger-close {
+                display: block;
+            }
+        }
     }
 }

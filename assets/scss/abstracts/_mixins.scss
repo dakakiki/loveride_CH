@@ -46,6 +46,14 @@
     box-sizing: border-box;
 }
 
+@mixin bar-inner {
+    width: 100%;
+    max-width: $bar-max-width;
+    margin-inline: auto;
+    @include fluid-prop(padding-inline, $bar-bleed-mobile, $bar-bleed);
+    box-sizing: border-box;
+}
+
 @mixin container-left-bleed($max-width: $container-large) {
     box-sizing: border-box;
     margin-left: max(var(--padding-global), calc((100vw - #{$max-width}) / 2));

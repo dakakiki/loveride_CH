@@ -1,0 +1,100 @@
+/*
+* Topbar: red bar above the navbar with Save-the-Date text and quick links (all pages)
+*/
+
+@use '../abstracts' as *;
+
+.topbar {
+    @include scheme-vars(rot);
+    @include t-tagline;
+
+    color: var(--scheme-text);
+    background-color: var(--scheme-background);
+
+    &__inner {
+        @include bar-inner;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: rem(32);
+
+        min-height: $topbar-height;
+        padding-block: rem(10);
+
+        @include respond-max(lg) {
+            justify-content: center;
+        }
+    }
+
+    &__text {
+        flex: 1 1 auto;
+        min-width: 0;
+        margin: 0;
+
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        @include respond-max(lg) {
+            flex: 0 1 auto;
+            text-align: center;
+        }
+    }
+
+    &__text-medium,
+    &__text-short {
+        display: none;
+    }
+
+    @include respond-max(xxl) {
+        &__text-full {
+            display: none;
+        }
+
+        &__text-medium {
+            display: inline;
+        }
+    }
+
+    @include respond-max(lg) {
+        &__text-medium {
+            display: none;
+        }
+
+        &__text-short {
+            display: inline;
+        }
+    }
+
+    &__nav {
+        flex-shrink: 0;
+
+        @include respond-max(lg) {
+            display: none;
+        }
+    }
+
+    &__menu {
+        @include reset-list;
+
+        display: flex;
+        align-items: center;
+        gap: rem(28);
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            text-underline-offset: 0.25em;
+
+            &:hover,
+            &:focus-visible {
+                text-decoration: underline;
+            }
+        }
+
+        .current-menu-item > a {
+            text-decoration: underline;
+        }
+    }
+}
