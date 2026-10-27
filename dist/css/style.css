@@ -1408,8 +1408,9 @@ hr {
   font-size: 1rem;
 }
 
-.has-mobile-menu {
+html.has-mobile-menu {
   overflow: hidden;
+  padding-right: var(--lr-scrollbar, 0px);
 }
 
 /*

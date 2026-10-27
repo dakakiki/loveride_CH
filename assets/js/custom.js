@@ -200,13 +200,21 @@
     const setMenu = function (open) {
         if (!menuToggle || !mobileMenu) return;
 
+        const root = document.documentElement;
+        const scrollY = window.scrollY;
+
         if (open) {
-            document.documentElement.style.setProperty("--lr-header-bottom", header.getBoundingClientRect().bottom + "px");
+            root.style.setProperty("--lr-header-bottom", header.getBoundingClientRect().bottom + "px");
+            root.style.setProperty("--lr-scrollbar", window.innerWidth - root.clientWidth + "px");
         }
 
         menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
         menuToggle.setAttribute("aria-label", open ? menuToggle.dataset.labelClose : menuToggle.dataset.labelOpen);
-        document.body.classList.toggle("has-mobile-menu", open);
+        root.classList.toggle("has-mobile-menu", open);
+
+        if (!open && window.scrollY !== scrollY) {
+            window.scrollTo({ top: scrollY, behavior: "instant" });
+        }
 
         if (!canAnimate()) {
             mobileMenu.hidden = !open;
