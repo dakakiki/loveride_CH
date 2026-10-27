@@ -1,0 +1,103 @@
+{
+    "key": "group_98b8738fa6dc5",
+    "title": "Baustein – Darstellung",
+    "fields": [
+        {
+            "key": "field_b5e38362173ad",
+            "label": "Farbschema",
+            "name": "farbschema",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "weiss": "Weiss",
+                "offwhite": "Off White",
+                "dunkel": "Dunkel",
+                "rot": "Rot"
+            },
+            "default_value": "weiss",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_0ace3f33a2cf6",
+            "label": "Abstand oben",
+            "name": "abstand_oben",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "gross": "Gross",
+                "mittel": "Mittel",
+                "klein": "Klein",
+                "kein": "Kein"
+            },
+            "default_value": "gross",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_b7dbac84b4582",
+            "label": "Abstand unten",
+            "name": "abstand_unten",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "gross": "Gross",
+                "mittel": "Mittel",
+                "klein": "Klein",
+                "kein": "Kein"
+            },
+            "default_value": "gross",
+            "return_format": "value",
+            "allow_null": 0,
+            "layout": "horizontal"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": false,
+    "description": "Wird als Klon in Layouts verwendet.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1793117895
+}

@@ -69,6 +69,14 @@ function lr_render_layout( string $layout ): void {
 	}
 }
 
+add_filter( 'acf/update_value/name=kennung', function ( $value ) {
+	return sanitize_title( (string) $value );
+} );
+
+add_filter( 'acf/update_value/name=anker', function ( $value ) {
+	return sanitize_title( ltrim( (string) $value, '#' ) );
+} );
+
 function lr_acf_image( $image, string $size = 'large', array $attrs = array() ): string {
 
 	if ( empty( $image ) || empty( $image['ID'] ) ) {

@@ -154,3 +154,6 @@ require_once LR_THEME_PATH . '/inc/helpers/wp_editor_colors.php';
 require_once LR_THEME_PATH . '/inc/helpers/debug.php';
 
 require_once LR_THEME_PATH . '/inc/options-page.php';
+require_once LR_THEME_PATH . '/inc/icons.php';
+require_once LR_THEME_PATH . '/inc/live.php';
+require_once LR_THEME_PATH . '/inc/admin.php';
