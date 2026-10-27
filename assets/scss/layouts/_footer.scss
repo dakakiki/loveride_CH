@@ -198,13 +198,12 @@
         gap: rem(16);
 
         .footer__title {
-            flex: 0 1 rem(352);
-            min-width: rem(180);
+            flex: 0 0 rem(352);
         }
 
         @include respond-max(xxl) {
             flex-direction: column;
-            align-items: flex-start;
+            align-items: stretch;
             gap: rem(8);
 
             .footer__title {
@@ -214,56 +213,57 @@
     }
 
     &__logos {
-        @include reset-list;
+        flex: 1 1 auto;
+        min-width: 0;
 
-        display: flex;
-        flex: 0 0 auto;
-        flex-wrap: wrap;
-        gap: rem(16);
-        max-width: calc(100% - #{rem(196)});
-
-        @include respond-max(xxl) {
-            max-width: none;
-        }
-
-        @include respond-max(md) {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: rem(8);
-            width: 100%;
-        }
-
-        li {
+        &:not(.slick-initialized) {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            gap: rem(16);
+            overflow: hidden;
 
-            width: rem(176);
-            height: rem(72);
-            padding: rem(12) rem(18);
-
-            background-color: palette(clr-white);
-
-            @include respond-max(md) {
-                width: auto;
-                height: rem(64);
-                padding: rem(8) rem(16);
+            .footer__logo-item {
+                flex: 0 0 rem(176);
             }
         }
 
-        a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
+        .slick-list {
+            margin-inline: rem(-8);
+
+            @include respond-max(md) {
+                margin-inline: rem(-4);
+            }
+        }
+
+        .slick-slide {
+            margin-inline: rem(8);
+
+            @include respond-max(md) {
+                margin-inline: rem(4);
+            }
+        }
+    }
+
+    &__logo-frame {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        height: rem(72);
+        padding: rem(12) rem(18);
+
+        background-color: palette(clr-white);
+
+        @include respond-max(md) {
+            height: rem(64);
+            padding: rem(8) rem(16);
         }
 
         img {
             display: block;
             width: auto;
             height: auto;
-            max-width: rem(140);
+            max-width: 100%;
             max-height: rem(48);
             object-fit: contain;
         }

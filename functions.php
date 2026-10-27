@@ -76,6 +76,23 @@ add_action( 'wp_enqueue_scripts', function () {
 		'themeUri' => LR_THEME_URI,
 	) );
 
+	if ( lr_logo_sponsors() ) {
+		wp_script_add_data( 'jquery-core', 'strategy', 'defer' );
+		wp_script_add_data( 'jquery-migrate', 'strategy', 'defer' );
+
+		$slider_scripts = array(
+			'slick'             => array( 'js/slick.min.js', array( 'jquery' ) ),
+			'lr-partner-slider' => array( 'js/partner-slider.min.js', array( 'jquery', 'slick' ) ),
+		);
+
+		foreach ( $slider_scripts as $handle => list( $rel, $deps ) ) {
+			wp_enqueue_script( $handle, lr_dist_uri( $rel ), $deps, lr_dist_ver( $rel ), array(
+				'in_footer' => true,
+				'strategy'  => 'defer',
+			) );
+		}
+	}
+
 }, 20 );
 
 function lr_layout_scripts(): array {

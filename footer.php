@@ -67,19 +67,21 @@ $lr_legal       = lr_menu_items( 'menu-legal' );
 		<?php if ( $lr_sponsors ) : ?>
 			<div class="footer__sponsors">
 				<p class="footer__title"><?= esc_html( lr_get_option( 'sponsoren_titel', __( 'Unsere Hauptpartner', 'loveride' ) ) ); ?></p>
-				<ul class="footer__logos">
+				<div class="footer__logos" data-partner-slider>
 					<?php foreach ( $lr_sponsors as $lr_sponsor ) : ?>
-						<li>
+						<div class="footer__logo-item">
 							<?php if ( $lr_sponsor['website'] ) : ?>
-								<a href="<?= esc_url( $lr_sponsor['website'] ); ?>" target="_blank" rel="noopener" title="<?= esc_attr( $lr_sponsor['title'] ); ?>">
+								<a class="footer__logo-frame" href="<?= esc_url( $lr_sponsor['website'] ); ?>" target="_blank" rel="noopener" title="<?= esc_attr( $lr_sponsor['title'] ); ?>">
 									<?= lr_acf_image( $lr_sponsor['logo'], 'medium', array( 'loading' => 'lazy', 'alt' => $lr_sponsor['title'] ) ); ?>
 								</a>
 							<?php else : ?>
-								<?= lr_acf_image( $lr_sponsor['logo'], 'medium', array( 'loading' => 'lazy', 'alt' => $lr_sponsor['title'] ) ); ?>
+								<span class="footer__logo-frame">
+									<?= lr_acf_image( $lr_sponsor['logo'], 'medium', array( 'loading' => 'lazy', 'alt' => $lr_sponsor['title'] ) ); ?>
+								</span>
 							<?php endif; ?>
-						</li>
+						</div>
 					<?php endforeach; ?>
-				</ul>
+				</div>
 			</div>
 		<?php endif; ?>
 

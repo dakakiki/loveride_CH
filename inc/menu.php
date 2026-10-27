@@ -93,7 +93,13 @@ function lr_link_attrs( array $link ): string {
 	);
 }
 
-function lr_logo_sponsors( int $limit = 10 ): array {
+function lr_logo_sponsors( int $limit = 30 ): array {
+
+	static $cache = array();
+
+	if ( isset( $cache[ $limit ] ) ) {
+		return $cache[ $limit ];
+	}
 
 	$query = new WP_Query( array(
 		'post_type'              => 'sponsor',
@@ -121,6 +127,8 @@ function lr_logo_sponsors( int $limit = 10 ): array {
 			'website' => (string) get_field( 'website', $post->ID ),
 		);
 	}
+
+	$cache[ $limit ] = $sponsors;
 
 	return $sponsors;
 }
