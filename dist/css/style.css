@@ -736,6 +736,84 @@ hr {
 }
 
 /*
+* Forms: Contact Form 7 base (validation tips, response output, submitting state) and the newsletter form layout (.nl-form)
+*/
+.wpcf7 {
+  --form-error: #A50B24;
+}
+.wpcf7 .wpcf7-form-control-wrap {
+  display: block;
+}
+.wpcf7 .wpcf7-not-valid-tip {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  display: block;
+  margin-top: 0.375rem;
+  color: var(--form-error);
+}
+.wpcf7 input.wpcf7-not-valid,
+.wpcf7 textarea.wpcf7-not-valid,
+.wpcf7 select.wpcf7-not-valid {
+  border-color: var(--form-error);
+}
+.wpcf7 form .wpcf7-response-output {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  margin: 0.75rem 0 0;
+  padding: 0.5rem 0.75rem;
+  color: inherit;
+  border: 1px solid currentColor;
+}
+.wpcf7 form.sent .wpcf7-response-output {
+  border-color: #1E7B34;
+}
+.wpcf7 form.invalid .wpcf7-response-output,
+.wpcf7 form.unaccepted .wpcf7-response-output,
+.wpcf7 form.failed .wpcf7-response-output,
+.wpcf7 form.spam .wpcf7-response-output {
+  border-color: var(--form-error);
+}
+
+.nl-form {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+@media (max-width: 640px) {
+  .nl-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .nl-form .btn--primary {
+    align-self: flex-start;
+  }
+}
+.nl-form .wpcf7-form-control-wrap {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.nl-form input[type=email] {
+  width: 100%;
+}
+.nl-form .btn--primary {
+  flex-shrink: 0;
+}
+.nl-form .wpcf7-spinner {
+  display: none;
+}
+
+.wpcf7-form.submitting .wpcf7-submit {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/*
 * Topbar: red bar above the navbar with Save-the-Date text and quick links (all pages)
 */
 .topbar {
@@ -1508,7 +1586,13 @@ hr {
     align-items: flex-start;
   }
 }
-.footer__form input[type=email] {
+.footer__form .btn--primary {
+  flex-shrink: 0;
+}
+.footer__newsletter .wpcf7 {
+  --form-error: #FBE7EA;
+}
+.footer__newsletter input[type=email] {
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
   font-stretch: 100%;
   font-weight: 400;
@@ -1523,16 +1607,13 @@ hr {
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 0;
 }
-.footer__form input[type=email]::placeholder {
+.footer__newsletter input[type=email]::placeholder {
   color: #B3AFA8;
   opacity: 1;
 }
-.footer__form input[type=email]:focus-visible {
+.footer__newsletter input[type=email]:focus-visible {
   outline: 2px solid #FFFFFF;
   outline-offset: 2px;
-}
-.footer__form .btn--primary {
-  flex-shrink: 0;
 }
 .footer__note {
   font-family: "Open Sans", Arial, Helvetica, sans-serif;

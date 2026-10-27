@@ -1,0 +1,85 @@
+/*
+* Forms: Contact Form 7 base (validation tips, response output, submitting state) and the newsletter form layout (.nl-form)
+*/
+
+@use '../abstracts' as *;
+
+.wpcf7 {
+    --form-error: #{palette(clr-red-dark)};
+
+    .wpcf7-form-control-wrap {
+        display: block;
+    }
+
+    .wpcf7-not-valid-tip {
+        @include t-text-tiny;
+
+        display: block;
+        margin-top: rem(6);
+        color: var(--form-error);
+    }
+
+    input.wpcf7-not-valid,
+    textarea.wpcf7-not-valid,
+    select.wpcf7-not-valid {
+        border-color: var(--form-error);
+    }
+
+    form .wpcf7-response-output {
+        @include t-text-small;
+
+        margin: rem(12) 0 0;
+        padding: rem(8) rem(12);
+
+        color: inherit;
+        border: $border-width solid currentColor;
+    }
+
+    form.sent .wpcf7-response-output {
+        border-color: palette(clr-success);
+    }
+
+    form.invalid .wpcf7-response-output,
+    form.unaccepted .wpcf7-response-output,
+    form.failed .wpcf7-response-output,
+    form.spam .wpcf7-response-output {
+        border-color: var(--form-error);
+    }
+}
+
+.nl-form {
+    display: flex;
+    align-items: flex-start;
+    gap: rem(12);
+
+    @include respond-max(sm) {
+        flex-direction: column;
+        align-items: stretch;
+
+        .btn--primary {
+            align-self: flex-start;
+        }
+    }
+
+    .wpcf7-form-control-wrap {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    input[type="email"] {
+        width: 100%;
+    }
+
+    .btn--primary {
+        flex-shrink: 0;
+    }
+
+    .wpcf7-spinner {
+        display: none;
+    }
+}
+
+.wpcf7-form.submitting .wpcf7-submit {
+    opacity: 0.6;
+    pointer-events: none;
+}

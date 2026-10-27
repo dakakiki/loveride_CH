@@ -144,6 +144,16 @@
             align-items: flex-start;
         }
 
+        .btn--primary {
+            flex-shrink: 0;
+        }
+    }
+
+    &__newsletter {
+        .wpcf7 {
+            --form-error: #{palette(clr-red-lightest)};
+        }
+
         input[type="email"] {
             @include t-text;
 
@@ -166,10 +176,6 @@
                 outline: 2px solid palette(clr-white);
                 outline-offset: 2px;
             }
-        }
-
-        .btn--primary {
-            flex-shrink: 0;
         }
     }
 

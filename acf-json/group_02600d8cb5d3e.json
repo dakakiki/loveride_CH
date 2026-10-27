@@ -258,6 +258,26 @@
             "append": ""
         },
         {
+            "key": "field_e517a447f49dc",
+            "label": "Titel Footer-Box",
+            "name": "event_footer_titel",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Nächster Love Ride",
+            "placeholder": "Nächster Love Ride",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_bcb9239c049ed",
             "label": "Event-Teaser",
             "name": "",
@@ -400,5 +420,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1793117895
+    "modified": 1793123254
 }

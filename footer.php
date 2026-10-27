@@ -27,7 +27,7 @@ $lr_privacy_url = get_privacy_policy_url();
 				<?php if ( $lr_event_date ) : ?>
 					<div class="footer__event">
 						<div class="footer__event-text">
-							<p class="footer__event-label"><?php esc_html_e( 'Nächster Love Ride', 'loveride' ); ?></p>
+							<p class="footer__event-label"><?= esc_html( lr_event( 'footer_titel', __( 'Nächster Love Ride', 'loveride' ) ) ); ?></p>
 							<p class="footer__event-date"><?= esc_html( $lr_event_date ); ?></p>
 							<?php if ( $lr_event_info ) : ?>
 								<p class="footer__event-info"><?= esc_html( $lr_event_info ); ?></p>
@@ -47,7 +47,7 @@ $lr_privacy_url = get_privacy_policy_url();
 						<?php endif; ?>
 
 						<?php if ( ! empty( $lr_newsletter['formular'] ) ) : ?>
-							<div class="footer__form"><?= do_shortcode( $lr_newsletter['formular'] ); ?></div>
+							<div class="footer__cf7"><?= do_shortcode( $lr_newsletter['formular'] ); ?></div>
 						<?php else : ?>
 							<form class="footer__form" action="#" onsubmit="return false;">
 								<label class="screen-reader-text" for="footer-newsletter-email"><?php esc_html_e( 'Deine E-Mail-Adresse', 'loveride' ); ?></label>
