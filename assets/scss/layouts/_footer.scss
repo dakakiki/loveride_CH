@@ -182,6 +182,10 @@
     &__note {
         @include t-text-tiny;
 
+        p + p {
+            margin-top: 0.5em;
+        }
+
         a:not([class]) {
             text-decoration: underline;
             text-underline-offset: 0.15em;
@@ -194,7 +198,8 @@
         gap: rem(16);
 
         .footer__title {
-            flex: 0 0 rem(352);
+            flex: 0 1 rem(352);
+            min-width: rem(180);
         }
 
         @include respond-max(xxl) {
@@ -212,8 +217,14 @@
         @include reset-list;
 
         display: flex;
+        flex: 0 0 auto;
         flex-wrap: wrap;
         gap: rem(16);
+        max-width: calc(100% - #{rem(196)});
+
+        @include respond-max(xxl) {
+            max-width: none;
+        }
 
         @include respond-max(md) {
             display: grid;

@@ -80,7 +80,7 @@
             "tabs": "all",
             "toolbar": "basic",
             "media_upload": 0,
-            "delay": 0
+            "delay": 1
         },
         {
             "key": "field_05ba10dcd5428",
@@ -196,5 +196,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1793117895
+    "modified": 1793123803
 }

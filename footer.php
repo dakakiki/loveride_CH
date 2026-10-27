@@ -15,7 +15,6 @@ $lr_spenden     = (array) lr_get_option( 'spenden', array() );
 $lr_social      = (array) lr_get_option( 'social', array() );
 $lr_columns     = lr_menu_tree( 'menu-footer' );
 $lr_legal       = lr_menu_items( 'menu-legal' );
-$lr_privacy_url = get_privacy_policy_url();
 ?>
 
 <footer class="footer">
@@ -57,14 +56,7 @@ $lr_privacy_url = get_privacy_policy_url();
 						<?php endif; ?>
 
 						<?php if ( ! empty( $lr_newsletter['datenschutz_hinweis'] ) ) : ?>
-							<?php
-							$lr_note = esc_html( $lr_newsletter['datenschutz_hinweis'] );
-
-							if ( $lr_privacy_url ) {
-								$lr_note = preg_replace( '/Datenschutzerklärung/u', '<a href="' . esc_url( $lr_privacy_url ) . '">$0</a>', $lr_note, 1 );
-							}
-							?>
-							<p class="footer__note"><?= $lr_note; ?></p>
+							<div class="footer__note"><?= wp_kses_post( $lr_newsletter['datenschutz_hinweis'] ); ?></div>
 						<?php endif; ?>
 					</div>
 				<?php endif; ?>
