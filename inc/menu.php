@@ -93,6 +93,51 @@ function lr_link_attrs( array $link ): string {
 	);
 }
 
+function lr_logo_sponsors( int $limit = 10 ): array {
+
+	$query = new WP_Query( array(
+		'post_type'              => 'sponsor',
+		'post_status'            => 'publish',
+		'posts_per_page'         => $limit,
+		'orderby'                => array( 'menu_order' => 'ASC', 'title' => 'ASC' ),
+		'meta_key'               => 'in_logo_leiste',
+		'meta_value'             => '1',
+		'no_found_rows'          => true,
+		'update_post_term_cache' => false,
+	) );
+
+	$sponsors = array();
+
+	foreach ( $query->posts as $post ) {
+		$logo = function_exists( 'get_field' ) ? get_field( 'logo', $post->ID ) : null;
+
+		if ( empty( $logo ) ) {
+			continue;
+		}
+
+		$sponsors[] = array(
+			'title'   => get_the_title( $post ),
+			'logo'    => $logo,
+			'website' => (string) get_field( 'website', $post->ID ),
+		);
+	}
+
+	return $sponsors;
+}
+
+function lr_social_label( string $platform ): string {
+
+	$labels = array(
+		'facebook'  => 'Facebook',
+		'instagram' => 'Instagram',
+		'youtube'   => 'YouTube',
+		'tiktok'    => 'TikTok',
+		'linkedin'  => 'LinkedIn',
+	);
+
+	return $labels[ $platform ] ?? ucfirst( $platform );
+}
+
 function lr_header_buttons(): array {
 
 	return array_filter( array(
