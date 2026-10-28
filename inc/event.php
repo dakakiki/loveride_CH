@@ -1,6 +1,6 @@
 <?php
 /**
- * Event-Daten: access to the next Love Ride (date, times, place) and derived texts (Topbar).
+ * Event-Daten: access to the next Love Ride (date, times, place) and the Topbar text (Theme-Einstellungen → Topbar).
  *
  * @package loveride
  */
@@ -27,18 +27,18 @@ function lr_event_opening_hours(): string {
 /**
  * @param string $variant full "Save the Date: So, 2. Mai 2027 · Ort · 8.00 bis 17.00 Uhr" | medium (without hours) | short "So, 2. Mai 2027 · Ort"
  */
-function lr_topbar_text( string $variant = 'full' ): string {
+function lr_topbar_text( string $variant = 'full', bool $custom = true ): string {
 
-	$custom = trim( (string) lr_event( 'topbar_text' ) );
-	$date   = lr_event_date();
-	$place  = trim( (string) lr_event( 'ort' ) );
+	$text  = $custom ? trim( (string) lr_get_option( 'topbar_text', '' ) ) : '';
+	$date  = lr_event_date();
+	$place = trim( (string) lr_event( 'ort' ) );
 
 	if ( $variant === 'short' && $date ) {
 		return implode( ' · ', array_filter( array( $date, $place ) ) );
 	}
 
-	if ( $custom !== '' ) {
-		return $custom;
+	if ( $text !== '' ) {
+		return $text;
 	}
 
 	if ( ! $date ) {
@@ -51,5 +51,12 @@ function lr_topbar_text( string $variant = 'full' ): string {
 		$parts[] = lr_event_opening_hours();
 	}
 
-	return __( 'Save the Date:', 'loveride' ) . ' ' . implode( ' · ', array_filter( $parts ) );
+	return trim( trim( (string) lr_get_option( 'topbar_praefix', '' ) ) . ' ' . implode( ' · ', array_filter( $parts ) ) );
 }
+
+add_filter( 'acf/prepare_field/name=topbar_text', function ( $field ) {
+
+	$field['placeholder'] = lr_topbar_text( 'full', false );
+
+	return $field;
+} );

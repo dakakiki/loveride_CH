@@ -186,22 +186,6 @@
             "default_to_current_date": 0
         },
         {
-            "key": "field_9e1b756dca795",
-            "label": "Ticket-Shop",
-            "name": "event_ticket_link",
-            "aria-label": "",
-            "type": "link",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "33",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array"
-        },
-        {
             "key": "field_566e141959f05",
             "label": "Online spenden",
             "name": "event_spenden_link",
@@ -236,46 +220,6 @@
             "ui": 1,
             "ui_on_text": "Ja",
             "ui_off_text": "Nein"
-        },
-        {
-            "key": "field_857ebd90c20cb",
-            "label": "Topbar-Text",
-            "name": "event_topbar_text",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "67",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_e517a447f49dc",
-            "label": "Titel Footer-Box",
-            "name": "event_footer_titel",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "33",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "Nächster Love Ride",
-            "placeholder": "Nächster Love Ride",
-            "maxlength": "",
-            "prepend": "",
-            "append": ""
         },
         {
             "key": "field_bcb9239c049ed",
@@ -420,5 +364,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1793123254
+    "modified": 1793176378
 }

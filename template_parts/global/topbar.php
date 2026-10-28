@@ -1,6 +1,6 @@
 <?php
 /**
- * Topbar: Save-the-Date text from Event-Daten and quick links (menu-topbar), top of the site header.
+ * Topbar: Save-the-Date text (Theme-Einstellungen → Topbar, dates from Event-Daten) and quick links (menu-topbar), top of the site header.
  *
  * @package loveride
  */

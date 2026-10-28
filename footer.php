@@ -7,7 +7,8 @@
 
 $lr_event_date  = lr_event_date();
 $lr_event_info  = implode( ' · ', array_filter( array( lr_event_opening_hours(), lr_event( 'ort' ) ) ) );
-$lr_ticket_link = lr_event( 'ticket_link' ) ?: ( lr_header_buttons()['tickets'] ?? null );
+$lr_footer_box  = (array) lr_get_option( 'geteilt_footer_box', array() );
+$lr_ticket_link = (array) ( $lr_footer_box['button'] ?? array() );
 $lr_newsletter  = (array) lr_get_option( 'geteilt_newsletter', array() );
 $lr_sponsors    = lr_logo_sponsors();
 $lr_kontakt     = (array) lr_get_option( 'kontakt', array() );
@@ -26,7 +27,7 @@ $lr_legal       = lr_menu_items( 'menu-legal' );
 				<?php if ( $lr_event_date ) : ?>
 					<div class="footer__event">
 						<div class="footer__event-text">
-							<p class="footer__event-label"><?= esc_html( lr_event( 'footer_titel', __( 'Nächster Love Ride', 'loveride' ) ) ); ?></p>
+							<p class="footer__event-label"><?= esc_html( ( $lr_footer_box['titel'] ?? '' ) ?: __( 'Nächster Love Ride', 'loveride' ) ); ?></p>
 							<p class="footer__event-date"><?= esc_html( $lr_event_date ); ?></p>
 							<?php if ( $lr_event_info ) : ?>
 								<p class="footer__event-info"><?= esc_html( $lr_event_info ); ?></p>
