@@ -172,6 +172,8 @@ $lr_legal       = lr_menu_items( 'menu-legal' );
 	</div>
 </footer>
 
+<?php get_template_part( 'template_parts/global/read_aloud' ); ?>
+
 <?php wp_footer(); ?>
 
 </body>

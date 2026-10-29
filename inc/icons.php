@@ -62,6 +62,7 @@ function lr_icon_labels(): array {
 		'support_agent'       => 'Betreuung',
 		'traffic'             => 'Verkehr / Sperrung',
 		'two_wheeler'         => 'Töff',
+		'volume_up'           => 'Lautsprecher',
 		'volunteer_activism'  => 'Spenden',
 		'warning'             => 'Warnung',
 		'wc'                  => 'Toiletten',

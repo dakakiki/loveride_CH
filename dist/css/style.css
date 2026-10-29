@@ -2329,6 +2329,128 @@ html.has-mobile-menu {
 }
 
 /*
+* Read aloud: floating "Seite vorlesen" button (Figma "LR/Vorlesen-Button") and the highlight of the block being read, all pages
+*/
+.read-aloud {
+  --read-aloud-edge: 1.5rem;
+  position: fixed;
+  right: var(--read-aloud-edge);
+  bottom: calc(var(--read-aloud-edge) + var(--quickbar-height, 0px) + env(safe-area-inset-bottom, 0px));
+  z-index: 90;
+  display: flex;
+  align-items: stretch;
+  gap: 0.5rem;
+  max-width: calc(100vw - 2 * var(--read-aloud-edge));
+  animation: read-aloud-in 0.3s ease-out both;
+}
+@media (max-width: 768px) {
+  .read-aloud {
+    --read-aloud-edge: 1rem;
+  }
+}
+.read-aloud[hidden], .has-mobile-menu .read-aloud {
+  display: none;
+}
+.read-aloud__toggle, .read-aloud__stop {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  margin: 0;
+  padding: 0.625rem 1.25rem 0.625rem 1rem;
+  box-sizing: border-box;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #1A1A1A;
+  background-color: #FFFFFF;
+  border: 2px solid #1A1A1A;
+  border-radius: 0;
+  box-shadow: 0 0.375rem 1.25rem rgba(26, 26, 26, 0.18);
+  cursor: pointer;
+  transition-property: background-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.read-aloud__toggle:hover, .read-aloud__stop:hover {
+  color: #FFFFFF;
+  background-color: #1A1A1A;
+}
+.read-aloud__toggle:focus-visible, .read-aloud__stop:focus-visible {
+  outline: 2px solid #1A1A1A;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #FFFFFF, 0 0.375rem 1.25rem rgba(26, 26, 26, 0.18);
+}
+.read-aloud__toggle .icon, .read-aloud__stop .icon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.read-aloud__stop {
+  justify-content: center;
+  width: 3.1875rem;
+  padding: 0;
+}
+.read-aloud__stop[hidden] {
+  display: none;
+}
+.read-aloud__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.read-aloud__icon--pause, .read-aloud__icon--resume {
+  display: none;
+}
+.read-aloud[data-state=playing] .read-aloud__icon--start, .read-aloud[data-state=paused] .read-aloud__icon--start {
+  display: none;
+}
+.read-aloud[data-state=playing] .read-aloud__icon--pause, .read-aloud[data-state=paused] .read-aloud__icon--resume {
+  display: block;
+}
+@media print {
+  .read-aloud {
+    display: none !important;
+  }
+}
+
+.is-read-aloud {
+  --read-aloud-tint: color-mix(in srgb, currentColor 10%, transparent);
+  --read-aloud-line: color-mix(in srgb, currentColor 35%, transparent);
+  background-image: linear-gradient(var(--read-aloud-tint), var(--read-aloud-tint));
+  box-shadow: 0 0 0 0.375rem var(--read-aloud-tint), 0 0 0 0.4375rem var(--read-aloud-line);
+}
+@media (forced-colors: active) {
+  .is-read-aloud {
+    outline: 2px solid Highlight;
+    outline-offset: 0.25rem;
+  }
+}
+
+html:has(.read-aloud:not([hidden])) {
+  scroll-padding-bottom: 5.6875rem;
+}
+
+@keyframes read-aloud-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .read-aloud {
+    animation: none;
+  }
+  .read-aloud__toggle, .read-aloud__stop {
+    transition: none;
+  }
+}
+/*
 * Scroll animations: initial state for .fade-up / .fade-left / .fade-right and [data-gsap-cards] children until GSAP takes over (gsap.js)
 */
 .js .fade-up:not(.fade-up-initialized),

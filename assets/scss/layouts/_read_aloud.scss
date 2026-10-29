@@ -1,0 +1,145 @@
+/*
+* Read aloud: floating "Seite vorlesen" button (Figma "LR/Vorlesen-Button") and the highlight of the block being read, all pages
+*/
+
+@use '../abstracts' as *;
+
+.read-aloud {
+    --read-aloud-edge: #{rem(24)};
+
+    position: fixed;
+    right: var(--read-aloud-edge);
+    bottom: calc(var(--read-aloud-edge) + var(--quickbar-height, 0px) + env(safe-area-inset-bottom, 0px));
+    z-index: 90;
+
+    display: flex;
+    align-items: stretch;
+    gap: rem(8);
+    max-width: calc(100vw - 2 * var(--read-aloud-edge));
+
+    animation: read-aloud-in 0.3s ease-out both;
+
+    @include respond-max(md) {
+        --read-aloud-edge: #{rem(16)};
+    }
+
+    &[hidden],
+    .has-mobile-menu & {
+        display: none;
+    }
+
+    &__toggle,
+    &__stop {
+        @include font-normal($fw-bold);
+
+        display: inline-flex;
+        align-items: center;
+        gap: rem(8);
+        min-width: rem(44);
+        min-height: rem(44);
+        margin: 0;
+        padding: rem(10) rem(20) rem(10) rem(16);
+        box-sizing: border-box;
+
+        font-size: rem(18);
+        line-height: 1.5;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        white-space: nowrap;
+
+        color: palette(clr-neutral-darkest);
+        background-color: palette(clr-white);
+        border: 2px solid palette(clr-neutral-darkest);
+        border-radius: 0;
+        box-shadow: 0 rem(6) rem(20) rgba(palette(clr-neutral-darkest), 0.18);
+        cursor: pointer;
+
+        @include trans((background-color, color));
+
+        &:hover {
+            color: palette(clr-white);
+            background-color: palette(clr-neutral-darkest);
+        }
+
+        &:focus-visible {
+            outline: 2px solid palette(clr-neutral-darkest);
+            outline-offset: 2px;
+            box-shadow: 0 0 0 2px palette(clr-white), 0 rem(6) rem(20) rgba(palette(clr-neutral-darkest), 0.18);
+        }
+
+        .icon {
+            flex-shrink: 0;
+            width: rem(20);
+            height: rem(20);
+        }
+    }
+
+    &__stop {
+        justify-content: center;
+        width: rem(51);
+        padding: 0;
+
+        &[hidden] {
+            display: none;
+        }
+    }
+
+    &__label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__icon--pause,
+    &__icon--resume {
+        display: none;
+    }
+
+    &[data-state="playing"] &__icon--start,
+    &[data-state="paused"] &__icon--start {
+        display: none;
+    }
+
+    &[data-state="playing"] &__icon--pause,
+    &[data-state="paused"] &__icon--resume {
+        display: block;
+    }
+
+    @media print {
+        display: none !important;
+    }
+}
+
+.is-read-aloud {
+    --read-aloud-tint: color-mix(in srgb, currentColor 10%, transparent);
+    --read-aloud-line: color-mix(in srgb, currentColor 35%, transparent);
+
+    background-image: linear-gradient(var(--read-aloud-tint), var(--read-aloud-tint));
+    box-shadow: 0 0 0 rem(6) var(--read-aloud-tint), 0 0 0 rem(7) var(--read-aloud-line);
+
+    @media (forced-colors: active) {
+        outline: 2px solid Highlight;
+        outline-offset: rem(4);
+    }
+}
+
+html:has(.read-aloud:not([hidden])) {
+    scroll-padding-bottom: rem(91);
+}
+
+@keyframes read-aloud-in {
+    from {
+        opacity: 0;
+        transform: translateY(rem(8));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .read-aloud {
+        animation: none;
+
+        &__toggle,
+        &__stop {
+            transition: none;
+        }
+    }
+}
