@@ -33,8 +33,6 @@
         text-transform: uppercase;
         white-space: nowrap;
         text-decoration: none;
-        text-underline-offset: 0.35em;
-        text-decoration-thickness: 2px;
 
         color: palette(clr-neutral-darkest);
 
@@ -45,14 +43,10 @@
         }
 
         &:hover,
-        &[aria-expanded="true"] {
+        &[aria-expanded="true"],
+        .is-active > & {
             color: palette(clr-red);
         }
-    }
-
-    &__item.is-active > &__link {
-        text-decoration-line: underline;
-        text-decoration-color: palette(clr-red);
     }
 }
 

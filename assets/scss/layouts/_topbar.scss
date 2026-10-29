@@ -85,16 +85,17 @@
         a {
             color: inherit;
             text-decoration: none;
-            text-underline-offset: 0.25em;
+
+            @include trans(color);
 
             &:hover,
             &:focus-visible {
-                text-decoration: underline;
+                color: palette(clr-neutral-darkest);
             }
         }
 
         .current-menu-item > a {
-            text-decoration: underline;
+            color: palette(clr-neutral-darkest);
         }
     }
 }

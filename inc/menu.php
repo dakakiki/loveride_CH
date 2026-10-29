@@ -1,6 +1,6 @@
 <?php
 /**
- * Menus: nested item tree with ACF mega menu fields (menu-main), flat item lists, logo and header CTA helpers.
+ * Menus: nested item tree with ACF mega menu fields (menu-main), flat item lists, logo helpers, central Tickets/Spenden buttons (Theme-Einstellungen → Buttons).
  *
  * @package loveride
  */
@@ -146,10 +146,17 @@ function lr_social_label( string $platform ): string {
 	return $labels[ $platform ] ?? ucfirst( $platform );
 }
 
+function lr_central_button( string $key ): array {
+
+	$link = (array) lr_get_option( 'button_' . $key, array() );
+
+	return empty( $link['url'] ) ? array() : $link;
+}
+
 function lr_header_buttons(): array {
 
 	return array_filter( array(
-		'tickets' => lr_get_option( 'button_tickets' ),
-		'spenden' => lr_get_option( 'button_spenden' ),
-	), fn( $link ) => ! empty( $link['url'] ) );
+		'tickets' => lr_central_button( 'tickets' ),
+		'spenden' => lr_central_button( 'spenden' ),
+	) );
 }

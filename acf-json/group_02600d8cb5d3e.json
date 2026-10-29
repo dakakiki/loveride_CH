@@ -148,25 +148,6 @@
             "return_format": "H:i"
         },
         {
-            "key": "field_c64887fe7000b",
-            "label": "Countdown bis",
-            "name": "event_countdown",
-            "aria-label": "",
-            "type": "date_time_picker",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "33",
-                "class": "",
-                "id": ""
-            },
-            "display_format": "d.m.Y H:i",
-            "return_format": "Y-m-d H:i:s",
-            "first_day": 1,
-            "default_to_current_date": 0
-        },
-        {
             "key": "field_99a0f5d4f9800",
             "label": "Vorverkauf ab",
             "name": "event_vorverkauf_ab",
@@ -184,22 +165,6 @@
             "return_format": "Ymd",
             "first_day": 1,
             "default_to_current_date": 0
-        },
-        {
-            "key": "field_566e141959f05",
-            "label": "Online spenden",
-            "name": "event_spenden_link",
-            "aria-label": "",
-            "type": "link",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "33",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array"
         },
         {
             "key": "field_52bae22240d06",
@@ -364,5 +329,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1793176378
+    "modified": 1793183559
 }

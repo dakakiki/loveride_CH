@@ -1,0 +1,211 @@
+/*
+* Hero component: background media with overlay, slide stack and slider controls (dots, counter, arrows); Hero-Slider and Page-Hero
+*/
+
+@use '../abstracts' as *;
+
+$hero-ease: cubic-bezier(0.65, 0, 0.35, 1);
+
+.hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background-color: palette(clr-neutral-darker);
+
+    &__image,
+    &__video {
+        @include image-cover;
+
+        position: absolute;
+        inset: 0;
+        object-position: center top;
+    }
+
+    &__video {
+        opacity: 0;
+        transition: opacity 0.6s ease;
+
+        &.is-playing {
+            opacity: 1;
+        }
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+
+        @include hero-overlay;
+    }
+}
+
+.hero-slides {
+    display: grid;
+}
+
+.hero-slide {
+    position: relative;
+    grid-area: 1 / 1;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.8s ease, visibility 0s linear 0.8s;
+
+    &.is-active {
+        z-index: 1;
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.8s ease;
+    }
+
+    .is-ready & {
+        transition: none;
+    }
+}
+
+.hero-controls {
+    display: flex;
+    align-items: center;
+    gap: rem(16);
+    color: palette(clr-white);
+
+    &__dots {
+        display: flex;
+        align-items: center;
+        gap: rem(8);
+    }
+
+    &__dot {
+        position: relative;
+        flex-shrink: 0;
+        width: rem(8);
+        height: rem(24);
+        padding: 0;
+        border: 0;
+        background: none;
+        cursor: pointer;
+        transition: width 0.45s $hero-ease;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: rem(8);
+            margin-top: rem(-4);
+            background-color: palette(clr-white);
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0 rem(-4);
+        }
+
+        @media (hover: hover) {
+            &:not(.is-active):hover::before {
+                background-color: palette(clr-red);
+            }
+        }
+
+        @include focus-ring(palette(clr-white));
+
+        &.is-active {
+            width: rem(32);
+            cursor: default;
+
+            &::before {
+                background-color: palette(clr-red);
+            }
+        }
+    }
+
+    &__counter {
+        display: flex;
+        align-items: center;
+        gap: 0.3em;
+        margin: 0;
+
+        @include t-text-small($fw-semibold);
+
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+    }
+
+    &__counter-current {
+        display: inline-grid;
+        overflow: hidden;
+
+        > span {
+            grid-area: 1 / 1;
+        }
+    }
+
+    &__arrow {
+        position: relative;
+        display: inline-flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        width: rem(48);
+        height: rem(48);
+        padding: 0;
+        color: palette(clr-white);
+        background-color: transparent;
+        border: 1.5px solid palette(clr-white);
+        cursor: pointer;
+
+        .icon {
+            width: rem(20);
+            height: rem(20);
+            transition: transform 0.35s $hero-ease;
+        }
+
+        @media (hover: hover) {
+            &:hover {
+                color: palette(clr-neutral-darkest);
+                background-color: palette(clr-white);
+            }
+
+            &--next:hover .icon {
+                transform: translateX(3px);
+            }
+
+            &--prev:hover .icon {
+                transform: translateX(-3px);
+            }
+        }
+
+        &--next.is-nudge .icon {
+            animation: hero-nudge-next 0.45s $hero-ease;
+        }
+
+        &--prev.is-nudge .icon {
+            animation: hero-nudge-prev 0.45s $hero-ease;
+        }
+
+        @include focus-ring(palette(clr-white));
+    }
+}
+
+@keyframes hero-nudge-next {
+    40% { transform: translateX(8px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes hero-nudge-prev {
+    40% { transform: translateX(-8px); }
+    100% { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-slide,
+    .hero-controls__dot,
+    .hero-controls__arrow,
+    .hero-controls__arrow .icon {
+        transition: none;
+        animation: none;
+    }
+}

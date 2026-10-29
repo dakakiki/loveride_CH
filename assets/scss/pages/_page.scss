@@ -1,5 +1,5 @@
 /*
-* Page: fallback page header (no Page-Hero), editor content, 404
+* Page: fallback page header (no Page-Hero), block editor content below the layouts (e.g. Impressum, Datenschutz), 404
 */
 
 @use '../abstracts' as *;
@@ -13,6 +13,20 @@
 .page-content {
     @include container;
     @include fluid-prop(padding-bottom, $section-large-mobile, $section-large);
+
+    .section + & {
+        @include fluid-prop(padding-top, $section-medium-mobile, $section-medium);
+    }
+
+    .page-hero--ohne-bild + & {
+        padding-top: 0;
+    }
+
+    &__body {
+        @include rich-text-compact;
+
+        max-width: rem(800);
+    }
 }
 
 .error-404 {

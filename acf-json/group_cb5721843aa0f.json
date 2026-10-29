@@ -3,6 +3,229 @@
     "title": "Geteilte Inhalte",
     "fields": [
         {
+            "key": "field_0f913d9e93c68",
+            "label": "Live-Hinweise",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_6413f23c96eb3",
+            "label": "Live-Hinweise",
+            "name": "geteilt_live",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_18a3b56cd3882",
+                    "label": "Live-Hinweise anzeigen",
+                    "name": "aktiv",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "Ja",
+                    "ui_off_text": "Nein"
+                },
+                {
+                    "key": "field_3e579a0de58db",
+                    "label": "Hinweis",
+                    "name": "hinweis",
+                    "aria-label": "",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_bd96e360337ec",
+                            "label": "Titel",
+                            "name": "titel",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "40",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_fe06d498b8313",
+                            "label": "Text",
+                            "name": "text",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "60",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "rows": 2,
+                            "placeholder": "",
+                            "new_lines": ""
+                        }
+                    ]
+                },
+                {
+                    "key": "field_c85015223b971",
+                    "label": "Kacheln",
+                    "name": "kacheln",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "table",
+                    "pagination": 0,
+                    "min": 0,
+                    "max": 4,
+                    "collapsed": "",
+                    "button_label": "Kachel hinzufügen",
+                    "rows_per_page": 20,
+                    "sub_fields": [
+                        {
+                            "key": "field_5355d575cc7fa",
+                            "label": "Icon",
+                            "name": "icon",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "15",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": [],
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 1,
+                            "ui": 1,
+                            "ajax": 0,
+                            "placeholder": "Icon wählen",
+                            "create_options": 0,
+                            "save_options": 0,
+                            "parent_repeater": "field_c85015223b971"
+                        },
+                        {
+                            "key": "field_9254e74d114de",
+                            "label": "Titel",
+                            "name": "titel",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_c85015223b971"
+                        },
+                        {
+                            "key": "field_dcac4dfa8b23b",
+                            "label": "Text",
+                            "name": "text",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "35",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "rows": 2,
+                            "placeholder": "",
+                            "new_lines": "",
+                            "parent_repeater": "field_c85015223b971"
+                        },
+                        {
+                            "key": "field_f60136faafd47",
+                            "label": "Link",
+                            "name": "link",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "parent_repeater": "field_c85015223b971"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "key": "field_bcfae76d44a5d",
             "label": "Zahlenband «Wirkung»",
             "name": "",
@@ -302,23 +525,6 @@
                             "placeholder": "",
                             "new_lines": "",
                             "parent_repeater": "field_98b1159bb70f7"
-                        },
-                        {
-                            "key": "field_6525bca595793",
-                            "label": "Button",
-                            "name": "button",
-                            "aria-label": "",
-                            "type": "link",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "25",
-                                "class": "",
-                                "id": ""
-                            },
-                            "return_format": "array",
-                            "parent_repeater": "field_98b1159bb70f7"
                         }
                     ]
                 },
@@ -399,22 +605,6 @@
                     "layout": "block",
                     "prefix_label": 0,
                     "prefix_name": 0
-                },
-                {
-                    "key": "field_8be898ce5f326",
-                    "label": "Button «Online spenden»",
-                    "name": "online_button",
-                    "aria-label": "",
-                    "type": "link",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "array"
                 },
                 {
                     "key": "field_c913ed1308d21",
@@ -1005,6 +1195,7 @@
                                     "collapsed": "",
                                     "button_label": "Marker hinzufügen",
                                     "rows_per_page": 20,
+                                    "parent_repeater": "field_28a328578130c",
                                     "sub_fields": [
                                         {
                                             "key": "field_96e83f14b020e",
@@ -1094,8 +1285,7 @@
                                             "append": "",
                                             "parent_repeater": "field_5209ffe2a8831"
                                         }
-                                    ],
-                                    "parent_repeater": "field_28a328578130c"
+                                    ]
                                 },
                                 {
                                     "key": "field_405d5c12aece2",
@@ -1612,7 +1802,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "50",
+                        "width": "",
                         "class": "",
                         "id": ""
                     },
@@ -1621,22 +1811,6 @@
                     "maxlength": "",
                     "prepend": "",
                     "append": ""
-                },
-                {
-                    "key": "field_8c1765c30158a",
-                    "label": "Ticket-Button",
-                    "name": "button",
-                    "aria-label": "",
-                    "type": "link",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "array"
                 }
             ]
         },
@@ -1778,5 +1952,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1793175813
+    "modified": 1793258239
 }

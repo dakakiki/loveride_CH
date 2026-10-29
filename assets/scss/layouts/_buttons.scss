@@ -1,5 +1,5 @@
 /*
-* Button classes: .btn--primary / --secondary / --link, .btn--small (ACF "Baustein – Buttons")
+* Button classes: .btn--primary / --secondary / --link, .btn--small (ACF "Baustein – Buttons"); .arrow-link = bold text link with "→" (Figma Text/Regular/Bold)
 */
 
 @use '../abstracts' as *;
@@ -22,6 +22,27 @@
 
 .btn--small {
     @include btn-small;
+}
+
+.arrow-link {
+    @include t-text($fw-bold);
+
+    line-height: 1.2;
+    color: inherit;
+    text-decoration: none;
+
+    span {
+        display: inline-block;
+
+        @include trans(transform, 0.3s, ease);
+    }
+
+    &:hover span,
+    &:focus-visible span {
+        transform: translateX(3px);
+    }
+
+    @include focus-ring;
 }
 
 .buttons {

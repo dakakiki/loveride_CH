@@ -1,6 +1,6 @@
 <?php
 /**
- * Page: fallback header (without Hero / Page-Hero), editor content, ACF flexible layouts.
+ * Page: fallback header (without Hero / Page-Hero), ACF flexible layouts, then block editor content below.
  *
  * @package loveride
  */
@@ -21,14 +21,6 @@ get_header();
 				</header>
 			<?php endif; ?>
 
-			<?php if ( get_the_content() ) : ?>
-				<div class="page-content">
-					<div class="wysiwyg">
-						<?php the_content(); ?>
-					</div>
-				</div>
-			<?php endif; ?>
-
 			<?php
 			if ( function_exists( 'have_rows' ) && have_rows( 'layouts' ) ) {
 				while ( have_rows( 'layouts' ) ) {
@@ -37,6 +29,14 @@ get_header();
 				}
 			}
 			?>
+
+			<?php if ( get_the_content() ) : ?>
+				<div class="page-content">
+					<div class="page-content__body wysiwyg">
+						<?php the_content(); ?>
+					</div>
+				</div>
+			<?php endif; ?>
 
 		</article>
 

@@ -1,5 +1,5 @@
 /*
-* Typography: Figma text styles H1–H6, Tagline, Text Large–Tiny (Desktop / Mobile)
+* Typography: Figma text styles H1–H6, Tagline, Text Large–Tiny (Desktop / Mobile), compact rich text (legal text)
 */
 
 @use "fonts" as *;
@@ -91,4 +91,45 @@
     @include font-normal($weight);
     font-size: rem(14);
     line-height: 1.5;
+}
+
+@mixin rich-text-compact {
+    > :first-child {
+        margin-top: 0;
+    }
+
+    > * + * {
+        margin-top: rem(12);
+    }
+
+    p,
+    ul,
+    ol {
+        margin-bottom: 0;
+    }
+
+    h2,
+    h3 {
+        @include t-h5;
+    }
+
+    h4 {
+        @include t-h6;
+    }
+
+    h2,
+    h3,
+    h4 {
+        margin-bottom: 0;
+        overflow-wrap: break-word;
+    }
+
+    > * + h2,
+    > * + h3 {
+        margin-top: rem(40);
+    }
+
+    > * + h4 {
+        margin-top: rem(28);
+    }
 }

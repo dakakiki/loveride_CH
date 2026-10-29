@@ -121,7 +121,7 @@ add_action( 'wp_enqueue_scripts', function () {
 
 		$rel = lr_pick_dist( $cfg['min'], $cfg['file'] );
 
-		wp_enqueue_script( $layout, lr_dist_uri( $rel ), $cfg['deps'] ?? array(), lr_dist_ver( $rel ), array(
+		wp_enqueue_script( $cfg['handle'] ?? $layout, lr_dist_uri( $rel ), $cfg['deps'] ?? array(), lr_dist_ver( $rel ), array(
 			'in_footer' => true,
 			'strategy'  => 'defer',
 		) );
@@ -163,6 +163,7 @@ add_action( 'init', function () {
 add_filter( 'excerpt_more', '__return_empty_string' );
 
 require_once LR_THEME_PATH . '/inc/helpers/acf.php';
+require_once LR_THEME_PATH . '/inc/helpers/layout.php';
 require_once LR_THEME_PATH . '/inc/helpers/fonts.php';
 require_once LR_THEME_PATH . '/inc/helpers/format.php';
 require_once LR_THEME_PATH . '/inc/helpers/svg.php';
@@ -177,3 +178,4 @@ require_once LR_THEME_PATH . '/inc/forms.php';
 require_once LR_THEME_PATH . '/inc/icons.php';
 require_once LR_THEME_PATH . '/inc/live.php';
 require_once LR_THEME_PATH . '/inc/admin.php';
+require_once LR_THEME_PATH . '/inc/layouts.php';

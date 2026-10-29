@@ -1,0 +1,108 @@
+/*
+* Block editor output: core blocks without the dequeued block library CSS (page content, News)
+*/
+
+@use '../abstracts' as *;
+
+.wysiwyg {
+    .has-text-align-left {
+        text-align: left;
+    }
+
+    .has-text-align-center {
+        text-align: center;
+    }
+
+    .has-text-align-right {
+        text-align: right;
+    }
+
+    figure {
+        margin-inline: 0;
+    }
+
+    figcaption {
+        @include t-text-tiny;
+
+        margin-top: rem(8);
+        opacity: 0.8;
+    }
+
+    .wp-block-image {
+        img {
+            height: auto;
+        }
+
+        &.aligncenter {
+            text-align: center;
+
+            img {
+                margin-inline: auto;
+            }
+        }
+    }
+
+    .wp-block-embed__wrapper {
+        position: relative;
+    }
+
+    .wp-has-aspect-ratio {
+        .wp-block-embed__wrapper::before {
+            content: "";
+            display: block;
+            padding-top: 56.25%;
+        }
+
+        iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .wp-embed-aspect-4-3 .wp-block-embed__wrapper::before {
+        padding-top: 75%;
+    }
+
+    .wp-block-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: rem(16);
+
+        &.is-content-justification-center {
+            justify-content: center;
+        }
+
+        &.is-content-justification-right {
+            justify-content: flex-end;
+        }
+    }
+
+    .wp-block-button__link {
+        @include btn-primary;
+    }
+
+    .is-style-outline > .wp-block-button__link {
+        @include btn-secondary;
+    }
+
+    .wp-block-quote cite {
+        @include t-text-small;
+
+        display: block;
+        margin-top: rem(8);
+        font-style: normal;
+    }
+
+    .wp-block-spacer {
+        margin: 0;
+    }
+
+    .is-style-hinweis {
+        @include t-text-small;
+
+        line-height: 1.2;
+        opacity: 0.85;
+    }
+}

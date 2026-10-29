@@ -1,6 +1,6 @@
 <?php
 /**
- * ACF WYSIWYG: text color picker limited to the Love Ride palette (mirrors abstracts/_colors.scss).
+ * ACF WYSIWYG: text color picker limited to the Love Ride palette (mirrors abstracts/_colors.scss), first toolbar row of Full and Basic.
  *
  * @package loveride
  */
@@ -47,7 +47,7 @@ add_filter( 'tiny_mce_before_init', function ( array $settings ): array {
 
 	$settings['textcolor_map']  = wp_json_encode( $colours );
 	$settings['textcolor_rows'] = 1;
-	$settings['textcolor_cols'] = (int) ( count( $colours ) / 2 );
+	$settings['textcolor_cols'] = (int) ( count( $colours ) / 2 ) + 1;
 	$settings['custom_colors']  = false;
 
 	return $settings;
@@ -59,5 +59,24 @@ add_filter( 'tiny_mce_plugins', function ( array $plugins ): array {
 		$plugins[] = 'textcolor';
 	}
 
-	return $plugins;
+	return array_values( array_diff( $plugins, array( 'colorpicker' ) ) );
+} );
+
+add_filter( 'acf/fields/wysiwyg/toolbars', function ( array $toolbars ): array {
+
+	foreach ( $toolbars as $name => $rows ) {
+
+		foreach ( $rows as $index => $buttons ) {
+			$toolbars[ $name ][ $index ] = array_values( array_diff( (array) $buttons, array( 'forecolor' ) ) );
+		}
+
+		$row   = $toolbars[ $name ][1] ?? array();
+		$after = array_search( 'italic', $row, true );
+
+		array_splice( $row, $after === false ? count( $row ) : $after + 1, 0, array( 'forecolor' ) );
+
+		$toolbars[ $name ][1] = $row;
+	}
+
+	return $toolbars;
 } );

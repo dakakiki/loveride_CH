@@ -1,0 +1,29 @@
+/*
+* Layout: Text (layout_text) – note and rich text, narrow (800) or wide; general text between sections
+*/
+
+@use '../abstracts' as *;
+
+.text-section {
+    &__inner {
+        max-width: rem(800);
+
+        .text-section--breit & {
+            max-width: none;
+        }
+    }
+
+    &__note {
+        @include t-text-small;
+
+        margin: 0 0 rem(40);
+        line-height: 1.2;
+        opacity: 0.85;
+    }
+
+    &__body {
+        @include rich-text-compact;
+
+        max-width: none;
+    }
+}

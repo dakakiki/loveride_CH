@@ -1,6 +1,6 @@
 <?php
 /**
- * Block editor (News): allowed core blocks only, no patterns or block directory.
+ * Editors: block editor (pages, News) with allowed core blocks only, no patterns or block directory, paragraph style "Hinweis"; TinyMCE (ACF WYSIWYG) formats without H1.
  *
  * @package loveride
  */
@@ -34,6 +34,21 @@ add_filter( 'allowed_block_types_all', function () {
 		'core/spacer',
 		'core/missing',
 	);
+} );
+
+add_action( 'init', function () {
+
+	register_block_style( 'core/paragraph', array(
+		'name'  => 'hinweis',
+		'label' => 'Hinweis',
+	) );
+} );
+
+add_filter( 'tiny_mce_before_init', function ( array $init ): array {
+
+	$init['block_formats'] = 'Absatz=p;Überschrift 2=h2;Überschrift 3=h3;Überschrift 4=h4';
+
+	return $init;
 } );
 
 add_action( 'admin_head', function () {

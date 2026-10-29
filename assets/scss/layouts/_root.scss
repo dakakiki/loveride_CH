@@ -1,5 +1,5 @@
 /*
-* Root: CSS custom properties (palette, page padding, header height), default scheme Weiss
+* Root: CSS custom properties (palette, page padding, header height, header offset incl. admin bar – measured in custom.js), default scheme Weiss
 */
 
 @use '../abstracts' as *;
@@ -16,5 +16,17 @@
 
     @media (max-width: $nav-breakpoint) {
         --header-height: #{$topbar-height + $navbar-height-mobile};
+    }
+}
+
+body {
+    --header-offset: var(--header-height);
+
+    &.admin-bar {
+        --header-offset: calc(var(--header-height) + 32px);
+
+        @media (max-width: 782px) {
+            --header-offset: calc(var(--header-height) + 46px);
+        }
     }
 }

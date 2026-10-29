@@ -1,5 +1,5 @@
 /*
-* Global JS: header scroll state, mega menu (hover/click, GSAP slide), mobile menu (GSAP fade) with accordion (GSAP fade + height), all pages
+* Global JS: header scroll state, mega menu (opens on hover, click follows the link, first tap opens on touch; GSAP slide), mobile menu (GSAP fade) with accordion (GSAP fade + height), header offset (--header-offset for hero heights), all pages
 */
 
 (function () {
@@ -21,7 +21,6 @@
     /* Mega menu */
 
     const megaToggles = Array.from(header.querySelectorAll("[data-mega-toggle]"));
-    const hoverQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const CLIP_OPEN = "inset(0% 0% -25% 0%)";
     const CLIP_CLOSED = "inset(0% 0% 100% 0%)";
@@ -141,9 +140,18 @@
 
     megaToggles.forEach(function (toggle) {
         const item = toggle.closest(".nav-main__item");
+        let touchTap = false;
+
+        toggle.addEventListener("pointerdown", function (event) {
+            touchTap = event.pointerType === "touch";
+        });
 
         toggle.addEventListener("click", function (event) {
-            if (hoverQuery.matches || activeToggle === toggle) return;
+            const touch = touchTap;
+
+            touchTap = false;
+
+            if (!touch || activeToggle === toggle) return;
 
             event.preventDefault();
             openMega(toggle);
@@ -155,8 +163,8 @@
             openMega(toggle);
         });
 
-        item.addEventListener("mouseenter", function () {
-            if (!hoverQuery.matches || mobileQuery.matches) return;
+        item.addEventListener("pointerenter", function (event) {
+            if (event.pointerType === "touch" || mobileQuery.matches) return;
 
             clearTimeout(closeTimer);
             clearTimeout(openTimer);
@@ -165,8 +173,8 @@
             }, activeToggle ? 0 : 80);
         });
 
-        item.addEventListener("mouseleave", function () {
-            if (!hoverQuery.matches) return;
+        item.addEventListener("pointerleave", function (event) {
+            if (event.pointerType === "touch") return;
 
             scheduleClose();
         });
@@ -328,4 +336,45 @@
         closeMega(false);
         setMenu(false);
     });
+})();
+
+/* Header offset */
+
+(function () {
+    "use strict";
+
+    const bars = Array.from(document.querySelectorAll("[data-header] > .topbar, [data-header] > .navbar"));
+
+    if (!bars.length) return;
+
+    const update = function () {
+        const adminBar = document.getElementById("wpadminbar");
+        const height = bars.reduce(function (sum, bar) {
+            return sum + bar.offsetHeight;
+        }, adminBar ? adminBar.offsetHeight : 0);
+
+        document.body.style.setProperty("--header-offset", height + "px");
+    };
+
+    let frame = null;
+
+    const schedule = function () {
+        if (frame) return;
+
+        frame = window.requestAnimationFrame(function () {
+            frame = null;
+            update();
+        });
+    };
+
+    update();
+    window.addEventListener("resize", schedule);
+
+    if ("ResizeObserver" in window) {
+        const observer = new ResizeObserver(schedule);
+
+        bars.forEach(function (bar) {
+            observer.observe(bar);
+        });
+    }
 })();

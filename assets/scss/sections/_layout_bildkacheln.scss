@@ -1,0 +1,130 @@
+/*
+* Layout: Bild-Kacheln (layout_bildkacheln) – full-width image tiles with numbered panels (dark / red / light), whole tile clickable; Home „Drei Welten“
+*/
+
+@use '../abstracts' as *;
+
+.layout-bildkacheln {
+    .section-head {
+        @include fluid-prop(margin-bottom, 40, 64);
+    }
+}
+
+.bild-kacheln {
+    @include reset-list;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+
+    @include respond-min(lg) {
+        grid-template-columns: repeat(var(--kacheln, 3), minmax(0, 1fr));
+    }
+}
+
+.bild-kachel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    color: var(--scheme-text);
+    background-color: var(--kachel-bg);
+
+    &--dunkel {
+        @include scheme-vars(dunkel);
+
+        --kachel-bg: #{palette(clr-neutral-darkest)};
+    }
+
+    &--rot {
+        @include scheme-vars(rot);
+
+        --kachel-bg: #{palette(clr-red)};
+    }
+
+    &--hell {
+        @include scheme-vars(offwhite);
+
+        --kachel-bg: #{palette(clr-neutral-lightest)};
+    }
+
+    @media (min-width: 768px) and (max-width: 990.98px) {
+        flex-direction: row;
+    }
+
+    &__media {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 390 / 300;
+
+        background-color: palette(clr-neutral-darker);
+
+        @media (min-width: 768px) and (max-width: 990.98px) {
+            flex: 0 0 50%;
+            aspect-ratio: auto;
+            min-height: rem(320);
+        }
+
+        @include respond-min(lg) {
+            aspect-ratio: 480 / 420;
+        }
+    }
+
+    &__image {
+        @include image-cover;
+
+        position: absolute;
+        inset: 0;
+        transition: transform 0.6s ease;
+    }
+
+    &--link:hover &__image {
+        transform: scale(1.05);
+    }
+
+    &__body {
+        display: flex;
+        flex: 1 1 0;
+        min-width: 0;
+        flex-direction: column;
+        gap: rem(16);
+        @include fluid-prop(padding-top, 24, 48);
+        @include fluid-prop(padding-inline, 24, 48);
+        @include fluid-prop(padding-bottom, 24, 56);
+    }
+
+    &__number {
+        @include t-h6;
+
+        color: var(--scheme-accent);
+    }
+
+    &__title {
+        @include t-h3;
+        @include break-word;
+
+        color: inherit;
+    }
+
+    &__text {
+        @include t-text;
+
+        margin: 0;
+    }
+
+    &__cta {
+        margin-top: auto;
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bild-kachel__image {
+        transition: none;
+    }
+}

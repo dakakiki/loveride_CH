@@ -1,5 +1,5 @@
 /*
-* Partner logo slider in the footer (Slick: infinite autoplay, pauses on hover/focus)
+* Partner logo slider in the footer (random order on each load; Slick: infinite autoplay, pauses on hover/focus)
 */
 
 jQuery(function ($) {
@@ -7,7 +7,21 @@ jQuery(function ($) {
 
     const $slider = $("[data-partner-slider]");
 
-    if (!$slider.length || !$.fn.slick || $slider.hasClass("slick-initialized")) return;
+    if (!$slider.length || $slider.hasClass("slick-initialized")) return;
+
+    const items = $slider.children().get();
+
+    for (let i = items.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const item = items[i];
+
+        items[i] = items[j];
+        items[j] = item;
+    }
+
+    $slider.append(items);
+
+    if (!$.fn.slick) return;
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

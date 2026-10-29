@@ -1,3 +1,10 @@
 /*
 * Sections: one file per ACF flexible layout (_layout_*.scss) and shared block (_shared_*.scss)
 */
+
+@forward 'layout_hero';
+@forward 'layout_page_hero';
+@forward 'layout_text';
+@forward 'layout_bildkacheln';
+@forward 'layout_zahlenband';
+@forward 'layout_live';

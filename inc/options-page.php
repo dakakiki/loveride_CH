@@ -1,6 +1,6 @@
 <?php
 /**
- * ACF options pages: Theme-Einstellungen (Event-Daten, Geteilte Inhalte) and Live-Modus.
+ * ACF options pages: Theme-Einstellungen (Event-Daten, Geteilte Inhalte).
  *
  * @package loveride
  */
@@ -41,16 +41,5 @@ add_action( 'acf/init', function () {
 		'menu_slug'   => 'geteilte-inhalte',
 		'parent_slug' => 'theme-einstellungen',
 		'capability'  => 'edit_pages',
-	) );
-
-	acf_add_options_page( array(
-		'page_title' => __( 'Live-Modus', 'loveride' ),
-		'menu_title' => __( 'Live-Modus', 'loveride' ),
-		'menu_slug'  => 'live-modus',
-		'capability' => 'edit_pages',
-		'position'   => 3,
-		'icon_url'   => 'dashicons-megaphone',
-		'redirect'   => false,
-		'autoload'   => true,
 	) );
 } );

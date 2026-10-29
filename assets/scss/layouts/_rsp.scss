@@ -62,7 +62,8 @@
         color: palette(clr-neutral-darkest);
         text-decoration: none;
 
-        &:hover {
+        &:hover,
+        .is-active > .mobile-menu__head > & {
             color: palette(clr-red);
         }
     }

@@ -104,7 +104,7 @@ window.initFadeUpAnimations = function (scope = document, animateNow = false) {
 
             items.forEach((item) => item.classList.add(initializedClass));
 
-            createReveal(items, group, from, { stagger: 0.2, playNow: animateNow });
+            createReveal(items, group, from, { stagger: 0.2, start: "top bottom-=80", playNow: animateNow });
         });
 
         const singles = Array.from(scope.querySelectorAll(itemSelector));
@@ -118,7 +118,7 @@ window.initFadeUpAnimations = function (scope = document, animateNow = false) {
             .forEach((item) => {
                 item.classList.add(initializedClass);
 
-                createReveal([item], item, from, { playNow: animateNow });
+                createReveal([item], item, from, { start: "top bottom-=80", playNow: animateNow });
             });
     });
 

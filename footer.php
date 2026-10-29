@@ -8,11 +8,12 @@
 $lr_event_date  = lr_event_date();
 $lr_event_info  = implode( ' · ', array_filter( array( lr_event_opening_hours(), lr_event( 'ort' ) ) ) );
 $lr_footer_box  = (array) lr_get_option( 'geteilt_footer_box', array() );
-$lr_ticket_link = (array) ( $lr_footer_box['button'] ?? array() );
+$lr_ticket_link = lr_central_button( 'tickets' );
 $lr_newsletter  = (array) lr_get_option( 'geteilt_newsletter', array() );
 $lr_sponsors    = lr_logo_sponsors();
 $lr_kontakt     = (array) lr_get_option( 'kontakt', array() );
 $lr_spenden     = (array) lr_get_option( 'spenden', array() );
+$lr_donate_link = lr_central_button( 'spenden' );
 $lr_social      = (array) lr_get_option( 'social', array() );
 $lr_columns     = lr_menu_tree( 'menu-footer' );
 $lr_legal       = lr_menu_items( 'menu-legal' );
@@ -115,7 +116,7 @@ $lr_legal       = lr_menu_items( 'menu-legal' );
 					<?php endif; ?>
 				</div>
 
-				<?php if ( ! empty( $lr_spenden['iban'] ) || ! empty( $lr_spenden['button']['url'] ) ) : ?>
+				<?php if ( ! empty( $lr_spenden['iban'] ) || $lr_donate_link ) : ?>
 					<div class="footer__donate">
 						<p class="footer__title"><?php esc_html_e( 'Spenden', 'loveride' ); ?></p>
 						<?php if ( ! empty( $lr_spenden['iban'] ) ) : ?>
@@ -124,8 +125,8 @@ $lr_legal       = lr_menu_items( 'menu-legal' );
 						<?php if ( ! empty( $lr_spenden['hinweis'] ) ) : ?>
 							<p><?= esc_html( $lr_spenden['hinweis'] ); ?></p>
 						<?php endif; ?>
-						<?php if ( ! empty( $lr_spenden['button']['url'] ) ) : ?>
-							<a class="btn--secondary btn--small" <?= lr_link_attrs( $lr_spenden['button'] ); ?>><?= esc_html( $lr_spenden['button']['title'] ); ?></a>
+						<?php if ( $lr_donate_link ) : ?>
+							<a class="btn--secondary btn--small" <?= lr_link_attrs( $lr_donate_link ); ?>><?= esc_html( $lr_donate_link['title'] ?: __( 'Jetzt spenden', 'loveride' ) ); ?></a>
 						<?php endif; ?>
 					</div>
 				<?php endif; ?>
@@ -136,7 +137,7 @@ $lr_legal       = lr_menu_items( 'menu-legal' );
 				<nav class="footer__nav" aria-label="<?php esc_attr_e( 'Footer-Navigation', 'loveride' ); ?>">
 					<?php foreach ( $lr_columns as $lr_column ) : ?>
 						<div class="footer__col">
-							<a class="footer__title" <?= lr_link_attrs( $lr_column ); ?>><?= esc_html( $lr_column['title'] ); ?></a>
+							<a class="footer__title<?= $lr_column['active'] ? ' is-active' : ''; ?>" <?= lr_link_attrs( $lr_column ); ?>><?= esc_html( $lr_column['title'] ); ?></a>
 							<?php if ( $lr_column['children'] ) : ?>
 								<ul>
 									<?php foreach ( $lr_column['children'] as $lr_item ) : ?>
