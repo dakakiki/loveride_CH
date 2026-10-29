@@ -41,7 +41,7 @@ $lr_legal       = lr_menu_items( 'menu-legal' );
 				<?php endif; ?>
 
 				<?php if ( ! empty( $lr_newsletter['titel'] ) ) : ?>
-					<div class="footer__newsletter">
+					<div class="footer__newsletter" id="newsletter">
 						<p class="footer__title"><?= esc_html( $lr_newsletter['titel'] ); ?></p>
 						<?php if ( ! empty( $lr_newsletter['text'] ) ) : ?>
 							<p class="footer__newsletter-text"><?= esc_html( $lr_newsletter['text'] ); ?></p>

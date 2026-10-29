@@ -1,0 +1,175 @@
+/*
+* Layout: Event-Teaser (layout_event_teaser) – photo under a dark red gradient, centred year logo, title, text, countdown box, Save the Date, programme note, white Tickets button
+*/
+
+@use '../abstracts' as *;
+
+.layout-event-teaser {
+    @include scheme-vars(dunkel);
+    @include fluid-prop(padding-top, 40, 112);
+    @include fluid-prop(padding-bottom, 40, 112);
+
+    position: relative;
+    overflow: hidden;
+    color: palette(clr-white);
+    background-color: #2d0000;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background-image: linear-gradient(191deg, rgba(45, 0, 0, 0.79) 0%, rgba(74, 0, 0, 0.88) 100%);
+        pointer-events: none;
+    }
+
+    > .container {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+.event-teaser {
+    &__bg {
+        position: absolute;
+        inset: 0;
+    }
+
+    &__bg-image {
+        @include image-cover;
+    }
+
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: rem(24);
+        max-width: rem(768);
+        margin-inline: auto;
+        text-align: center;
+    }
+
+    &__logo {
+        width: rem(226);
+        max-width: 60%;
+        margin-bottom: rem(-8);
+    }
+
+    &__logo-image {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    &__title {
+        @include t-h1;
+        @include break-word;
+
+        color: inherit;
+    }
+
+    &__text {
+        @include t-text-large($fw-semibold);
+
+        margin: 0;
+    }
+
+    &__countdown {
+        @include fluid-prop(margin-top, 40, 62);
+
+        width: 100%;
+    }
+
+    &__date {
+        @include t-text-medium($fw-semibold);
+
+        margin: 0;
+    }
+
+    &__programm {
+        @include t-text-medium;
+        @include rich-text-compact;
+
+        a {
+            color: inherit;
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
+
+            &:hover,
+            &:focus-visible {
+                text-decoration-thickness: 2px;
+            }
+        }
+    }
+
+    &__actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: rem(16);
+        max-width: rem(480);
+        margin-top: rem(8);
+    }
+
+    &__note {
+        @include t-text-tiny;
+
+        margin: 0;
+    }
+}
+
+.countdown {
+    @include reset-list;
+
+    display: flex;
+    width: 100%;
+    padding: rem(16);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    @include respond-min(xs) {
+        gap: rem(33);
+        width: fit-content;
+        margin-inline: auto;
+        padding: rem(16) rem(24);
+    }
+
+    &__unit {
+        position: relative;
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        align-items: center;
+
+        @include respond-min(xs) {
+            flex: none;
+            min-width: rem(64);
+        }
+
+        & + &::before {
+            content: "";
+            position: absolute;
+            top: rem(8);
+            bottom: rem(8);
+            left: 0;
+            width: 1px;
+            background-color: rgba(255, 255, 255, 0.4);
+
+            @include respond-min(xs) {
+                top: 0;
+                bottom: 0;
+                left: rem(-17);
+            }
+        }
+    }
+
+    &__value {
+        @include heading-base;
+
+        font-size: rem(40);
+        font-variant-numeric: tabular-nums;
+    }
+
+    &__label {
+        @include t-text;
+    }
+}

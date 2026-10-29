@@ -1,0 +1,77 @@
+/*
+* Layout: CTA mit Bild (layout_cta_bild) – photo half to the edge, off-white text panel aligned with the container; mobile: photo on top
+*/
+
+@use '../abstracts' as *;
+
+$cta-bild-edge: max(var(--padding-global), calc(100% - #{$container-large} / 2));
+
+.layout-cta-bild {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+
+    @include respond-min(lg) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        min-height: rem(620);
+    }
+
+    .section-head {
+        @include fluid-prop(margin-bottom, 16, 24);
+
+        &__main {
+            @include fluid-prop(gap, 16, 24);
+        }
+    }
+}
+
+.cta-bild {
+    &__media {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 3 / 2;
+        background-color: palette(clr-neutral-lighter);
+
+        @include respond-min(lg) {
+            aspect-ratio: auto;
+        }
+    }
+
+    &__image {
+        @include image-cover;
+
+        position: absolute;
+        inset: 0;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        @include fluid-prop(padding-top, 40, 80);
+        @include fluid-prop(padding-bottom, 48, 80);
+
+        padding-inline: var(--padding-global);
+    }
+
+    &__content {
+        max-width: rem(560);
+    }
+
+    @include respond-min(lg) {
+        &--bild-links &__body {
+            @include fluid-prop(padding-left, 48, 80);
+
+            padding-right: $cta-bild-edge;
+        }
+
+        &--bild-rechts &__media {
+            order: 2;
+        }
+
+        &--bild-rechts &__body {
+            @include fluid-prop(padding-right, 48, 80);
+
+            padding-left: $cta-bild-edge;
+        }
+    }
+}

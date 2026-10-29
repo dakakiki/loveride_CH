@@ -1,6 +1,6 @@
 <?php
 /**
- * Editors: block editor (pages, News) with allowed core blocks only, no patterns or block directory, paragraph style "Hinweis"; TinyMCE (ACF WYSIWYG) formats without H1.
+ * Editors: block editor (pages, News) with allowed core blocks only (News: text, headings H2–H4, lists, images, YouTube), no patterns or block directory, paragraph style "Hinweis", list style "Hervorgehoben"; TinyMCE (ACF WYSIWYG) formats without H1.
  *
  * @package loveride
  */
@@ -19,7 +19,19 @@ add_action( 'plugins_loaded', function () {
 	remove_action( 'enqueue_block_editor_assets', 'wp_enqueue_editor_block_directory_assets' );
 } );
 
-add_filter( 'allowed_block_types_all', function () {
+add_filter( 'allowed_block_types_all', function ( $allowed, $context ) {
+
+	if ( ( $context->post->post_type ?? '' ) === 'news' ) {
+		return array(
+			'core/paragraph',
+			'core/heading',
+			'core/list',
+			'core/list-item',
+			'core/image',
+			'core/embed',
+			'core/missing',
+		);
+	}
 
 	return array(
 		'core/paragraph',
@@ -34,7 +46,16 @@ add_filter( 'allowed_block_types_all', function () {
 		'core/spacer',
 		'core/missing',
 	);
-} );
+}, 10, 2 );
+
+add_filter( 'register_block_type_args', function ( array $args, string $name ): array {
+
+	if ( $name === 'core/heading' ) {
+		$args['attributes']['levelOptions']['default'] = array( 2, 3, 4 );
+	}
+
+	return $args;
+}, 10, 2 );
 
 add_action( 'init', function () {
 
@@ -42,6 +63,22 @@ add_action( 'init', function () {
 		'name'  => 'hinweis',
 		'label' => 'Hinweis',
 	) );
+
+	register_block_style( 'core/list', array(
+		'name'  => 'hervorgehoben',
+		'label' => 'Hervorgehoben',
+	) );
+} );
+
+add_action( 'enqueue_block_editor_assets', function () {
+
+	$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+
+	if ( ! $screen || $screen->post_type !== 'news' ) {
+		return;
+	}
+
+	wp_add_inline_script( 'wp-blocks', 'wp.hooks.addFilter( "blocks.registerBlockType", "loveride/news-embeds", function ( settings, name ) { return name === "core/embed" ? Object.assign( {}, settings, { variations: ( settings.variations || [] ).filter( function ( variation ) { return variation.name === "youtube"; } ) } ) : settings; } );' );
 } );
 
 add_filter( 'tiny_mce_before_init', function ( array $init ): array {

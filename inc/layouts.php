@@ -31,6 +31,27 @@ add_filter( 'lr_layout_scripts', function ( array $scripts ): array {
 		'deps'   => array( 'lr-gsap' ),
 	);
 
+	$scripts['layout_news_archiv'] = array(
+		'handle' => 'lr-news',
+		'file'   => 'js/news.min.js',
+		'min'    => 'js/news.min.js',
+		'deps'   => array(),
+	);
+
+	$scripts['layout_galerie'] = array(
+		'handle' => 'lr-galerie',
+		'file'   => 'js/galerie.min.js',
+		'min'    => 'js/galerie.min.js',
+		'deps'   => array(),
+	);
+
+	$scripts['layout_event_teaser'] = array(
+		'handle' => 'lr-countdown',
+		'file'   => 'js/countdown.min.js',
+		'min'    => 'js/countdown.min.js',
+		'deps'   => array(),
+	);
+
 	return $scripts;
 } );
 

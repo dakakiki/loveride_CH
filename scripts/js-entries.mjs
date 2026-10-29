@@ -10,5 +10,8 @@ export const entries = [
   { in: "assets/js/partner-slider.js", out: "dist/js/partner-slider.min.js", bundle: false },
   { in: "assets/js/hero-slider.js", out: "dist/js/hero-slider.min.js", bundle: false },
   { in: "assets/js/zahlenband.js", out: "dist/js/zahlenband.min.js", bundle: false },
+  { in: "assets/js/countdown.js", out: "dist/js/countdown.min.js", bundle: false },
+  { in: "assets/js/galerie.js", out: "dist/js/galerie.min.js", bundle: false },
+  { in: "assets/js/news.js", out: "dist/js/news.min.js", bundle: false },
   { in: "assets/js/read-aloud.js", out: "dist/js/read-aloud.min.js", bundle: false },
 ];

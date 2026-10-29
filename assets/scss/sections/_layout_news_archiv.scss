@@ -1,0 +1,32 @@
+/*
+* Layout: News-Archiv (layout_news_archiv) – off-white section with highlighted newest post, card grid and centred „Ältere Beiträge laden“ (cards: layouts/_news.scss)
+*/
+
+@use '../abstracts' as *;
+
+.layout-news-archiv {
+    @include fluid-prop(padding-top, 48, 96);
+    @include fluid-prop(padding-bottom, 48, 96);
+
+    background-color: palette(clr-off-white);
+}
+
+.news-archiv {
+    &__featured {
+        @include fluid-prop(margin-bottom, 32, 56);
+
+        display: flex;
+    }
+
+    &__more {
+        display: flex;
+        justify-content: center;
+        @include fluid-prop(margin-top, 40, 56);
+    }
+
+    &__empty {
+        @include t-text-medium;
+
+        margin: 0;
+    }
+}
