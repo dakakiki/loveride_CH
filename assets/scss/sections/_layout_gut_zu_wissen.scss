@@ -1,0 +1,64 @@
+/*
+* Layout: Gut zu wissen (layout_gut_zu_wissen) – dark section, title, points in one row (columns = number of points, max 4; 2 below 1024, 1 on mobile) with red top line, red icon, white title, grey text
+*/
+
+@use '../abstracts' as *;
+
+.layout-gut-zu-wissen {
+    @include fluid-prop(padding-top, 48, 72);
+    @include fluid-prop(padding-bottom, 48, 72);
+
+    background-color: palette(clr-neutral-darkest);
+}
+
+.gut-zu-wissen {
+    @include reset-list;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: rem(24) rem(32);
+
+    @include respond-min(sm) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include respond-min(xl) {
+        grid-template-columns: repeat(var(--spalten, 4), minmax(0, 1fr));
+    }
+
+    &__title {
+        @include t-h3;
+
+        margin: 0 0 fluid(24, 32);
+        color: palette(clr-white);
+    }
+
+    &__punkt {
+        display: flex;
+        flex-direction: column;
+        gap: rem(12);
+        padding-top: rem(20);
+        border-top: 4px solid palette(clr-red);
+    }
+
+    &__icon {
+        width: rem(32);
+        height: rem(32);
+        color: palette(clr-red-signal);
+    }
+
+    &__name {
+        @include t-h6;
+
+        margin: 0;
+        color: palette(clr-white);
+    }
+
+    &__text {
+        @include t-text-small;
+
+        margin: 0;
+        line-height: 1.2;
+        color: palette(clr-neutral-light);
+    }
+}

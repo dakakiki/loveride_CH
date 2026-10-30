@@ -178,6 +178,7 @@ require_once LR_THEME_PATH . '/inc/forms.php';
 require_once LR_THEME_PATH . '/inc/icons.php';
 require_once LR_THEME_PATH . '/inc/live.php';
 require_once LR_THEME_PATH . '/inc/anreise.php';
+require_once LR_THEME_PATH . '/inc/gut-zu-wissen.php';
 require_once LR_THEME_PATH . '/inc/news.php';
 require_once LR_THEME_PATH . '/inc/read-aloud.php';
 require_once LR_THEME_PATH . '/inc/admin.php';

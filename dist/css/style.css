@@ -5368,6 +5368,80 @@ html:has(.read-aloud:not([hidden])) {
 }
 
 /*
+* Layout: Gut zu wissen (layout_gut_zu_wissen) – dark section, title, points in one row (columns = number of points, max 4; 2 below 1024, 1 on mobile) with red top line, red icon, white title, grey text
+*/
+.layout-gut-zu-wissen {
+  padding-top: clamp(48px, 39.0857142857px + 2.2857142857vw, 72px);
+  padding-bottom: clamp(48px, 39.0857142857px + 2.2857142857vw, 72px);
+  background-color: #1A1A1A;
+}
+
+.gut-zu-wissen {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem 2rem;
+}
+@media (min-width: 640px) {
+  .gut-zu-wissen {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .gut-zu-wissen {
+    grid-template-columns: repeat(var(--spalten, 4), minmax(0, 1fr));
+  }
+}
+.gut-zu-wissen__title {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(30px, 26.2857142857px + 0.9523809524vw, 40px);
+  margin: 0 0 clamp(24px, 21.0285714286px + 0.7619047619vw, 32px);
+  color: #FFFFFF;
+}
+.gut-zu-wissen__punkt {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 4px solid #CE0E2D;
+}
+.gut-zu-wissen__icon {
+  width: 2rem;
+  height: 2rem;
+  color: #DC0D15;
+}
+.gut-zu-wissen__name {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(19px, 18.6285714286px + 0.0952380952vw, 20px);
+  margin: 0;
+  color: #FFFFFF;
+}
+.gut-zu-wissen__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  margin: 0;
+  line-height: 1.2;
+  color: #B3AFA8;
+}
+
+/*
 * Layout: Preise (layout_preise) – off-white section, price cards in 4 / 2 / 1 columns (white with grey border; free = red price; highlighted = dark with red border and the red Tickets button), small footnote
 */
 .layout-preise {
