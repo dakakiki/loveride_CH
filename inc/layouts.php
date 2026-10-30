@@ -76,6 +76,13 @@ add_filter( 'lr_layout_scripts', function ( array $scripts ): array {
 		'deps'   => array(),
 	);
 
+	$scripts['layout_faq'] = array(
+		'handle' => 'lr-faq',
+		'file'   => 'js/faq.min.js',
+		'min'    => 'js/faq.min.js',
+		'deps'   => array(),
+	);
+
 	return $scripts;
 } );
 

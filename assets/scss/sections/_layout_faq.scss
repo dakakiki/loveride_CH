@@ -1,0 +1,158 @@
+/*
+* Layout: FAQ (layout_faq) – white section, head with buttons left of the accordion from 1280 (above below), questions divided by lines, "+" turns into a red "–" when open, answer slides open
+*/
+
+@use '../abstracts' as *;
+
+.layout-faq {
+    @include fluid-prop(padding-top, 48, 96);
+    @include fluid-prop(padding-bottom, 48, 96);
+
+    .section-head {
+        margin-bottom: 0;
+    }
+
+    .section-head__text {
+        @include t-text;
+
+        color: palette(clr-neutral-dark);
+    }
+
+    .buttons {
+        margin-top: rem(24);
+    }
+}
+
+.faq {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: fluid(32, 48) rem(80);
+
+    @include respond-min(xxl) {
+        grid-template-columns: minmax(0, 420fr) minmax(0, 780fr);
+        align-items: start;
+    }
+}
+
+.faq-item {
+    border-bottom: 1px solid palette(clr-neutral-lighter);
+
+    &:first-child {
+        border-top: 1px solid palette(clr-neutral-lighter);
+    }
+
+    &__frage {
+        margin: 0;
+    }
+
+    &__button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: rem(16);
+        width: 100%;
+        padding: rem(24) 0;
+        color: palette(clr-neutral-darkest);
+        text-align: left;
+        border: 0;
+        background: none;
+        cursor: pointer;
+        transition: padding-bottom 0.3s ease;
+
+        &:focus-visible {
+            outline: 2px solid var(--focus-color, #{palette(clr-neutral-darkest)});
+            outline-offset: 2px;
+        }
+    }
+
+    &__text {
+        @include font-normal($fw-bold);
+
+        font-size: fluid(18, 20);
+        line-height: 1.5;
+
+        @include trans(color);
+    }
+
+    &__button:hover &__text {
+        color: palette(clr-red);
+    }
+
+    &__icon {
+        position: relative;
+        flex: none;
+        width: rem(16);
+        height: rem(16);
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: currentColor;
+            transform: translateY(-50%);
+
+            @include trans((transform, background-color));
+        }
+
+        &::after {
+            transform: translateY(-50%) rotate(90deg);
+        }
+    }
+
+    &.is-open &__button {
+        padding-bottom: rem(12);
+    }
+
+    &.is-open &__icon {
+        color: palette(clr-red);
+
+        &::after {
+            transform: translateY(-50%) rotate(0deg);
+        }
+    }
+
+    &__panel {
+        display: grid;
+        grid-template-rows: 0fr;
+        visibility: hidden;
+        transition: grid-template-rows 0.3s ease, visibility 0s linear 0.3s;
+    }
+
+    &.is-open &__panel {
+        grid-template-rows: 1fr;
+        visibility: visible;
+        transition: grid-template-rows 0.3s ease, visibility 0s linear 0s;
+    }
+
+    &__antwort {
+        @include t-text;
+
+        overflow: hidden;
+        min-height: 0;
+        color: palette(clr-neutral-dark);
+
+        > :first-child {
+            margin-top: 0;
+        }
+
+        > :last-child {
+            margin-bottom: rem(24);
+        }
+
+        a {
+            color: inherit;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .faq-item__button,
+    .faq-item__panel,
+    .faq-item.is-open .faq-item__panel {
+        transition: none;
+    }
+}
