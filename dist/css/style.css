@@ -4891,6 +4891,143 @@ html:has(.read-aloud:not([hidden])) {
 }
 
 /*
+* Layout: Preise (layout_preise) – off-white section, price cards in 4 / 2 / 1 columns (white with grey border; free = red price; highlighted = dark with red border and the red Tickets button), small footnote
+*/
+.layout-preise {
+  padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+  padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+}
+.layout-preise .section-head {
+  margin-bottom: clamp(32px, 26.0571428571px + 1.5238095238vw, 48px);
+}
+.layout-preise .section-head__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  max-width: 45rem;
+  color: #444444;
+}
+
+.preise {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+@media (min-width: 640px) {
+  .preise {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 991px) {
+  .preise {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.preise__item {
+  display: flex;
+  container-type: inline-size;
+}
+.preise__note {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  margin-top: clamp(32px, 26.0571428571px + 1.5238095238vw, 48px);
+  color: #555555;
+}
+
+.preis {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: clamp(24px, 21.0285714286px + 0.7619047619vw, 32px);
+  color: #444444;
+  border: 1px solid #E0DDD8;
+  background-color: #FFFFFF;
+}
+.preis__label {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  text-transform: uppercase;
+}
+.preis__value {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  margin: 0;
+  margin: 0;
+  font-size: min(clamp(40px, 35.5428571429px + 1.1428571429vw, 52px), 19cqi);
+  white-space: nowrap;
+  color: #1A1A1A;
+}
+.preis__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  margin: 0;
+  line-height: 1.2;
+}
+.preis__button {
+  max-width: 100%;
+  margin-top: 0.5rem;
+  white-space: normal;
+  text-align: center;
+}
+.preis--gratis .preis__value {
+  color: #CE0E2D;
+}
+.preis--hervorgehoben {
+  --scheme-text: #FFFFFF;
+  --scheme-background: #333333;
+  --scheme-foreground: #444444;
+  --scheme-border: #555555;
+  --scheme-accent: #FFFFFF;
+  --btn-primary-bg: #FFFFFF;
+  --btn-primary-border: #FFFFFF;
+  --btn-primary-text: #1A1A1A;
+  --btn-primary-hover-bg: #1A1A1A;
+  --btn-primary-hover-border: #1A1A1A;
+  --btn-primary-hover-text: #FFFFFF;
+  --btn-secondary-border: #FFFFFF;
+  --btn-secondary-text: #FFFFFF;
+  --btn-secondary-hover-bg: #1A1A1A;
+  --btn-secondary-hover-border: #1A1A1A;
+  --btn-secondary-hover-text: #FFFFFF;
+  --btn-link-text: #FFFFFF;
+  --focus-color: #FFFFFF;
+  --btn-primary-bg: #CE0E2D;
+  --btn-primary-border: #CE0E2D;
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-hover-bg: transparent;
+  --btn-primary-hover-border: #FFFFFF;
+  --btn-primary-hover-text: #FFFFFF;
+  color: #B3AFA8;
+  border-color: #CE0E2D;
+  background-color: #1A1A1A;
+}
+.preis--hervorgehoben .preis__value {
+  color: #FFFFFF;
+}
+
+/*
 * Layout: Zahlenband (layout_zahlenband) – gross: red gradient with faded image, head, numbers with red bar, footnote; kompakt: dark row of numbers with red top line
 */
 .layout-zahlenband {

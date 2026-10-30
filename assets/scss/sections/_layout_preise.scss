@@ -1,0 +1,117 @@
+/*
+* Layout: Preise (layout_preise) – off-white section, price cards in 4 / 2 / 1 columns (white with grey border; free = red price; highlighted = dark with red border and the red Tickets button), small footnote
+*/
+
+@use '../abstracts' as *;
+
+.layout-preise {
+    @include fluid-prop(padding-top, 48, 96);
+    @include fluid-prop(padding-bottom, 48, 96);
+
+    .section-head {
+        @include fluid-prop(margin-bottom, 32, 48);
+    }
+
+    .section-head__text {
+        @include t-text;
+
+        max-width: rem(720);
+        color: palette(clr-neutral-dark);
+    }
+}
+
+.preise {
+    @include reset-list;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: rem(16);
+
+    @include respond-min(sm) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include respond-min(lg) {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    &__item {
+        display: flex;
+        container-type: inline-size;
+    }
+
+    &__note {
+        @include t-text-tiny;
+
+        margin: 0;
+        @include fluid-prop(margin-top, 32, 48);
+
+        color: palette(clr-neutral);
+    }
+}
+
+.preis {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+    flex-direction: column;
+    gap: rem(12);
+    @include fluid-prop(padding, 24, 32);
+
+    color: palette(clr-neutral-dark);
+    border: 1px solid palette(clr-neutral-lighter);
+    background-color: palette(clr-white);
+
+    &__label {
+        @include t-text-tiny($fw-bold);
+
+        margin: 0;
+        text-transform: uppercase;
+    }
+
+    &__value {
+        @include heading-base($line-height: 1.2);
+
+        margin: 0;
+        font-size: min(#{fluid(40, 52)}, 19cqi);
+        white-space: nowrap;
+        color: palette(clr-neutral-darkest);
+    }
+
+    &__text {
+        @include t-text-small;
+
+        margin: 0;
+        line-height: 1.2;
+    }
+
+    &__button {
+        max-width: 100%;
+        margin-top: rem(8);
+        white-space: normal;
+        text-align: center;
+    }
+
+    &--gratis &__value {
+        color: palette(clr-red);
+    }
+
+    &--hervorgehoben {
+        @include scheme-vars(dunkel);
+
+        --btn-primary-bg: #{palette(clr-red)};
+        --btn-primary-border: #{palette(clr-red)};
+        --btn-primary-text: #{palette(clr-white)};
+        --btn-primary-hover-bg: transparent;
+        --btn-primary-hover-border: #{palette(clr-white)};
+        --btn-primary-hover-text: #{palette(clr-white)};
+
+        color: palette(clr-neutral-light);
+        border-color: palette(clr-red);
+        background-color: palette(clr-neutral-darkest);
+    }
+
+    &--hervorgehoben &__value {
+        color: palette(clr-white);
+    }
+}
