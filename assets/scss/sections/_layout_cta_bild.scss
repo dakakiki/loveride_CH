@@ -35,6 +35,12 @@ $cta-bild-edge-schmal: max(var(--padding-global), calc(90% - #{$container-large}
             @include fluid-prop(margin-top, 24, 32);
         }
 
+        > ul + p,
+        > ol + p,
+        > h4 + p {
+            @include fluid-prop(margin-top, 20, 28);
+        }
+
         ul {
             display: flex;
             flex-direction: column;

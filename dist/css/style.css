@@ -3765,6 +3765,11 @@ html:has(.read-aloud:not([hidden])) {
 .layout-cta-bild .section-head__text > * + h4 {
   margin-top: clamp(24px, 21.0285714286px + 0.7619047619vw, 32px);
 }
+.layout-cta-bild .section-head__text > ul + p,
+.layout-cta-bild .section-head__text > ol + p,
+.layout-cta-bild .section-head__text > h4 + p {
+  margin-top: clamp(20px, 17.0285714286px + 0.7619047619vw, 28px);
+}
 .layout-cta-bild .section-head__text ul {
   display: flex;
   flex-direction: column;
