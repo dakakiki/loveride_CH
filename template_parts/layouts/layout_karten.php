@@ -1,6 +1,6 @@
 <?php
 /**
- * Layout: Karten-Grid (layout_karten) – section head and cards (icon on top or left, label, title, text, optional link; single cards red) in 2 / 3 / 4 columns on white, off-white or dark, optional red top line; Anreise „Notfall & Kontakte“, other card sections.
+ * Layout: Karten-Grid (layout_karten) – section head and cards (icon on top or left, label, title, text, optional link; single cards red) in 2 / 3 / 4 columns on white, off-white or dark, optional red top line, optional central Tickets button below; variant Zeitleiste = steps in one row (label as large time / year, red = highlighted step); Anreise „Notfall“, Ride-Out „Ablauf“, „Solo-Biker“, „Regeln“.
  *
  * @package loveride
  */
@@ -20,6 +20,8 @@ if ( ! $lr_karten && ! array_filter( $lr_head ) ) {
 	return;
 }
 
+$lr_zeitleiste  = get_sub_field( 'darstellung' ) === 'zeitleiste';
+$lr_tickets     = get_sub_field( 'tickets_button' ) ? lr_central_button( 'tickets' ) : array();
 $lr_hintergrund = in_array( get_sub_field( 'hintergrund' ), array( 'offwhite', 'dunkel' ), true ) ? get_sub_field( 'hintergrund' ) : 'weiss';
 $lr_spalten     = in_array( (string) get_sub_field( 'spalten' ), array( '2', '3', '4' ), true ) ? (string) get_sub_field( 'spalten' ) : '3';
 $lr_titel_size  = in_array( get_sub_field( 'titelgroesse' ), array( 'klein', 'gross' ), true ) ? get_sub_field( 'titelgroesse' ) : 'standard';
@@ -27,11 +29,12 @@ $lr_titel_size  = in_array( get_sub_field( 'titelgroesse' ), array( 'klein', 'gr
 $lr_classes = array(
 	'scheme-' . $lr_hintergrund,
 	'karten--' . $lr_hintergrund,
-	'karten--spalten-' . $lr_spalten,
 	'karten--titel-' . $lr_titel_size,
-	get_sub_field( 'icon_position' ) === 'links' ? 'karten--icon-links' : '',
-	get_sub_field( 'linie' ) ? 'karten--linie' : '',
+	$lr_zeitleiste ? 'karten--zeitleiste' : 'karten--spalten-' . $lr_spalten,
+	! $lr_zeitleiste && get_sub_field( 'icon_position' ) === 'links' ? 'karten--icon-links' : '',
+	! $lr_zeitleiste && get_sub_field( 'linie' ) ? 'karten--linie' : '',
 );
+$lr_tag = $lr_zeitleiste ? 'ol' : 'ul';
 ?>
 <section <?= lr_section_attrs( array_filter( $lr_classes ) ); ?>>
 	<div class="container">
@@ -39,11 +42,11 @@ $lr_classes = array(
 		<?php get_template_part( 'template_parts/components/section_head', null, $lr_head + array( 'animate' => true ) ); ?>
 
 		<?php if ( $lr_karten ) : ?>
-			<ul class="karten" data-gsap-cards>
+			<<?= $lr_tag; ?> class="karten" style="--anzahl: <?= (int) count( $lr_karten ); ?>" data-gsap-cards>
 				<?php foreach ( $lr_karten as $lr_karte ) : ?>
 					<?php $lr_link = (array) ( $lr_karte['link'] ?: array() ); ?>
 					<li class="karte<?= ! empty( $lr_karte['rot'] ) ? ' karte--rot' : ''; ?>">
-						<?= lr_icon( $lr_karte['icon'] ?? '', 'karte__icon' ); ?>
+						<?= $lr_zeitleiste ? '' : lr_icon( $lr_karte['icon'] ?? '', 'karte__icon' ); ?>
 
 						<div class="karte__body">
 							<?php if ( trim( (string) $lr_karte['oberzeile'] ) !== '' ) : ?>
@@ -62,7 +65,13 @@ $lr_classes = array(
 						</div>
 					</li>
 				<?php endforeach; ?>
-			</ul>
+			</<?= $lr_tag; ?>>
+		<?php endif; ?>
+
+		<?php if ( $lr_tickets ) : ?>
+			<div class="buttons karten__buttons fade-up">
+				<a class="btn--primary" <?= lr_link_attrs( $lr_tickets ); ?>><?= esc_html( $lr_tickets['title'] ?: __( 'Tickets kaufen', 'loveride' ) ); ?></a>
+			</div>
 		<?php endif; ?>
 
 	</div>

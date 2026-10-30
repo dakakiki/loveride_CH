@@ -4554,6 +4554,26 @@
                             ]
                         },
                         {
+                            "key": "field_fc5c7a61a9baa",
+                            "label": "Tickets-Button unter den Karten",
+                            "name": "tickets_button",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "Ja",
+                            "ui_off_text": "Nein"
+                        },
+                        {
                             "key": "field_11f1576ee089f",
                             "label": "Darstellung",
                             "name": "",
@@ -4572,6 +4592,29 @@
                             "selected": 0
                         },
                         {
+                            "key": "field_8ca896385c9da",
+                            "label": "Darstellung",
+                            "name": "darstellung",
+                            "aria-label": "",
+                            "type": "button_group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "34",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "karten": "Karten",
+                                "zeitleiste": "Zeitleiste"
+                            },
+                            "default_value": "karten",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "layout": "horizontal"
+                        },
+                        {
                             "key": "field_db6f8129ad383",
                             "label": "Hintergrund",
                             "name": "hintergrund",
@@ -4581,7 +4624,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "34",
+                                "width": "33",
                                 "class": "",
                                 "id": ""
                             },
@@ -4596,9 +4639,9 @@
                             "layout": "horizontal"
                         },
                         {
-                            "key": "field_f0891717a19bc",
-                            "label": "Spalten",
-                            "name": "spalten",
+                            "key": "field_fc1e7aef299e0",
+                            "label": "Titelgrösse",
+                            "name": "titelgroesse",
                             "aria-label": "",
                             "type": "button_group",
                             "instructions": "",
@@ -4606,6 +4649,38 @@
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "33",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "klein": "Klein",
+                                "standard": "Standard",
+                                "gross": "Gross"
+                            },
+                            "default_value": "standard",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "layout": "horizontal"
+                        },
+                        {
+                            "key": "field_f0891717a19bc",
+                            "label": "Spalten",
+                            "name": "spalten",
+                            "aria-label": "",
+                            "type": "button_group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_8ca896385c9da",
+                                        "operator": "==",
+                                        "value": "karten"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "34",
                                 "class": "",
                                 "id": ""
                             },
@@ -4627,7 +4702,15 @@
                             "type": "button_group",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_8ca896385c9da",
+                                        "operator": "==",
+                                        "value": "karten"
+                                    }
+                                ]
+                            ],
                             "wrapper": {
                                 "width": "33",
                                 "class": "",
@@ -4643,30 +4726,6 @@
                             "layout": "horizontal"
                         },
                         {
-                            "key": "field_fc1e7aef299e0",
-                            "label": "Titelgrösse",
-                            "name": "titelgroesse",
-                            "aria-label": "",
-                            "type": "button_group",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "34",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "klein": "Klein",
-                                "standard": "Standard",
-                                "gross": "Gross"
-                            },
-                            "default_value": "standard",
-                            "return_format": "value",
-                            "allow_null": 0,
-                            "layout": "horizontal"
-                        },
-                        {
                             "key": "field_69297f1e53494",
                             "label": "Rote Linie oben",
                             "name": "linie",
@@ -4674,7 +4733,15 @@
                             "type": "true_false",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_8ca896385c9da",
+                                        "operator": "==",
+                                        "value": "karten"
+                                    }
+                                ]
+                            ],
                             "wrapper": {
                                 "width": "33",
                                 "class": "",
@@ -4817,6 +4884,29 @@
                             "selected": 0
                         },
                         {
+                            "key": "field_d24c417188dc8",
+                            "label": "Quelle",
+                            "name": "quelle",
+                            "aria-label": "",
+                            "type": "button_group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "ebene": "Ebene aus Anreise & Parken",
+                                "datei": "Eigene Route (GPX \/ GeoJSON)"
+                            },
+                            "default_value": "ebene",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "layout": "horizontal"
+                        },
+                        {
                             "key": "field_bdc7c3ce588de",
                             "label": "Ebene aus Anreise & Parken",
                             "name": "ebene",
@@ -4824,9 +4914,17 @@
                             "type": "select",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_d24c417188dc8",
+                                        "operator": "!=",
+                                        "value": "datei"
+                                    }
+                                ]
+                            ],
                             "wrapper": {
-                                "width": "50",
+                                "width": "",
                                 "class": "",
                                 "id": ""
                             },
@@ -4842,6 +4940,59 @@
                             "save_options": 0
                         },
                         {
+                            "key": "field_65c5df25cd89a",
+                            "label": "Route (GPX \/ GeoJSON)",
+                            "name": "datei",
+                            "aria-label": "",
+                            "type": "file",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_d24c417188dc8",
+                                        "operator": "==",
+                                        "value": "datei"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_size": "",
+                            "max_size": "",
+                            "mime_types": "gpx,geojson"
+                        },
+                        {
+                            "key": "field_c769d305d7727",
+                            "label": "Icon ohne Karte",
+                            "name": "icon",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "20",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": [],
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 1,
+                            "ui": 1,
+                            "ajax": 0,
+                            "placeholder": "Icon der Ebene",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
                             "key": "field_45bd2abf20be4",
                             "label": "Titel ohne Karte",
                             "name": "platzhalter_titel",
@@ -4851,7 +5002,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "25",
+                                "width": "40",
                                 "class": "",
                                 "id": ""
                             },
@@ -4871,7 +5022,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "25",
+                                "width": "40",
                                 "class": "",
                                 "id": ""
                             },
@@ -4909,7 +5060,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
@@ -4918,6 +5069,29 @@
                                 "weiss": "Weiss"
                             },
                             "default_value": "offwhite",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "layout": "horizontal"
+                        },
+                        {
+                            "key": "field_340ee1cde4fc6",
+                            "label": "Kartenbreite",
+                            "name": "kartenbreite",
+                            "aria-label": "",
+                            "type": "button_group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "normal": "Normal",
+                                "breit": "Breit"
+                            },
+                            "default_value": "normal",
                             "return_format": "value",
                             "allow_null": 0,
                             "layout": "horizontal"
@@ -4942,6 +5116,399 @@
                         },
                         {
                             "key": "field_b74e3f8d8e782",
+                            "label": "Anker",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_98b5ee9e5de1e"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_617790ac9d936": {
+                    "key": "layout_617790ac9d936",
+                    "name": "layout_banner",
+                    "label": "Inhalt · Banner",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_09f239dafd2a7",
+                            "label": "Inhalt",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "tab",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placement": "top",
+                            "endpoint": 0,
+                            "selected": 0
+                        },
+                        {
+                            "key": "field_f6c4aa12c2a0c",
+                            "label": "Icon",
+                            "name": "icon",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "20",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": [],
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 1,
+                            "ui": 1,
+                            "ajax": 0,
+                            "placeholder": "ohne Icon",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_d99dc41dd2504",
+                            "label": "Titel",
+                            "name": "titel",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "80",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_6fbf9ceac13f2",
+                            "label": "Text",
+                            "name": "text",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "rows": 2,
+                            "placeholder": "",
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_6961f21b65c7e",
+                            "label": "Buttons",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_d9dd686891012"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        },
+                        {
+                            "key": "field_fb19335150ebb",
+                            "label": "Darstellung",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "tab",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placement": "top",
+                            "endpoint": 0,
+                            "selected": 0
+                        },
+                        {
+                            "key": "field_258427de32d34",
+                            "label": "Hintergrund",
+                            "name": "hintergrund",
+                            "aria-label": "",
+                            "type": "button_group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "rot": "Rot",
+                                "dunkel": "Dunkel",
+                                "offwhite": "Off White"
+                            },
+                            "default_value": "rot",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "layout": "horizontal"
+                        },
+                        {
+                            "key": "field_ea4875321cc22",
+                            "label": "Titelgrösse",
+                            "name": "titelgroesse",
+                            "aria-label": "",
+                            "type": "button_group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "gross": "Gross",
+                                "mittel": "Mittel",
+                                "klein": "Klein"
+                            },
+                            "default_value": "gross",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "layout": "horizontal"
+                        },
+                        {
+                            "key": "field_41c231e8fba57",
+                            "label": "Anker",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "tab",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placement": "top",
+                            "endpoint": 0,
+                            "selected": 0
+                        },
+                        {
+                            "key": "field_2bbc9ae060bd4",
+                            "label": "Anker",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_98b5ee9e5de1e"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_d3b8cd64ce958": {
+                    "key": "layout_d3b8cd64ce958",
+                    "name": "layout_hinweis_box",
+                    "label": "Inhalt · Hinweis-Box",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_35a524601642d",
+                            "label": "Inhalt",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "tab",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placement": "top",
+                            "endpoint": 0,
+                            "selected": 0
+                        },
+                        {
+                            "key": "field_180417f8de4a4",
+                            "label": "Icon",
+                            "name": "icon",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "20",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": [],
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 1,
+                            "ui": 1,
+                            "ajax": 0,
+                            "placeholder": "Icon wählen",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_252dd61a2896d",
+                            "label": "Sektionskopf",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5c124dd89c32c"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        },
+                        {
+                            "key": "field_ea5cb59301f86",
+                            "label": "Link",
+                            "name": "link",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        },
+                        {
+                            "key": "field_6ba6ec9048970",
+                            "label": "Darstellung",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "tab",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placement": "top",
+                            "endpoint": 0,
+                            "selected": 0
+                        },
+                        {
+                            "key": "field_1710946559c69",
+                            "label": "Hintergrund",
+                            "name": "hintergrund",
+                            "aria-label": "",
+                            "type": "button_group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "offwhite": "Off White",
+                                "weiss": "Weiss"
+                            },
+                            "default_value": "offwhite",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "layout": "horizontal"
+                        },
+                        {
+                            "key": "field_027a3e19729ec",
+                            "label": "Anker",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "tab",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placement": "top",
+                            "endpoint": 0,
+                            "selected": 0
+                        },
+                        {
+                            "key": "field_b84cb76fdda95",
                             "label": "Anker",
                             "name": "",
                             "aria-label": "",
@@ -4993,5 +5560,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1793376067
+    "modified": 1793377165
 }

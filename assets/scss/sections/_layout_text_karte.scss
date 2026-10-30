@@ -1,5 +1,5 @@
 /*
-* Layout: Text & Karte (layout_text_karte) – text column (head with red-square list, buttons) next to the map of one Anreise layer or its placeholder box (grey, icon, title, note); stacked below 991
+* Layout: Text & Karte (layout_text_karte) – text column (head with red-square list, buttons) next to the map of one Anreise layer / own route or its placeholder box (grey, icon, title, note); wide variant 420 / 796 with larger placeholder; stacked below 991
 */
 
 @use '../abstracts' as *;
@@ -77,5 +77,36 @@
         @include t-text-small;
 
         margin: 0;
+    }
+}
+
+.text-karte--breit {
+    .buttons {
+        @include respond-min(xxl) {
+            flex-wrap: nowrap;
+        }
+    }
+
+    .text-karte {
+        @include respond-min(lg) {
+            grid-template-columns: minmax(0, 420fr) minmax(0, 796fr);
+            column-gap: rem(64);
+        }
+
+        &__map,
+        &__platzhalter {
+            aspect-ratio: 796 / 520;
+        }
+
+        &__platzhalter-icon {
+            width: rem(56);
+            height: rem(56);
+        }
+
+        &__platzhalter-titel {
+            @include t-h4;
+
+            text-transform: none;
+        }
     }
 }

@@ -1,0 +1,76 @@
+/*
+* Layout: Hinweis-Box (layout_hinweis_box) – centred white box (max 1028) with a 3px red frame on off-white or white: icon in a red circle, tagline, title (H4), text, link
+*/
+
+@use '../abstracts' as *;
+
+.layout-hinweis-box {
+    @include fluid-prop(padding-top, 48, 64);
+    @include fluid-prop(padding-bottom, 48, 64);
+
+    &.scheme-weiss .hinweis-box {
+        background-color: palette(clr-off-white);
+    }
+}
+
+.hinweis-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(12);
+    max-width: rem(1028);
+    margin: 0 auto;
+    padding: fluid(28, 36) fluid(20, 48);
+    text-align: center;
+    border: 3px solid palette(clr-red);
+    background-color: palette(clr-white);
+
+    &__icon {
+        display: grid;
+        flex: none;
+        place-items: center;
+        width: rem(56);
+        height: rem(56);
+        color: palette(clr-white);
+        border-radius: 50%;
+        background-color: palette(clr-red);
+
+        svg {
+            width: rem(30);
+            height: rem(30);
+        }
+    }
+
+    .section-head {
+        align-items: center;
+        gap: rem(12);
+        max-width: none;
+        margin-bottom: 0;
+
+        &__main {
+            align-items: center;
+            gap: rem(12);
+        }
+
+        &__title {
+            @include t-h4;
+        }
+
+        &__aside {
+            align-items: center;
+        }
+
+        &__text {
+            @include t-text;
+
+            color: palette(clr-neutral-dark);
+        }
+    }
+
+    &__link {
+        max-width: 100%;
+        margin-top: rem(4);
+        white-space: normal;
+        text-align: center;
+    }
+}

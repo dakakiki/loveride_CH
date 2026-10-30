@@ -1,5 +1,5 @@
 /*
-* Layout: Karten-Grid (layout_karten) – section head and cards in 2 / 3 / 4 columns: icon on top or left, red label, title (small / standard / large), text, link; cards off-white on white, white on off-white, #333 on dark (#1A1A1A), red when highlighted, optional red top line
+* Layout: Karten-Grid (layout_karten) – section head and cards in 2 / 3 / 4 columns: icon on top or left, red label, title (small / standard / large), text, link; cards off-white on white, white on off-white, #333 on dark (#1A1A1A), red when highlighted, optional red top line, Tickets button below; Zeitleiste = one row of steps with a grey top line (highlighted step red, 6px), large time / year
 */
 
 @use '../abstracts' as *;
@@ -150,5 +150,80 @@
         align-self: flex-start;
         margin-top: auto;
         padding-top: rem(4);
+    }
+}
+
+.karten__buttons {
+    @include fluid-prop(margin-top, 32, 48);
+}
+
+.karten--zeitleiste {
+    --zeitleiste-linie: #{palette(clr-neutral-lighter)};
+
+    &.karten--offwhite {
+        --zeitleiste-linie: #{palette(clr-neutral-light)};
+    }
+
+    .karten {
+        gap: 0;
+
+        @include respond-min(sm) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            row-gap: rem(24);
+        }
+
+        @include respond-min(lg) {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        @include respond-min(xxl) {
+            grid-template-columns: repeat(var(--anzahl, 6), minmax(0, 1fr));
+        }
+    }
+
+    .karte {
+        --karte-bg: transparent;
+        --karte-label: #{palette(clr-neutral-darkest)};
+
+        gap: rem(8);
+        padding: rem(24) rem(20) rem(24) 0;
+        border-top: 2px solid var(--zeitleiste-linie);
+
+        @include respond-min(xxl) {
+            padding-bottom: 0;
+        }
+
+        &--rot {
+            --karte-label: #{palette(clr-red)};
+
+            color: var(--scheme-text);
+            border-top: 6px solid palette(clr-red);
+        }
+    }
+
+    .karte__body {
+        gap: rem(8);
+    }
+
+    .karte__oberzeile {
+        @include t-h4;
+
+        text-transform: none;
+    }
+
+    &.karten--titel-gross .karte__oberzeile {
+        @include t-h3;
+    }
+
+    .karte__titel {
+        @include t-text($fw-bold);
+
+        line-height: 1.2;
+        text-transform: none;
+        letter-spacing: 0;
+    }
+
+    .karte__text {
+        --karte-text: #{palette(clr-neutral-dark)};
     }
 }
