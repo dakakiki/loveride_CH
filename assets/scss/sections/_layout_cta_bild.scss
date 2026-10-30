@@ -1,5 +1,5 @@
 /*
-* Layout: Bild & Text (layout_cta_bild) – photo to the edge (half 1:1 or narrow 4:5), text panel aligned with the container, list with red squares and H4 note with red line in the text; backgrounds light grey (#F2F0ED) / off-white / white / dark; mobile: photo on top
+* Layout: Bild & Text (layout_cta_bild) – photo to the edge (half 1:1 or narrow 4:5), text panel aligned with the container, list with red squares and H4 note with red line in the text; backgrounds light grey (#F2F0ED) / off-white / white / dark (red primary button); mobile: photo on top
 */
 
 @use '../abstracts' as *;
@@ -80,10 +80,25 @@ $cta-bild-edge-schmal: max(var(--padding-global), calc(90% - #{$container-large}
     background-color: palette(clr-neutral-lightest);
 }
 
+.cta-bild--dunkel {
+    background-color: palette(clr-neutral-darkest);
+
+    --btn-primary-bg: #{palette(clr-red)};
+    --btn-primary-border: #{palette(clr-red)};
+    --btn-primary-text: #{palette(clr-white)};
+    --btn-primary-hover-bg: transparent;
+    --btn-primary-hover-border: #{palette(clr-white)};
+    --btn-primary-hover-text: #{palette(clr-white)};
+}
+
 .cta-bild--schmal {
     @include respond-min(lg) {
         grid-template-columns: minmax(0, 4fr) minmax(0, 5fr);
         min-height: 0;
+
+        &.cta-bild--bild-rechts {
+            grid-template-columns: minmax(0, 5fr) minmax(0, 4fr);
+        }
     }
 
     .section-head__text {

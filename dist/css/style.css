@@ -3739,7 +3739,7 @@ html:has(.read-aloud:not([hidden])) {
   }
 }
 /*
-* Layout: Bild & Text (layout_cta_bild) – photo to the edge (half 1:1 or narrow 4:5), text panel aligned with the container, list with red squares and H4 note with red line in the text; backgrounds light grey (#F2F0ED) / off-white / white / dark; mobile: photo on top
+* Layout: Bild & Text (layout_cta_bild) – photo to the edge (half 1:1 or narrow 4:5), text panel aligned with the container, list with red squares and H4 note with red line in the text; backgrounds light grey (#F2F0ED) / off-white / white / dark (red primary button); mobile: photo on top
 */
 .layout-cta-bild {
   display: grid;
@@ -3811,10 +3811,23 @@ html:has(.read-aloud:not([hidden])) {
   background-color: #F2F0ED;
 }
 
+.cta-bild--dunkel {
+  background-color: #1A1A1A;
+  --btn-primary-bg: #CE0E2D;
+  --btn-primary-border: #CE0E2D;
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-hover-bg: transparent;
+  --btn-primary-hover-border: #FFFFFF;
+  --btn-primary-hover-text: #FFFFFF;
+}
+
 @media (min-width: 991px) {
   .cta-bild--schmal {
     grid-template-columns: minmax(0, 4fr) minmax(0, 5fr);
     min-height: 0;
+  }
+  .cta-bild--schmal.cta-bild--bild-rechts {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 4fr);
   }
 }
 .cta-bild--schmal .section-head__text {
