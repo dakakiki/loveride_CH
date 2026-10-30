@@ -1,6 +1,6 @@
 <?php
 /**
- * Editors: block editor (pages, News) with allowed core blocks only (News: text, headings H2–H4, lists, images, YouTube), no patterns or block directory, paragraph style "Hinweis", heading style "Mit Linie" (red line on the left); TinyMCE (ACF WYSIWYG) formats without H1.
+ * Editors: block editor (pages, News) with allowed core blocks only (News: text, headings H2–H4, lists, images, YouTube), no patterns or block directory, paragraph style "Hinweis", heading style "Mit Linie" (red line on the left); TinyMCE (ACF WYSIWYG) formats without H1, format dropdown also in the Basic toolbar.
  *
  * @package loveride
  */
@@ -86,6 +86,15 @@ add_filter( 'tiny_mce_before_init', function ( array $init ): array {
 	$init['block_formats'] = 'Absatz=p;Überschrift 2=h2;Überschrift 3=h3;Überschrift 4=h4';
 
 	return $init;
+} );
+
+add_filter( 'acf/fields/wysiwyg/toolbars', function ( array $toolbars ): array {
+
+	if ( isset( $toolbars['Basic'][1] ) && ! in_array( 'formatselect', $toolbars['Basic'][1], true ) ) {
+		array_unshift( $toolbars['Basic'][1], 'formatselect' );
+	}
+
+	return $toolbars;
 } );
 
 add_action( 'admin_head', function () {
