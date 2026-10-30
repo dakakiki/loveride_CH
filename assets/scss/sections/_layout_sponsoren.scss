@@ -1,0 +1,274 @@
+/*
+* Layout: Sponsoren (layout_sponsoren) – white section, one block per tier with red label (or off-white intro box): portraits (one wide: logo left, text right; several: cards with logo on top, 2 columns), logo grid with grey frame (2 / 3 / 4 columns, off-white name tile without logo), name list in 4 columns with lines and „Alle … anzeigen“
+*/
+
+@use '../abstracts' as *;
+
+.layout-sponsoren {
+    @include fluid-prop(padding-top, 48, 96);
+    @include fluid-prop(padding-bottom, 48, 96);
+
+    .section-head__text {
+        @include t-text-medium;
+
+        max-width: rem(680);
+        color: palette(clr-neutral-dark);
+    }
+}
+
+.sponsoren-stufe {
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+
+    & + & {
+        @include fluid-prop(margin-top, 40, 56);
+    }
+
+    &__titel {
+        @include t-text-tiny($fw-bold);
+
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0;
+        color: palette(clr-red);
+    }
+}
+
+.sponsoren-einleitung {
+    display: flex;
+    align-items: flex-start;
+    gap: rem(24);
+    padding: rem(28) fluid(20, 32);
+    background-color: palette(clr-off-white);
+
+    &__icon {
+        flex: none;
+        width: rem(36);
+        height: rem(36);
+        color: palette(clr-red-signal);
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        gap: rem(4);
+    }
+
+    &__titel {
+        @include t-h5;
+
+        margin: 0;
+    }
+
+    &__beschreibung {
+        @include t-text;
+
+        margin: 0;
+        color: palette(clr-neutral-dark);
+    }
+}
+
+.sponsoren-portraets {
+    @include reset-list;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: rem(16);
+
+    @include respond-min(md) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    &--einzeln {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.sponsor-portraet {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid palette(clr-neutral-lighter);
+
+    .sponsoren-portraets--einzeln & {
+        @include respond-min(md) {
+            flex-direction: row;
+        }
+    }
+
+    &__logo {
+        display: grid;
+        place-items: center;
+        height: rem(160);
+        padding: rem(24);
+
+        .sponsoren-portraets--einzeln & {
+            @include respond-min(md) {
+                flex: 0 0 44%;
+                height: auto;
+                min-height: rem(200);
+            }
+        }
+    }
+
+    &__bild {
+        @include image-contain;
+
+        max-width: rem(360);
+        max-height: rem(110);
+    }
+
+    &__name {
+        @include t-h5;
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: rem(12);
+        padding: 0 fluid(20, 32) fluid(24, 32);
+
+        .sponsoren-portraets--einzeln & {
+            @include respond-min(md) {
+                justify-content: center;
+                padding: rem(32) rem(40);
+            }
+        }
+    }
+
+    &__titel {
+        @include t-h5;
+
+        margin: 0;
+    }
+
+    &__beschreibung {
+        @include t-text;
+
+        margin: 0;
+        color: palette(clr-neutral-dark);
+    }
+
+    &__website {
+        @include t-text-small($fw-bold);
+
+        display: inline-flex;
+        align-items: center;
+        gap: rem(6);
+        color: palette(clr-red);
+        text-decoration: none;
+
+        svg {
+            width: rem(16);
+            height: rem(16);
+        }
+
+        &:hover {
+            color: palette(clr-red-dark);
+        }
+    }
+}
+
+.sponsoren-logos {
+    @include reset-list;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: rem(12) rem(16);
+
+    @include respond-min(lg) {
+        &--3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        &--4 {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+    }
+
+    @include respond-max(xs) {
+        &--3,
+        &--4 {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+}
+
+.sponsor-logo {
+    display: grid;
+    min-height: rem(120);
+    border: 1px solid palette(clr-neutral-lighter);
+
+    .sponsoren-logos--4 & {
+        min-height: rem(96);
+    }
+
+    &--name {
+        border-color: palette(clr-off-white);
+        background-color: palette(clr-off-white);
+    }
+
+    &__link,
+    > * {
+        display: grid;
+        place-items: center;
+        padding: rem(20);
+        text-align: center;
+        color: inherit;
+        text-decoration: none;
+    }
+
+    &__bild {
+        @include image-contain;
+
+        max-width: rem(360);
+        max-height: rem(66);
+    }
+
+    &__name {
+        @include t-text-small($fw-bold);
+
+        color: palette(clr-neutral);
+    }
+
+    &__link:hover &__name {
+        color: palette(clr-red);
+    }
+}
+
+.sponsoren-namen {
+    @include reset-list;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: rem(32);
+
+    @include respond-min(sm) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include respond-min(lg) {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    li {
+        @include t-text-small;
+
+        display: flex;
+        align-items: center;
+        min-height: rem(64);
+        padding: rem(8) 0;
+        line-height: 1.2;
+        border-bottom: 1px solid palette(clr-neutral-lighter);
+    }
+
+    li[hidden] {
+        display: none;
+    }
+
+    &__alle {
+        align-self: flex-start;
+        margin-top: rem(4);
+    }
+}

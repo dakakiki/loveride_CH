@@ -1,5 +1,5 @@
 /*
-* Forms: Contact Form 7 base (validation tips, response output, submitting state) and the newsletter form layout (.nl-form)
+* Forms: Contact Form 7 base (validation tips, response output, submitting state), the newsletter form layout (.nl-form) and the content form layout (.lr-form: labelled fields, two-field rows, checkbox group, privacy checkbox, submit)
 */
 
 @use '../abstracts' as *;
@@ -82,4 +82,143 @@
 .wpcf7-form.submitting .wpcf7-submit {
     opacity: 0.6;
     pointer-events: none;
+}
+
+.lr-form {
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+
+    &__zeile {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: rem(20) rem(16);
+
+        @include respond-min(sm) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    &__feld {
+        display: flex;
+        flex-direction: column;
+        gap: rem(8);
+
+        > label {
+            @include t-text-small($fw-bold);
+
+            color: palette(clr-neutral-darkest);
+        }
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    select {
+        @include t-text;
+
+        width: 100%;
+        padding: rem(14) rem(16);
+        color: palette(clr-neutral-darkest);
+        border: $border-width solid palette(clr-neutral-light);
+        border-radius: 0;
+        background-color: palette(clr-white);
+
+        @include trans(border-color);
+
+        &::placeholder {
+            color: palette(clr-neutral);
+            opacity: 1;
+        }
+
+        &:focus-visible {
+            outline: 2px solid palette(clr-neutral-darkest);
+            outline-offset: 1px;
+        }
+    }
+
+    textarea {
+        height: rem(140);
+        min-height: rem(100);
+        resize: vertical;
+    }
+
+    .wpcf7-checkbox {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: rem(10) rem(16);
+
+        .wpcf7-list-item {
+            margin: 0;
+        }
+
+        label {
+            @include t-text;
+
+            display: flex;
+            align-items: center;
+            gap: rem(10);
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+            flex: none;
+            width: rem(20);
+            height: rem(20);
+            margin: 0;
+            accent-color: palette(clr-red);
+        }
+    }
+
+    &__gruppe {
+        display: flex;
+        flex-direction: column;
+        gap: rem(10);
+        margin: 0;
+        padding: 0;
+        border: 0;
+
+        > legend {
+            @include t-text-small($fw-bold);
+
+            margin-bottom: rem(10);
+            padding: 0;
+            color: palette(clr-neutral-darkest);
+        }
+    }
+
+    .wpcf7-acceptance .wpcf7-list-item {
+        margin: 0;
+
+        label {
+            @include t-text-small;
+
+            display: flex;
+            align-items: flex-start;
+            gap: rem(12);
+            color: palette(clr-neutral-dark);
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+            flex: none;
+            width: rem(20);
+            height: rem(20);
+            margin: rem(1) 0 0;
+            accent-color: palette(clr-red);
+        }
+
+        a {
+            color: inherit;
+        }
+    }
+
+    .wpcf7-submit {
+        align-self: flex-start;
+    }
+
+    .wpcf7-spinner {
+        display: none;
+    }
 }

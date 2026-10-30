@@ -269,13 +269,33 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "50",
+                        "width": "33",
                         "class": "",
                         "id": ""
                     },
                     "default_value": "",
                     "maxlength": "",
                     "placeholder": "CH80 0020 2202 9797 9740 V",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_f01545e48b7b2",
+                    "label": "Kontoinhaber",
+                    "name": "kontoinhaber",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "34",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "z. B. Love Ride Switzerland, 8703 Erlenbach",
                     "prepend": "",
                     "append": ""
                 },
@@ -289,7 +309,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "50",
+                        "width": "33",
                         "class": "",
                         "id": ""
                     },
@@ -706,5 +726,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1793284849
+    "modified": 1793382805
 }

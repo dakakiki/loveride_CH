@@ -1,5 +1,5 @@
 /*
-* Layout: Preise (layout_preise) – off-white section, price cards in 4 / 2 / 1 columns (white with grey border; free = red price; highlighted = dark with red border and the red Tickets button), small footnote
+* Layout: Preise (layout_preise) – off-white section, price cards in 4 / 2 / 1 columns (white with grey border; free = red price; highlighted = dark with red border and the red Tickets button, own button white), small footnote; with benefits: white box (red top line, two-column red-square list) next to the price cards (red top line, button at the bottom)
 */
 
 @use '../abstracts' as *;
@@ -113,5 +113,86 @@
 
     &--hervorgehoben &__value {
         color: palette(clr-white);
+    }
+}
+
+.preise--leistungen {
+    @include respond-min(lg) {
+        grid-template-columns: minmax(0, 648fr) repeat(var(--preise, 2), minmax(0, 300fr));
+    }
+
+    .preise__item--leistungen {
+        @include respond-max(lg) {
+            grid-column: 1 / -1;
+        }
+    }
+
+    .preis {
+        border: 0;
+        border-top: 4px solid palette(clr-red);
+    }
+
+    .preis__value {
+        font-size: min(#{fluid(40, 52)}, 22cqi);
+    }
+
+    .preis__button {
+        margin-top: auto;
+    }
+
+    .preis__text {
+        margin-bottom: rem(16);
+    }
+}
+
+.preis--hervorgehoben .preis__button--eigen {
+    --btn-primary-bg: #{palette(clr-white)};
+    --btn-primary-border: #{palette(clr-white)};
+    --btn-primary-text: #{palette(clr-neutral-darkest)};
+}
+
+.preise-leistungen {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: rem(16);
+    padding: fluid(24, 32);
+    color: palette(clr-neutral-darkest);
+    border-top: 4px solid palette(clr-red);
+    background-color: palette(clr-white);
+
+    &__titel {
+        @include t-h5;
+
+        margin: 0;
+    }
+
+    &__liste {
+        @include reset-list;
+
+        column-gap: rem(24);
+
+        @include respond-min(sm) {
+            column-count: 2;
+        }
+
+        li {
+            @include t-text;
+
+            position: relative;
+            margin-bottom: rem(12);
+            padding-left: rem(20);
+            break-inside: avoid;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0.6em;
+                left: 0;
+                width: rem(8);
+                height: rem(8);
+                background-color: palette(clr-red);
+            }
+        }
     }
 }

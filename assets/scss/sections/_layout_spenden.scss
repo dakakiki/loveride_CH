@@ -1,0 +1,117 @@
+/*
+* Layout: Spenden (layout_spenden) – red section: call (white head, white online button, note) next to a white panel with further ways to donate divided by lines (icon in off-white square, red label, title, text, link or copy IBAN); stacked below 991
+*/
+
+@use '../abstracts' as *;
+
+.layout-spenden {
+    @include fluid-prop(padding-top, 48, 96);
+    @include fluid-prop(padding-bottom, 48, 96);
+
+    .section-head {
+        margin-bottom: 0;
+    }
+
+    .section-head__text {
+        @include t-text-medium;
+    }
+}
+
+.spenden {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: fluid(32, 48) rem(80);
+
+    @include respond-min(lg) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+    }
+
+    &__online {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: rem(12);
+        margin-top: rem(32);
+    }
+
+    &__hinweis {
+        @include t-text-small;
+
+        margin: 0;
+    }
+
+    &__optionen {
+        @include scheme-vars(weiss);
+        @include reset-list;
+
+        padding: rem(8) fluid(20, 32);
+        color: palette(clr-neutral-darkest);
+        background-color: palette(clr-white);
+    }
+}
+
+.spenden-option {
+    display: flex;
+    align-items: flex-start;
+    gap: rem(20);
+    padding: rem(24) 0;
+
+    & + & {
+        border-top: 1px solid palette(clr-neutral-lighter);
+    }
+
+    &__icon {
+        display: grid;
+        flex: none;
+        place-items: center;
+        width: rem(48);
+        height: rem(48);
+        color: palette(clr-red);
+        background-color: palette(clr-off-white);
+
+        svg {
+            width: rem(26);
+            height: rem(26);
+        }
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: rem(4);
+        min-width: 0;
+    }
+
+    &__label {
+        @include t-text-tiny($fw-bold);
+
+        margin: 0;
+        text-transform: uppercase;
+        color: palette(clr-red);
+    }
+
+    &__titel {
+        @include font-normal($fw-bold);
+        @include break-word;
+
+        margin: 0;
+        font-size: fluid(18, 20);
+        line-height: 1.5;
+    }
+
+    &__beschreibung {
+        @include t-text-small;
+
+        margin: 0;
+        color: palette(clr-neutral-dark);
+    }
+
+    &__aktion {
+        margin-top: rem(4);
+        border: 0;
+        background: none;
+        cursor: pointer;
+    }
+}

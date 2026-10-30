@@ -84,6 +84,23 @@ add_filter( 'lr_layout_scripts', function ( array $scripts ): array {
 		'deps'   => array(),
 	);
 
+	$listen = array(
+		'handle' => 'lr-listen',
+		'file'   => 'js/listen.min.js',
+		'min'    => 'js/listen.min.js',
+		'deps'   => array(),
+	);
+
+	$scripts['layout_sponsoren']  = $listen;
+	$scripts['layout_aussteller'] = $listen;
+
+	$scripts['layout_spenden'] = array(
+		'handle' => 'lr-spenden',
+		'file'   => 'js/spenden.min.js',
+		'min'    => 'js/spenden.min.js',
+		'deps'   => array(),
+	);
+
 	return $scripts;
 } );
 

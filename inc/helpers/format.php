@@ -1,6 +1,6 @@
 <?php
 /**
- * Formatting helpers per style guide (dates, times, CHF amounts, numbers, phone links), e.g. So, 2. Mai 2027 · 8.00 Uhr · CHF 30.– · 5'000.
+ * Formatting helpers per style guide (dates, times, CHF amounts, numbers, phone links, website domains), e.g. So, 2. Mai 2027 · 8.00 Uhr · CHF 30.– · 5'000 · moto.ch.
  *
  * @package loveride
  */
@@ -129,4 +129,11 @@ function lr_tel_href( string $phone, string $country_prefix = '+41' ): string {
 	}
 
 	return 'tel:' . $digits;
+}
+
+function lr_url_domain( string $url ): string {
+
+	$host = (string) wp_parse_url( $url, PHP_URL_HOST );
+
+	return $host !== '' ? preg_replace( '/^www\./i', '', $host ) : trim( $url );
 }

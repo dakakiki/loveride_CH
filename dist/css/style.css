@@ -780,7 +780,7 @@ hr {
 }
 
 /*
-* Forms: Contact Form 7 base (validation tips, response output, submitting state) and the newsletter form layout (.nl-form)
+* Forms: Contact Form 7 base (validation tips, response output, submitting state), the newsletter form layout (.nl-form) and the content form layout (.lr-form: labelled fields, two-field rows, checkbox group, privacy checkbox, submit)
 */
 .wpcf7 {
   --form-error: #A50B24;
@@ -855,6 +855,151 @@ hr {
 .wpcf7-form.submitting .wpcf7-submit {
   opacity: 0.6;
   pointer-events: none;
+}
+
+.lr-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.lr-form__zeile {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem 1rem;
+}
+@media (min-width: 640px) {
+  .lr-form__zeile {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.lr-form__feld {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.lr-form__feld > label {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  color: #1A1A1A;
+}
+.lr-form input[type=text],
+.lr-form input[type=email],
+.lr-form input[type=tel],
+.lr-form textarea,
+.lr-form select {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  color: #1A1A1A;
+  border: 1px solid #B3AFA8;
+  border-radius: 0;
+  background-color: #FFFFFF;
+  transition-property: border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.lr-form input[type=text]::placeholder,
+.lr-form input[type=email]::placeholder,
+.lr-form input[type=tel]::placeholder,
+.lr-form textarea::placeholder,
+.lr-form select::placeholder {
+  color: #555555;
+  opacity: 1;
+}
+.lr-form input[type=text]:focus-visible,
+.lr-form input[type=email]:focus-visible,
+.lr-form input[type=tel]:focus-visible,
+.lr-form textarea:focus-visible,
+.lr-form select:focus-visible {
+  outline: 2px solid #1A1A1A;
+  outline-offset: 1px;
+}
+.lr-form textarea {
+  height: 8.75rem;
+  min-height: 6.25rem;
+  resize: vertical;
+}
+.lr-form .wpcf7-checkbox {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.625rem 1rem;
+}
+.lr-form .wpcf7-checkbox .wpcf7-list-item {
+  margin: 0;
+}
+.lr-form .wpcf7-checkbox label {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  cursor: pointer;
+}
+.lr-form .wpcf7-checkbox input[type=checkbox] {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+  accent-color: #CE0E2D;
+}
+.lr-form__gruppe {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.lr-form__gruppe > legend {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  margin-bottom: 0.625rem;
+  padding: 0;
+  color: #1A1A1A;
+}
+.lr-form .wpcf7-acceptance .wpcf7-list-item {
+  margin: 0;
+}
+.lr-form .wpcf7-acceptance .wpcf7-list-item label {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: #444444;
+  cursor: pointer;
+}
+.lr-form .wpcf7-acceptance .wpcf7-list-item input[type=checkbox] {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0.0625rem 0 0;
+  accent-color: #CE0E2D;
+}
+.lr-form .wpcf7-acceptance .wpcf7-list-item a {
+  color: inherit;
+}
+.lr-form .wpcf7-submit {
+  align-self: flex-start;
+}
+.lr-form .wpcf7-spinner {
+  display: none;
 }
 
 /*
@@ -5590,7 +5735,7 @@ html:has(.read-aloud:not([hidden])) {
   }
 }
 /*
-* Layout: Karten-Grid (layout_karten) – section head and cards in 2 / 3 / 4 columns: icon on top or left, red label, title (small / standard / large), text, link; cards off-white on white, white on off-white, #333 on dark (#1A1A1A), red when highlighted, optional red top line, Tickets button below; Zeitleiste = one row of steps with a grey top line (highlighted step red, 6px), large time / year
+* Layout: Karten-Grid (layout_karten) – section head and cards in 2 / 3 / 4 columns: icon on top or left (optionally with number 01, 02 …), red label, cards without title show the text larger, title (small / standard / large), text, link; cards off-white on white, white on off-white, #333 on dark (#1A1A1A), red when highlighted, optional red top line, footer line (bold, optional icon) at the bottom of the card, dark box (icon, title, text, white button) and Tickets button below; Zeitleiste = one row of steps with a grey top line (highlighted step red, 6px), large time / year
 */
 .layout-karten {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -5663,7 +5808,7 @@ html:has(.read-aloud:not([hidden])) {
 .karten--linie .karte {
   border-top: 4px solid #CE0E2D;
 }
-.karten--dunkel .karte {
+.karten--dunkel:not(.karten--linie) .karte {
   --karte-icon: #FFFFFF;
 }
 .karten--icon-links .karte {
@@ -5835,6 +5980,136 @@ html:has(.read-aloud:not([hidden])) {
 }
 .karten--zeitleiste .karte__text {
   --karte-text: #444444;
+}
+
+.karten-box {
+  --scheme-text: #FFFFFF;
+  --scheme-background: #333333;
+  --scheme-foreground: #444444;
+  --scheme-border: #555555;
+  --scheme-accent: #FFFFFF;
+  --btn-primary-bg: #FFFFFF;
+  --btn-primary-border: #FFFFFF;
+  --btn-primary-text: #1A1A1A;
+  --btn-primary-hover-bg: #1A1A1A;
+  --btn-primary-hover-border: #1A1A1A;
+  --btn-primary-hover-text: #FFFFFF;
+  --btn-secondary-border: #FFFFFF;
+  --btn-secondary-text: #FFFFFF;
+  --btn-secondary-hover-bg: #1A1A1A;
+  --btn-secondary-hover-border: #1A1A1A;
+  --btn-secondary-hover-text: #FFFFFF;
+  --btn-link-text: #FFFFFF;
+  --focus-color: #FFFFFF;
+  margin-top: clamp(24px, 15.0857142857px + 2.2857142857vw, 48px);
+  --btn-primary-hover-bg: transparent;
+  --btn-primary-hover-border: #FFFFFF;
+  --btn-primary-hover-text: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem 1.5rem;
+  padding: 1.75rem clamp(20px, 15.5428571429px + 1.1428571429vw, 32px);
+  color: #FFFFFF;
+  background-color: #1A1A1A;
+}
+@media (min-width: 768px) {
+  .karten-box {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+.karten-box__icon {
+  flex: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: #DC0D15;
+}
+.karten-box__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.karten-box__titel {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(22px, 21.2571428571px + 0.1904761905vw, 24px);
+  margin: 0;
+}
+.karten-box__beschreibung {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  margin: 0;
+  color: #B3AFA8;
+}
+.karten-box__button {
+  flex: none;
+}
+
+.karte__fusszeile {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: auto 0 0;
+  padding-top: 0.25rem;
+  color: var(--karte-label);
+}
+.karten--offwhite .karte__fusszeile, .karten--weiss .karte__fusszeile {
+  color: #444444;
+}
+.karte--rot .karte__fusszeile {
+  color: #FFFFFF;
+}
+
+.karte__fusszeile-icon {
+  flex: none;
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.karte__kopf {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.karte__kopf .karte__icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.karte__nr {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #B3AFA8;
+}
+
+.karte--ohne-titel {
+  gap: 1rem;
+}
+.karte--ohne-titel .karte__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  color: var(--scheme-text);
 }
 
 /*
@@ -6184,7 +6459,1115 @@ html:has(.read-aloud:not([hidden])) {
 }
 
 /*
-* Layout: Preise (layout_preise) – off-white section, price cards in 4 / 2 / 1 columns (white with grey border; free = red price; highlighted = dark with red border and the red Tickets button), small footnote
+* Layout: Schritte (layout_schritte) – numbered steps with red circle numbers, contact person box (label, name, phone, e-mail, button) and note with icon; white / off-white / dark (#1A1A1A), optionally without top spacing; contact details as list with icons in off-white squares; with box: head across, steps divided by lines next to the off-white box (icon points, note); with facts: head left, off-white box with red top line and label / value rows right; with form: head and compact steps left, white form box with red top line right; stacked below 991
+*/
+.layout-schritte {
+  padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+  padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+}
+.layout-schritte .section-head__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(18px, 17.2571428571px + 0.1904761905vw, 20px);
+  line-height: 1.5;
+  max-width: 37.5rem;
+  color: #444444;
+}
+.layout-schritte.scheme-offwhite .schritte-box {
+  background-color: #FFFFFF;
+}
+
+.schritte {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(32px, 26.0571428571px + 1.5238095238vw, 48px) 4rem;
+}
+@media (min-width: 991px) {
+  .schritte--box .schritte {
+    grid-template-columns: minmax(0, 816fr) minmax(0, 400fr);
+    align-items: start;
+  }
+}
+@media (min-width: 991px) {
+  .schritte--formular .schritte {
+    grid-template-columns: minmax(0, 640fr) minmax(0, 560fr);
+    column-gap: 5rem;
+    align-items: start;
+  }
+}
+.schritte__liste {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.schritte--box .schritte__liste {
+  gap: 0;
+}
+.schritte__hinweis {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  margin: 1rem 0 0;
+  color: #555555;
+}
+.schritte__formular {
+  --scheme-text: #1A1A1A;
+  --scheme-background: #FFFFFF;
+  --scheme-foreground: #FFFFFF;
+  --scheme-border: #E0DDD8;
+  --scheme-accent: #CE0E2D;
+  --btn-primary-bg: #CE0E2D;
+  --btn-primary-border: #CE0E2D;
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-hover-bg: transparent;
+  --btn-primary-hover-border: #1A1A1A;
+  --btn-primary-hover-text: #1A1A1A;
+  --btn-secondary-border: #1A1A1A;
+  --btn-secondary-text: #1A1A1A;
+  --btn-secondary-hover-bg: #1A1A1A;
+  --btn-secondary-hover-border: #1A1A1A;
+  --btn-secondary-hover-text: #FFFFFF;
+  --btn-link-text: #1A1A1A;
+  --focus-color: #1A1A1A;
+  padding: clamp(24px, 18.0571428571px + 1.5238095238vw, 40px);
+  color: #1A1A1A;
+  border-top: 4px solid #CE0E2D;
+  background-color: #FFFFFF;
+}
+.schritte__formular-titel {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(26px, 23.7714285714px + 0.5714285714vw, 32px);
+  margin: 0 0 1.25rem;
+}
+
+.schritt {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+.schritte--box .schritt {
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #E0DDD8;
+}
+.schritt__nr {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 700;
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: #FFFFFF;
+  border-radius: 50%;
+  background-color: #CE0E2D;
+}
+.schritt__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+  padding-top: 0.375rem;
+}
+.schritte--box .schritt__text {
+  padding-top: 0;
+}
+.schritt__oberzeile {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  text-transform: uppercase;
+  color: #CE0E2D;
+}
+.schritt__titel {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  margin: 0;
+  font-size: clamp(18px, 17.2571428571px + 0.1904761905vw, 20px);
+  line-height: 1.5;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.schritt__beschreibung {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  margin: 0;
+  color: #444444;
+}
+
+.schritte-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.75rem;
+  background-color: #F7F5F2;
+}
+.schritte-box__titel {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(22px, 21.2571428571px + 0.1904761905vw, 24px);
+  margin: 0;
+}
+.schritte-box__punkte {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.schritte-box__punkte li {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.schritte-box__icon {
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.125rem;
+  color: #CE0E2D;
+}
+
+.schritte--dunkel {
+  --scheme-accent: #DC0D15;
+  background-color: #1A1A1A;
+}
+.schritte--dunkel .section-head__text,
+.schritte--dunkel .schritt__beschreibung {
+  color: #B3AFA8;
+}
+
+.schritte--anschluss {
+  padding-top: 0;
+}
+
+.schritte__haupt {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.schritte__haupt .section-head {
+  margin-bottom: 0;
+}
+
+.schritte-kontakt {
+  --scheme-text: #1A1A1A;
+  --scheme-background: #FFFFFF;
+  --scheme-foreground: #FFFFFF;
+  --scheme-border: #E0DDD8;
+  --scheme-accent: #CE0E2D;
+  --btn-primary-bg: #CE0E2D;
+  --btn-primary-border: #CE0E2D;
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-hover-bg: transparent;
+  --btn-primary-hover-border: #1A1A1A;
+  --btn-primary-hover-text: #1A1A1A;
+  --btn-secondary-border: #1A1A1A;
+  --btn-secondary-text: #1A1A1A;
+  --btn-secondary-hover-bg: #1A1A1A;
+  --btn-secondary-hover-border: #1A1A1A;
+  --btn-secondary-hover-text: #FFFFFF;
+  --btn-link-text: #1A1A1A;
+  --focus-color: #1A1A1A;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.375rem;
+  padding: 2rem clamp(24px, 18.0571428571px + 1.5238095238vw, 40px);
+  color: #1A1A1A;
+  background-color: #FFFFFF;
+}
+.layout-schritte.scheme-weiss .schritte-kontakt {
+  background-color: #F7F5F2;
+}
+.schritte-kontakt__oberzeile {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  text-transform: uppercase;
+  color: #CE0E2D;
+}
+.schritte-kontakt__name {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(22px, 21.2571428571px + 0.1904761905vw, 24px);
+  margin: 0;
+}
+.schritte-kontakt__kanaele {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  margin: 0;
+}
+.schritte-kontakt__kanaele a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: inherit;
+  text-decoration: none;
+  transition-property: color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.schritte-kontakt__kanaele a:hover {
+  color: #CE0E2D;
+}
+.schritte-kontakt__kanaele svg {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #444444;
+}
+.schritte-kontakt__button {
+  margin-top: 1.125rem;
+}
+
+.schritte-hinweis {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin: 0;
+  color: #444444;
+}
+.schritte--dunkel .schritte-hinweis {
+  color: #F2F0ED;
+}
+.schritte-hinweis__icon {
+  flex: none;
+  width: 1.75rem;
+  height: 1.75rem;
+  color: #DC0D15;
+}
+
+@media (min-width: 991px) {
+  .schritte--fakten .schritte {
+    grid-template-columns: minmax(0, 720fr) minmax(0, 480fr);
+    column-gap: 5rem;
+    align-items: start;
+  }
+}
+
+.layout-schritte.scheme-weiss .schritte__formular {
+  background-color: #F7F5F2;
+}
+
+.schritte-fakten {
+  margin: 0;
+  padding: 0.5rem clamp(20px, 15.5428571429px + 1.1428571429vw, 32px);
+  border-top: 4px solid #CE0E2D;
+  background-color: #F7F5F2;
+}
+.layout-schritte.scheme-offwhite .schritte-fakten {
+  background-color: #FFFFFF;
+}
+.schritte-fakten__eintrag {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding: 1.125rem 0;
+}
+.schritte-fakten__eintrag + .schritte-fakten__eintrag {
+  border-top: 1px solid #E0DDD8;
+}
+.schritte-fakten dt {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  color: #444444;
+}
+.schritte-fakten dd {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  margin: 0;
+  line-height: 1.2;
+  color: #1A1A1A;
+}
+
+.schritte-daten {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.schritte-daten__eintrag {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.schritte-daten__icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  color: #CE0E2D;
+  background-color: #F7F5F2;
+}
+.schritte-daten__icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.schritte-daten__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+.schritte-daten__label {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  text-transform: uppercase;
+  color: #CE0E2D;
+}
+.schritte-daten__wert {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(18px, 17.2571428571px + 0.1904761905vw, 20px);
+  line-height: 1.5;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  margin: 0;
+  color: var(--scheme-text);
+}
+.schritte-daten__wert a {
+  color: inherit;
+  text-decoration: none;
+  transition-property: color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.schritte-daten__wert a:hover {
+  color: #CE0E2D;
+}
+
+/*
+* Layout: Spenden (layout_spenden) – red section: call (white head, white online button, note) next to a white panel with further ways to donate divided by lines (icon in off-white square, red label, title, text, link or copy IBAN); stacked below 991
+*/
+.layout-spenden {
+  padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+  padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+}
+.layout-spenden .section-head {
+  margin-bottom: 0;
+}
+.layout-spenden .section-head__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(18px, 17.2571428571px + 0.1904761905vw, 20px);
+  line-height: 1.5;
+}
+
+.spenden {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(32px, 26.0571428571px + 1.5238095238vw, 48px) 5rem;
+}
+@media (min-width: 991px) {
+  .spenden {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+.spenden__online {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+.spenden__hinweis {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  margin: 0;
+}
+.spenden__optionen {
+  --scheme-text: #1A1A1A;
+  --scheme-background: #FFFFFF;
+  --scheme-foreground: #FFFFFF;
+  --scheme-border: #E0DDD8;
+  --scheme-accent: #CE0E2D;
+  --btn-primary-bg: #CE0E2D;
+  --btn-primary-border: #CE0E2D;
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-hover-bg: transparent;
+  --btn-primary-hover-border: #1A1A1A;
+  --btn-primary-hover-text: #1A1A1A;
+  --btn-secondary-border: #1A1A1A;
+  --btn-secondary-text: #1A1A1A;
+  --btn-secondary-hover-bg: #1A1A1A;
+  --btn-secondary-hover-border: #1A1A1A;
+  --btn-secondary-hover-text: #FFFFFF;
+  --btn-link-text: #1A1A1A;
+  --focus-color: #1A1A1A;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  padding: 0.5rem clamp(20px, 15.5428571429px + 1.1428571429vw, 32px);
+  color: #1A1A1A;
+  background-color: #FFFFFF;
+}
+
+.spenden-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.5rem 0;
+}
+.spenden-option + .spenden-option {
+  border-top: 1px solid #E0DDD8;
+}
+.spenden-option__icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  color: #CE0E2D;
+  background-color: #F7F5F2;
+}
+.spenden-option__icon svg {
+  width: 1.625rem;
+  height: 1.625rem;
+}
+.spenden-option__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  min-width: 0;
+}
+.spenden-option__label {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  text-transform: uppercase;
+  color: #CE0E2D;
+}
+.spenden-option__titel {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  margin: 0;
+  font-size: clamp(18px, 17.2571428571px + 0.1904761905vw, 20px);
+  line-height: 1.5;
+}
+.spenden-option__beschreibung {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  margin: 0;
+  color: #444444;
+}
+.spenden-option__aktion {
+  margin-top: 0.25rem;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+/*
+* Layout: Sponsoren (layout_sponsoren) – white section, one block per tier with red label (or off-white intro box): portraits (one wide: logo left, text right; several: cards with logo on top, 2 columns), logo grid with grey frame (2 / 3 / 4 columns, off-white name tile without logo), name list in 4 columns with lines and „Alle … anzeigen“
+*/
+.layout-sponsoren {
+  padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+  padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+}
+.layout-sponsoren .section-head__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(18px, 17.2571428571px + 0.1904761905vw, 20px);
+  line-height: 1.5;
+  max-width: 42.5rem;
+  color: #444444;
+}
+
+.sponsoren-stufe {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.sponsoren-stufe + .sponsoren-stufe {
+  margin-top: clamp(40px, 34.0571428571px + 1.5238095238vw, 56px);
+}
+.sponsoren-stufe__titel {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: #CE0E2D;
+}
+
+.sponsoren-einleitung {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.75rem clamp(20px, 15.5428571429px + 1.1428571429vw, 32px);
+  background-color: #F7F5F2;
+}
+.sponsoren-einleitung__icon {
+  flex: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: #DC0D15;
+}
+.sponsoren-einleitung__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.sponsoren-einleitung__titel {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(22px, 21.2571428571px + 0.1904761905vw, 24px);
+  margin: 0;
+}
+.sponsoren-einleitung__beschreibung {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  margin: 0;
+  color: #444444;
+}
+
+.sponsoren-portraets {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .sponsoren-portraets {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.sponsoren-portraets--einzeln {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.sponsor-portraet {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #E0DDD8;
+}
+@media (min-width: 768px) {
+  .sponsoren-portraets--einzeln .sponsor-portraet {
+    flex-direction: row;
+  }
+}
+.sponsor-portraet__logo {
+  display: grid;
+  place-items: center;
+  height: 10rem;
+  padding: 1.5rem;
+}
+@media (min-width: 768px) {
+  .sponsoren-portraets--einzeln .sponsor-portraet__logo {
+    flex: 0 0 44%;
+    height: auto;
+    min-height: 12.5rem;
+  }
+}
+.sponsor-portraet__bild {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  max-width: 22.5rem;
+  max-height: 6.875rem;
+}
+.sponsor-portraet__name {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(22px, 21.2571428571px + 0.1904761905vw, 24px);
+}
+.sponsor-portraet__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0 clamp(20px, 15.5428571429px + 1.1428571429vw, 32px) clamp(24px, 21.0285714286px + 0.7619047619vw, 32px);
+}
+@media (min-width: 768px) {
+  .sponsoren-portraets--einzeln .sponsor-portraet__text {
+    justify-content: center;
+    padding: 2rem 2.5rem;
+  }
+}
+.sponsor-portraet__titel {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(22px, 21.2571428571px + 0.1904761905vw, 24px);
+  margin: 0;
+}
+.sponsor-portraet__beschreibung {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  margin: 0;
+  color: #444444;
+}
+.sponsor-portraet__website {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: #CE0E2D;
+  text-decoration: none;
+}
+.sponsor-portraet__website svg {
+  width: 1rem;
+  height: 1rem;
+}
+.sponsor-portraet__website:hover {
+  color: #A50B24;
+}
+
+.sponsoren-logos {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1rem;
+}
+@media (min-width: 991px) {
+  .sponsoren-logos--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .sponsoren-logos--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 568px) {
+  .sponsoren-logos--3, .sponsoren-logos--4 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.sponsor-logo {
+  display: grid;
+  min-height: 7.5rem;
+  border: 1px solid #E0DDD8;
+}
+.sponsoren-logos--4 .sponsor-logo {
+  min-height: 6rem;
+}
+.sponsor-logo--name {
+  border-color: #F7F5F2;
+  background-color: #F7F5F2;
+}
+.sponsor-logo__link,
+.sponsor-logo > * {
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  text-align: center;
+  color: inherit;
+  text-decoration: none;
+}
+.sponsor-logo__bild {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  max-width: 22.5rem;
+  max-height: 4.125rem;
+}
+.sponsor-logo__name {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  color: #555555;
+}
+.sponsor-logo__link:hover .sponsor-logo__name {
+  color: #CE0E2D;
+}
+
+.sponsoren-namen {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: 2rem;
+}
+@media (min-width: 640px) {
+  .sponsoren-namen {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 991px) {
+  .sponsoren-namen {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.sponsoren-namen li {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  min-height: 4rem;
+  padding: 0.5rem 0;
+  line-height: 1.2;
+  border-bottom: 1px solid #E0DDD8;
+}
+.sponsoren-namen li[hidden] {
+  display: none;
+}
+.sponsoren-namen__alle {
+  align-self: flex-start;
+  margin-top: 0.25rem;
+}
+
+/*
+* Layout: Aussteller (layout_aussteller) – white section, category filter buttons (active dark), exhibitor cards in 4 / 2 / 1 columns: white logo box, red category, name, website link
+*/
+.layout-aussteller {
+  padding-top: clamp(48px, 42.0571428571px + 1.5238095238vw, 64px);
+  padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+}
+.layout-aussteller .section-head {
+  margin-bottom: clamp(24px, 21.0285714286px + 0.7619047619vw, 32px);
+}
+.layout-aussteller .section-head__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(18px, 17.2571428571px + 0.1904761905vw, 20px);
+  line-height: 1.5;
+  max-width: 35rem;
+  color: #444444;
+}
+
+.aussteller-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+.aussteller-filter__button {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  padding: 0.625rem 1rem;
+  color: #1A1A1A;
+  border: 1px solid #B3AFA8;
+  background: none;
+  cursor: pointer;
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.aussteller-filter__button:hover {
+  border-color: #1A1A1A;
+}
+.aussteller-filter__button[aria-pressed=true] {
+  color: #FFFFFF;
+  border-color: #1A1A1A;
+  background-color: #1A1A1A;
+}
+
+.aussteller-liste {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+@media (min-width: 640px) {
+  .aussteller-liste {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .aussteller-liste {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.aussteller-karte {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background-color: #F7F5F2;
+}
+.aussteller-karte[hidden] {
+  display: none;
+}
+.aussteller-karte__logo {
+  display: grid;
+  place-items: center;
+  align-self: stretch;
+  height: 6rem;
+  padding: 0.75rem;
+  background-color: #FFFFFF;
+}
+.aussteller-karte__bild {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+}
+.aussteller-karte__kategorie {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 700;
+  margin: 0;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #CE0E2D;
+}
+.aussteller-karte__name {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(19px, 18.6285714286px + 0.0952380952vw, 20px);
+  margin: 0;
+}
+.aussteller-karte__website {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: auto;
+  color: #CE0E2D;
+  text-decoration: none;
+}
+.aussteller-karte__website svg {
+  width: 1rem;
+  height: 1rem;
+}
+.aussteller-karte__website:hover {
+  color: #A50B24;
+}
+
+/*
+* Layout: Team (layout_team) – white section, team members in 4 / 2 columns (1 below 360px): photo (302:340, off-white behind), red function, name, profession
+*/
+.layout-team {
+  padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+  padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+}
+.layout-team .section-head__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(18px, 17.2571428571px + 0.1904761905vw, 20px);
+  line-height: 1.5;
+  max-width: 42.5rem;
+  color: #444444;
+}
+
+.team {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem 1rem;
+}
+@media (min-width: 360px) {
+  .team {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 640px) {
+  .team {
+    gap: 2.5rem 1.5rem;
+  }
+}
+@media (min-width: 991px) {
+  .team {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.team-person {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.team-person__foto {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 302/340;
+  margin-bottom: 0.25rem;
+  background-color: #F7F5F2;
+}
+.team-person__bild {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  position: absolute;
+  inset: 0;
+  object-position: center top;
+}
+.team-person__funktion {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  text-transform: uppercase;
+  color: #CE0E2D;
+}
+.team-person__name {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(22px, 21.2571428571px + 0.1904761905vw, 24px);
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  margin: 0;
+}
+.team-person__beruf {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  margin: 0;
+  color: #444444;
+}
+
+/*
+* Layout: Preise (layout_preise) – off-white section, price cards in 4 / 2 / 1 columns (white with grey border; free = red price; highlighted = dark with red border and the red Tickets button, own button white), small footnote; with benefits: white box (red top line, two-column red-square list) next to the price cards (red top line, button at the bottom)
 */
 .layout-preise {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -6318,6 +7701,89 @@ html:has(.read-aloud:not([hidden])) {
 }
 .preis--hervorgehoben .preis__value {
   color: #FFFFFF;
+}
+
+@media (min-width: 991px) {
+  .preise--leistungen {
+    grid-template-columns: minmax(0, 648fr) repeat(var(--preise, 2), minmax(0, 300fr));
+  }
+}
+@media (max-width: 991px) {
+  .preise--leistungen .preise__item--leistungen {
+    grid-column: 1/-1;
+  }
+}
+.preise--leistungen .preis {
+  border: 0;
+  border-top: 4px solid #CE0E2D;
+}
+.preise--leistungen .preis__value {
+  font-size: min(clamp(40px, 35.5428571429px + 1.1428571429vw, 52px), 22cqi);
+}
+.preise--leistungen .preis__button {
+  margin-top: auto;
+}
+.preise--leistungen .preis__text {
+  margin-bottom: 1rem;
+}
+
+.preis--hervorgehoben .preis__button--eigen {
+  --btn-primary-bg: #FFFFFF;
+  --btn-primary-border: #FFFFFF;
+  --btn-primary-text: #1A1A1A;
+}
+
+.preise-leistungen {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 1rem;
+  padding: clamp(24px, 21.0285714286px + 0.7619047619vw, 32px);
+  color: #1A1A1A;
+  border-top: 4px solid #CE0E2D;
+  background-color: #FFFFFF;
+}
+.preise-leistungen__titel {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(22px, 21.2571428571px + 0.1904761905vw, 24px);
+  margin: 0;
+}
+.preise-leistungen__liste {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  column-gap: 1.5rem;
+}
+@media (min-width: 640px) {
+  .preise-leistungen__liste {
+    column-count: 2;
+  }
+}
+.preise-leistungen__liste li {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  position: relative;
+  margin-bottom: 0.75rem;
+  padding-left: 1.25rem;
+  break-inside: avoid;
+}
+.preise-leistungen__liste li::before {
+  content: "";
+  position: absolute;
+  top: 0.6em;
+  left: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: #CE0E2D;
 }
 
 /*

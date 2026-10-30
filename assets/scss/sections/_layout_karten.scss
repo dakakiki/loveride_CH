@@ -1,5 +1,5 @@
 /*
-* Layout: Karten-Grid (layout_karten) – section head and cards in 2 / 3 / 4 columns: icon on top or left, red label, title (small / standard / large), text, link; cards off-white on white, white on off-white, #333 on dark (#1A1A1A), red when highlighted, optional red top line, Tickets button below; Zeitleiste = one row of steps with a grey top line (highlighted step red, 6px), large time / year
+* Layout: Karten-Grid (layout_karten) – section head and cards in 2 / 3 / 4 columns: icon on top or left (optionally with number 01, 02 …), red label, cards without title show the text larger, title (small / standard / large), text, link; cards off-white on white, white on off-white, #333 on dark (#1A1A1A), red when highlighted, optional red top line, footer line (bold, optional icon) at the bottom of the card, dark box (icon, title, text, white button) and Tickets button below; Zeitleiste = one row of steps with a grey top line (highlighted step red, 6px), large time / year
 */
 
 @use '../abstracts' as *;
@@ -79,7 +79,7 @@
         border-top: 4px solid palette(clr-red);
     }
 
-    .karten--dunkel & {
+    .karten--dunkel:not(.karten--linie) & {
         --karte-icon: #{palette(clr-white)};
     }
 
@@ -225,5 +225,113 @@
 
     .karte__text {
         --karte-text: #{palette(clr-neutral-dark)};
+    }
+}
+
+.karten-box {
+    @include scheme-vars(dunkel);
+    @include fluid-prop(margin-top, 24, 48);
+
+    --btn-primary-hover-bg: transparent;
+    --btn-primary-hover-border: #{palette(clr-white)};
+    --btn-primary-hover-text: #{palette(clr-white)};
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: rem(16) rem(24);
+    padding: rem(28) fluid(20, 32);
+    color: palette(clr-white);
+    background-color: palette(clr-neutral-darkest);
+
+    @include respond-min(md) {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &__icon {
+        flex: none;
+        width: rem(36);
+        height: rem(36);
+        color: palette(clr-red-signal);
+    }
+
+    &__text {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        gap: rem(4);
+    }
+
+    &__titel {
+        @include t-h5;
+
+        margin: 0;
+    }
+
+    &__beschreibung {
+        @include t-text;
+
+        margin: 0;
+        color: palette(clr-neutral-light);
+    }
+
+    &__button {
+        flex: none;
+    }
+}
+
+.karte__fusszeile {
+    @include t-text-small($fw-bold);
+
+    display: flex;
+    align-items: center;
+    gap: rem(8);
+    margin: auto 0 0;
+    padding-top: rem(4);
+    color: var(--karte-label);
+
+    .karten--offwhite &,
+    .karten--weiss & {
+        color: palette(clr-neutral-dark);
+    }
+
+    .karte--rot & {
+        color: palette(clr-white);
+    }
+}
+
+.karte__fusszeile-icon {
+    flex: none;
+    width: rem(18);
+    height: rem(18);
+}
+
+.karte__kopf {
+    display: flex;
+    align-items: center;
+    gap: rem(12);
+
+    .karte__icon {
+        width: rem(32);
+        height: rem(32);
+    }
+}
+
+.karte__nr {
+    @include font-condensed($fw-bold);
+
+    font-size: rem(24);
+    line-height: 1;
+    color: palette(clr-neutral-light);
+}
+
+.karte--ohne-titel {
+    gap: rem(16);
+
+    .karte__text {
+        @include t-text;
+
+        color: var(--scheme-text);
     }
 }

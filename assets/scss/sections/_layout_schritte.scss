@@ -1,0 +1,399 @@
+/*
+* Layout: Schritte (layout_schritte) – numbered steps with red circle numbers, contact person box (label, name, phone, e-mail, button) and note with icon; white / off-white / dark (#1A1A1A), optionally without top spacing; contact details as list with icons in off-white squares; with box: head across, steps divided by lines next to the off-white box (icon points, note); with facts: head left, off-white box with red top line and label / value rows right; with form: head and compact steps left, white form box with red top line right; stacked below 991
+*/
+
+@use '../abstracts' as *;
+
+.layout-schritte {
+    @include fluid-prop(padding-top, 48, 96);
+    @include fluid-prop(padding-bottom, 48, 96);
+
+    .section-head__text {
+        @include t-text-medium;
+
+        max-width: rem(600);
+        color: palette(clr-neutral-dark);
+    }
+
+    &.scheme-offwhite .schritte-box {
+        background-color: palette(clr-white);
+    }
+}
+
+.schritte {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: fluid(32, 48) rem(64);
+
+    .schritte--box & {
+        @include respond-min(lg) {
+            grid-template-columns: minmax(0, 816fr) minmax(0, 400fr);
+            align-items: start;
+        }
+    }
+
+    .schritte--formular & {
+        @include respond-min(lg) {
+            grid-template-columns: minmax(0, 640fr) minmax(0, 560fr);
+            column-gap: rem(80);
+            align-items: start;
+        }
+    }
+
+    &__liste {
+        @include reset-list;
+
+        display: flex;
+        flex-direction: column;
+        gap: rem(20);
+
+        .schritte--box & {
+            gap: 0;
+        }
+    }
+
+    &__hinweis {
+        @include t-text-small;
+
+        margin: rem(16) 0 0;
+        color: palette(clr-neutral);
+    }
+
+    &__formular {
+        @include scheme-vars(weiss);
+
+        padding: fluid(24, 40);
+        color: palette(clr-neutral-darkest);
+        border-top: 4px solid palette(clr-red);
+        background-color: palette(clr-white);
+    }
+
+    &__formular-titel {
+        @include t-h4;
+
+        margin: 0 0 rem(20);
+    }
+}
+
+.schritt {
+    display: flex;
+    align-items: flex-start;
+    gap: rem(20);
+
+    .schritte--box & {
+        gap: rem(24);
+        padding: rem(20) 0;
+        border-bottom: 1px solid palette(clr-neutral-lighter);
+    }
+
+    &__nr {
+        @include font-condensed($fw-bold);
+
+        display: grid;
+        flex: none;
+        place-items: center;
+        width: rem(44);
+        height: rem(44);
+        font-size: rem(20);
+        line-height: 1;
+        color: palette(clr-white);
+        border-radius: 50%;
+        background-color: palette(clr-red);
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        gap: rem(4);
+        min-width: 0;
+        padding-top: rem(6);
+
+        .schritte--box & {
+            padding-top: 0;
+        }
+    }
+
+    &__oberzeile {
+        @include t-text-tiny($fw-bold);
+
+        margin: 0;
+        text-transform: uppercase;
+        color: palette(clr-red);
+    }
+
+    &__titel {
+        @include font-normal($fw-bold);
+
+        margin: 0;
+        font-size: fluid(18, 20);
+        line-height: 1.5;
+        text-transform: none;
+        letter-spacing: 0;
+    }
+
+    &__beschreibung {
+        @include t-text;
+
+        margin: 0;
+        color: palette(clr-neutral-dark);
+    }
+}
+
+.schritte-box {
+    display: flex;
+    flex-direction: column;
+    gap: rem(12);
+    padding: rem(28);
+    background-color: palette(clr-off-white);
+
+    &__titel {
+        @include t-h5;
+
+        margin: 0;
+    }
+
+    &__punkte {
+        @include reset-list;
+
+        display: flex;
+        flex-direction: column;
+        gap: rem(12);
+
+        li {
+            @include t-text;
+
+            display: flex;
+            align-items: flex-start;
+            gap: rem(12);
+        }
+    }
+
+    &__icon {
+        flex: none;
+        width: rem(24);
+        height: rem(24);
+        margin-top: rem(2);
+        color: palette(clr-red);
+    }
+}
+
+.schritte--dunkel {
+    --scheme-accent: #{palette(clr-red-signal)};
+
+    background-color: palette(clr-neutral-darkest);
+
+    .section-head__text,
+    .schritt__beschreibung {
+        color: palette(clr-neutral-light);
+    }
+}
+
+.schritte--anschluss {
+    padding-top: 0;
+}
+
+.schritte__haupt {
+    display: flex;
+    flex-direction: column;
+    gap: rem(32);
+
+    .section-head {
+        margin-bottom: 0;
+    }
+}
+
+.schritte-kontakt {
+    @include scheme-vars(weiss);
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: rem(6);
+    padding: rem(32) fluid(24, 40);
+    color: palette(clr-neutral-darkest);
+    background-color: palette(clr-white);
+
+    .layout-schritte.scheme-weiss & {
+        background-color: palette(clr-off-white);
+    }
+
+    &__oberzeile {
+        @include t-text-tiny($fw-bold);
+
+        margin: 0;
+        text-transform: uppercase;
+        color: palette(clr-red);
+    }
+
+    &__name {
+        @include t-h5;
+
+        margin: 0;
+    }
+
+    &__kanaele {
+        @include t-text;
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: rem(4) rem(24);
+        margin: 0;
+
+        a {
+            display: inline-flex;
+            align-items: center;
+            gap: rem(8);
+            color: inherit;
+            text-decoration: none;
+
+            @include trans(color);
+
+            &:hover {
+                color: palette(clr-red);
+            }
+        }
+
+        svg {
+            flex: none;
+            width: rem(20);
+            height: rem(20);
+            color: palette(clr-neutral-dark);
+        }
+    }
+
+    &__button {
+        margin-top: rem(18);
+    }
+}
+
+.schritte-hinweis {
+    @include t-text;
+
+    display: flex;
+    align-items: flex-start;
+    gap: rem(16);
+    margin: 0;
+    color: palette(clr-neutral-dark);
+
+    .schritte--dunkel & {
+        color: palette(clr-neutral-lightest);
+    }
+
+    &__icon {
+        flex: none;
+        width: rem(28);
+        height: rem(28);
+        color: palette(clr-red-signal);
+    }
+}
+
+.schritte--fakten .schritte {
+    @include respond-min(lg) {
+        grid-template-columns: minmax(0, 720fr) minmax(0, 480fr);
+        column-gap: rem(80);
+        align-items: start;
+    }
+}
+
+.layout-schritte.scheme-weiss .schritte__formular {
+    background-color: palette(clr-off-white);
+}
+
+.schritte-fakten {
+    margin: 0;
+    padding: rem(8) fluid(20, 32);
+    border-top: 4px solid palette(clr-red);
+    background-color: palette(clr-off-white);
+
+    .layout-schritte.scheme-offwhite & {
+        background-color: palette(clr-white);
+    }
+
+    &__eintrag {
+        display: flex;
+        flex-direction: column;
+        gap: rem(2);
+        padding: rem(18) 0;
+
+        & + & {
+            border-top: 1px solid palette(clr-neutral-lighter);
+        }
+    }
+
+    dt {
+        @include t-text;
+
+        color: palette(clr-neutral-dark);
+    }
+
+    dd {
+        @include t-text($fw-bold);
+
+        margin: 0;
+        line-height: 1.2;
+        color: palette(clr-neutral-darkest);
+    }
+}
+
+.schritte-daten {
+    @include reset-list;
+
+    display: flex;
+    flex-direction: column;
+    gap: rem(32);
+
+    &__eintrag {
+        display: flex;
+        align-items: flex-start;
+        gap: rem(16);
+    }
+
+    &__icon {
+        display: grid;
+        flex: none;
+        place-items: center;
+        width: rem(48);
+        height: rem(48);
+        color: palette(clr-red);
+        background-color: palette(clr-off-white);
+
+        svg {
+            width: rem(24);
+            height: rem(24);
+        }
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        gap: rem(2);
+        min-width: 0;
+    }
+
+    &__label {
+        @include t-text-tiny($fw-bold);
+
+        margin: 0;
+        text-transform: uppercase;
+        color: palette(clr-red);
+    }
+
+    &__wert {
+        @include t-text-medium;
+        @include break-word;
+
+        margin: 0;
+        color: var(--scheme-text);
+
+        a {
+            color: inherit;
+            text-decoration: none;
+
+            @include trans(color);
+
+            &:hover {
+                color: palette(clr-red);
+            }
+        }
+    }
+}
