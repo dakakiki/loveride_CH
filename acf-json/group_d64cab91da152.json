@@ -3,89 +3,23 @@
     "title": "News – Details",
     "fields": [
         {
-            "key": "field_09cda53707b39",
-            "label": "Lead",
-            "name": "lead",
+            "key": "field_ff320be082da5",
+            "label": "Links – linke Spalte",
+            "name": "links_links",
             "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "rows": 3,
-            "placeholder": "",
-            "new_lines": ""
-        },
-        {
-            "key": "field_2cc565c0da822",
-            "label": "Autor\/in (Anzeige)",
-            "name": "autor_anzeige",
-            "aria-label": "",
-            "type": "text",
+            "type": "group",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_3966899d82b38",
-            "label": "Hashtags",
-            "name": "hashtags",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "#LoveRide #Eagle2026",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_de4d0d45039ba",
-            "label": "Link-Boxen",
-            "name": "link_boxen",
-            "aria-label": "",
-            "type": "repeater",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
                 "class": "",
                 "id": ""
             },
             "layout": "block",
-            "pagination": 0,
-            "min": 0,
-            "max": 0,
-            "collapsed": "",
-            "button_label": "Box hinzufügen",
-            "rows_per_page": 20,
             "sub_fields": [
                 {
-                    "key": "field_ebe3a0dd76fa5",
+                    "key": "field_3c75ffa0cbc6a",
                     "label": "Titel",
                     "name": "titel",
                     "aria-label": "",
@@ -94,19 +28,18 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "35",
+                        "width": "",
                         "class": "",
                         "id": ""
                     },
                     "default_value": "",
                     "maxlength": "",
-                    "placeholder": "",
+                    "placeholder": "z. B. Victor Kessler",
                     "prepend": "",
-                    "append": "",
-                    "parent_repeater": "field_de4d0d45039ba"
+                    "append": ""
                 },
                 {
-                    "key": "field_10df952cfde1f",
+                    "key": "field_33e147e00441f",
                     "label": "Links",
                     "name": "links",
                     "aria-label": "",
@@ -128,7 +61,7 @@
                     "rows_per_page": 20,
                     "sub_fields": [
                         {
-                            "key": "field_99fc911145135",
+                            "key": "field_e54b0c865bf03",
                             "label": "Link",
                             "name": "link",
                             "aria-label": "",
@@ -142,41 +75,90 @@
                                 "id": ""
                             },
                             "return_format": "array",
-                            "parent_repeater": "field_10df952cfde1f"
+                            "parent_repeater": "field_33e147e00441f"
                         }
-                    ],
-                    "parent_repeater": "field_de4d0d45039ba"
+                    ]
                 }
             ]
         },
         {
-            "key": "field_e5f62fa1221ac",
-            "label": "Weitere Beiträge",
-            "name": "weitere_beitraege",
+            "key": "field_067dffb531021",
+            "label": "Links – rechte Spalte",
+            "name": "links_rechts",
             "aria-label": "",
-            "type": "relationship",
+            "type": "group",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
-            "post_type": [
-                "news"
-            ],
-            "post_status": "",
-            "taxonomy": "",
-            "filters": [
-                "search"
-            ],
-            "return_format": "object",
-            "min": "",
-            "max": 3,
-            "elements": "",
-            "bidirectional": 0,
-            "bidirectional_target": []
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_32bcecedb67ce",
+                    "label": "Titel",
+                    "name": "titel",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "z. B. Victor Kessler",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_f430269e6afbf",
+                    "label": "Links",
+                    "name": "links",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "table",
+                    "pagination": 0,
+                    "min": 0,
+                    "max": 0,
+                    "collapsed": "",
+                    "button_label": "Link hinzufügen",
+                    "rows_per_page": 20,
+                    "sub_fields": [
+                        {
+                            "key": "field_54e4f4c5eeb53",
+                            "label": "Link",
+                            "name": "link",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "parent_repeater": "field_f430269e6afbf"
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "location": [
@@ -200,5 +182,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1793117895
+    "modified": 1793352566
 }

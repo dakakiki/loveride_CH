@@ -1,6 +1,6 @@
 <?php
 /**
- * Editors: block editor (pages, News) with allowed core blocks only (News: text, headings H2–H4, lists, images, YouTube), no patterns or block directory, paragraph style "Hinweis", list style "Hervorgehoben"; TinyMCE (ACF WYSIWYG) formats without H1.
+ * Editors: block editor (pages, News) with allowed core blocks only (News: text, headings H2–H4, lists, images, YouTube), no patterns or block directory, paragraph style "Hinweis", heading style "Mit Linie" (red line on the left); TinyMCE (ACF WYSIWYG) formats without H1.
  *
  * @package loveride
  */
@@ -64,9 +64,9 @@ add_action( 'init', function () {
 		'label' => 'Hinweis',
 	) );
 
-	register_block_style( 'core/list', array(
-		'name'  => 'hervorgehoben',
-		'label' => 'Hervorgehoben',
+	register_block_style( 'core/heading', array(
+		'name'  => 'mit-linie',
+		'label' => 'Mit Linie',
 	) );
 } );
 

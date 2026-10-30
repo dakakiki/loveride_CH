@@ -1,16 +1,19 @@
 <?php
 /**
- * Single News: back link, category, date, author, title, lead, title image, block content, link boxes, hashtags, share buttons, Weitere Beiträge.
+ * Single News: back link, category, date, author (WP user), title, excerpt as lead, title image, block content, links in two columns (News – Details, always new tab), tags, share buttons, Weitere Beiträge (by tag, then category).
  *
  * @package loveride
  */
 
 $lr_id       = get_the_ID();
 $lr_category = lr_news_category( $lr_id );
-$lr_author   = trim( (string) get_field( 'autor_anzeige' ) );
-$lr_lead     = trim( (string) get_field( 'lead' ) ) ?: lr_news_teaser( $lr_id );
-$lr_boxen    = array_values( array_filter( (array) ( get_field( 'link_boxen' ) ?: array() ), fn( $box ) => ! empty( $box['links'] ) ) );
-$lr_tags     = trim( (string) get_field( 'hashtags' ) );
+$lr_author   = lr_news_author( $lr_id );
+$lr_lead     = lr_news_teaser( $lr_id );
+$lr_boxen    = array_values( array_filter(
+	array( get_field( 'links_links' ), get_field( 'links_rechts' ) ),
+	fn( $box ) => ! empty( $box['links'] )
+) );
+$lr_tags     = implode( ' ', lr_news_tags( $lr_id ) );
 $lr_url      = get_permalink( $lr_id );
 $lr_title    = wp_strip_all_tags( html_entity_decode( get_the_title( $lr_id ), ENT_QUOTES, 'UTF-8' ) );
 $lr_more     = lr_news_more( $lr_id );
@@ -70,7 +73,7 @@ $lr_share = array(
 									<?php continue; ?>
 								<?php endif; ?>
 								<li>
-									<a class="news-links__link" <?= lr_link_attrs( $lr_link ); ?>><?= esc_html( $lr_link['title'] ?: wp_parse_url( $lr_link['url'], PHP_URL_HOST ) ); ?><?= ( $lr_link['target'] ?? '' ) === '_blank' ? lr_icon( 'open_in_new' ) . '<span class="screen-reader-text"> ' . esc_html__( '(öffnet in neuem Tab)', 'loveride' ) . '</span>' : ''; ?></a>
+									<a class="news-links__link" href="<?= esc_url( $lr_link['url'] ); ?>" target="_blank" rel="noopener"><?= esc_html( $lr_link['title'] ?: wp_parse_url( $lr_link['url'], PHP_URL_HOST ) ); ?><?= lr_icon( 'open_in_new' ); ?><span class="screen-reader-text"> <?php esc_html_e( '(öffnet in neuem Tab)', 'loveride' ); ?></span></a>
 								</li>
 							<?php endforeach; ?>
 						</ul>

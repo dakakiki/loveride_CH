@@ -105,4 +105,13 @@
         line-height: 1.2;
         opacity: 0.85;
     }
+
+    .is-style-mit-linie {
+        @include t-h5;
+
+        padding-left: rem(24);
+        line-height: 1.35;
+        color: palette(clr-neutral-darkest);
+        border-left: 4px solid palette(clr-red);
+    }
 }

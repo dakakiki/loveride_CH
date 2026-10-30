@@ -1,6 +1,6 @@
 <?php
 /**
- * News: category, date and teaser helpers, URL of the News page (page with layout_news_archiv), further posts, YouTube embeds without cookies, News script on single posts.
+ * News: category, date, author, teaser (excerpt) and tag helpers, URL of the News page (page with layout_news_archiv), further posts (3 random with a shared tag, then same category), YouTube embeds without cookies, News script on single posts.
  *
  * @package loveride
  */
@@ -24,9 +24,26 @@ function lr_news_date( int $post_id = 0 ): string {
 function lr_news_teaser( int $post_id = 0 ): string {
 
 	$post_id = $post_id ?: get_the_ID();
-	$text    = has_excerpt( $post_id ) ? get_the_excerpt( $post_id ) : (string) get_field( 'lead', $post_id );
 
-	return trim( wp_strip_all_tags( $text ) );
+	return has_excerpt( $post_id ) ? trim( wp_strip_all_tags( get_the_excerpt( $post_id ) ) ) : '';
+}
+
+function lr_news_author( int $post_id = 0 ): string {
+
+	$author = (int) get_post_field( 'post_author', $post_id ?: get_the_ID() );
+
+	return $author ? trim( (string) get_the_author_meta( 'display_name', $author ) ) : '';
+}
+
+function lr_news_tags( int $post_id = 0 ): array {
+
+	$terms = get_the_terms( $post_id ?: get_the_ID(), 'post_tag' );
+
+	if ( ! $terms || is_wp_error( $terms ) ) {
+		return array();
+	}
+
+	return array_map( fn( $term ) => '#' . ltrim( $term->name, '#' ), $terms );
 }
 
 function lr_news_page_url(): string {
@@ -56,20 +73,32 @@ function lr_news_page_url(): string {
 
 function lr_news_more( int $post_id, int $count = 3 ): array {
 
-	$ids = array_map( 'intval', (array) ( get_field( 'weitere_beitraege', $post_id, false ) ?: array() ) );
-	$ids = array_values( array_filter( $ids, fn( $id ) => $id !== $post_id && get_post_status( $id ) === 'publish' ) );
+	$ids = array();
 
-	if ( count( $ids ) < $count ) {
+	foreach ( array( 'post_tag', 'news_kategorie' ) as $taxonomy ) {
+		$terms = wp_get_post_terms( $post_id, $taxonomy, array( 'fields' => 'ids' ) );
+
+		if ( count( $ids ) >= $count || ! $terms || is_wp_error( $terms ) ) {
+			continue;
+		}
+
 		$ids = array_merge( $ids, get_posts( array(
 			'post_type'      => 'news',
 			'post_status'    => 'publish',
 			'posts_per_page' => $count - count( $ids ),
 			'post__not_in'   => array_merge( $ids, array( $post_id ) ),
+			'orderby'        => 'rand',
 			'fields'         => 'ids',
+			'tax_query'      => array( // phpcs:ignore WordPress.DB.SlowDBQuery
+				array(
+					'taxonomy' => $taxonomy,
+					'terms'    => $terms,
+				),
+			),
 		) ) );
 	}
 
-	return array_slice( $ids, 0, $count );
+	return array_map( 'intval', $ids );
 }
 
 add_filter( 'embed_oembed_html', function ( $html ) {

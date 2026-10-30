@@ -10,7 +10,7 @@ $lr_featured = ! empty( $args['featured'] );
 $lr_tag      = in_array( $args['heading'] ?? 'h3', array( 'h2', 'h3' ), true ) ? $args['heading'] : 'h3';
 $lr_category = lr_news_category( $lr_id );
 $lr_teaser   = lr_news_teaser( $lr_id );
-$lr_author   = $lr_featured ? trim( (string) get_field( 'autor_anzeige', $lr_id ) ) : '';
+$lr_author   = $lr_featured ? lr_news_author( $lr_id ) : '';
 $lr_title    = get_the_title( $lr_id );
 ?>
 <article class="news-card<?= $lr_featured ? ' news-card--featured' : ''; ?>">
