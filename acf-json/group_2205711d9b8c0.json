@@ -2502,12 +2502,41 @@
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "",
+                                        "width": "70",
                                         "class": "",
                                         "id": ""
                                     },
                                     "return_format": "array",
                                     "parent_repeater": "field_d4561e2bfe4f2"
+                                },
+                                {
+                                    "key": "field_fb7fc29f6624c",
+                                    "label": "Popup",
+                                    "name": "popup",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "30",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "loverider": "Loverider-Anmeldung",
+                                        "aussteller": "Aussteller-Anmeldung"
+                                    },
+                                    "default_value": false,
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 1,
+                                    "ui": 0,
+                                    "ajax": 0,
+                                    "placeholder": "Kein Popup",
+                                    "parent_repeater": "field_d4561e2bfe4f2",
+                                    "create_options": 0,
+                                    "save_options": 0
                                 }
                             ]
                         },
@@ -7951,5 +7980,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1793388934
+    "modified": 1793390237
 }

@@ -182,6 +182,7 @@ require_once LR_THEME_PATH . '/inc/gut-zu-wissen.php';
 require_once LR_THEME_PATH . '/inc/news.php';
 require_once LR_THEME_PATH . '/inc/medien.php';
 require_once LR_THEME_PATH . '/inc/jahrgang.php';
+require_once LR_THEME_PATH . '/inc/popups.php';
 require_once LR_THEME_PATH . '/inc/read-aloud.php';
 require_once LR_THEME_PATH . '/inc/admin.php';
 require_once LR_THEME_PATH . '/inc/layouts.php';

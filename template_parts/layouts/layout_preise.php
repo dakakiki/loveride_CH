@@ -1,6 +1,6 @@
 <?php
 /**
- * Layout: Preise (layout_preise) – section head, optional benefits box (title, two-column list), price cards (label, price, text; standard / free with red price / highlighted dark card; own button or, on highlighted cards, the central Tickets button), footnote; Event „Tickets & Preise“, Sponsoren & Partner „Loverider-Club“.
+ * Layout: Preise (layout_preise) – section head, optional benefits box (title, two-column list), price cards (label, price, text; standard / free with red price / highlighted dark card; own button (link or popup) or, on highlighted cards, the central Tickets button), footnote; Event „Tickets & Preise“, Sponsoren & Partner „Loverider-Club“.
  *
  * @package loveride
  */
@@ -54,7 +54,10 @@ if ( ! $lr_preise && ! array_filter( $lr_head ) ) {
 							<?php if ( trim( (string) $lr_preis['text'] ) !== '' ) : ?>
 								<p class="preis__text"><?= esc_html( $lr_preis['text'] ); ?></p>
 							<?php endif; ?>
-							<?php if ( ! empty( $lr_preis['link']['url'] ) ) : ?>
+							<?php $lr_popup = ! empty( $lr_preis['popup'] ) ? lr_popup_attrs( (string) $lr_preis['popup'], (string) $lr_preis['label'] ) : ''; ?>
+							<?php if ( $lr_popup ) : ?>
+								<a class="btn--primary preis__button preis__button--eigen" <?= $lr_popup; ?>><?= esc_html( ( $lr_preis['link']['title'] ?? '' ) ?: __( 'Anmelden', 'loveride' ) ); ?></a>
+							<?php elseif ( ! empty( $lr_preis['link']['url'] ) ) : ?>
 								<a class="btn--primary preis__button preis__button--eigen" <?= lr_link_attrs( $lr_preis['link'] ); ?>><?= esc_html( $lr_preis['link']['title'] ?: __( 'Mehr erfahren', 'loveride' ) ); ?></a>
 							<?php elseif ( $lr_art === 'hervorgehoben' && $lr_tickets ) : ?>
 								<a class="btn--primary preis__button" <?= lr_link_attrs( $lr_tickets ); ?>><?= esc_html( $lr_tickets['title'] ?: __( 'Tickets kaufen', 'loveride' ) ); ?></a>

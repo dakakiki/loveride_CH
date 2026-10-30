@@ -1,0 +1,114 @@
+/*
+* Popup (template_parts/global/popup.php): full-screen <dialog> with dark backdrop, scrolling white box 760 with red top line (label, title, close, note, form); full screen on mobile
+*/
+
+@use '../abstracts' as *;
+
+.has-popup {
+    overflow: hidden;
+}
+
+.popup {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    color: palette(clr-neutral-darkest);
+    border: 0;
+    background-color: rgba(26, 26, 26, 0.72);
+
+    &::backdrop {
+        background: transparent;
+    }
+
+    @include respond-min(sm) {
+        padding: fluid(24, 64) fluid(16, 40);
+    }
+
+    &__inhalt {
+        display: flex;
+        flex-direction: column;
+        gap: rem(24);
+        width: 100%;
+        max-width: rem(760);
+        min-height: 100%;
+        margin: 0 auto;
+        padding: fluid(24, 48) fluid(20, 48);
+        border-top: 4px solid palette(clr-red);
+        background-color: palette(clr-white);
+        box-shadow: 0 rem(24) rem(64) rgba(0, 0, 0, 0.25);
+
+        @include respond-min(sm) {
+            min-height: 0;
+        }
+    }
+
+    &__kopf {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: rem(24);
+    }
+
+    &__titelblock {
+        display: flex;
+        flex-direction: column;
+        gap: rem(8);
+        min-width: 0;
+    }
+
+    &__oberzeile {
+        @include t-text-tiny($fw-bold);
+
+        margin: 0;
+        text-transform: uppercase;
+        color: palette(clr-red);
+    }
+
+    &__titel {
+        @include t-h4;
+        @include break-word;
+
+        margin: 0;
+    }
+
+    &__schliessen {
+        display: flex;
+        flex: none;
+        align-items: center;
+        justify-content: center;
+        width: rem(40);
+        height: rem(40);
+        margin: rem(-6) rem(-6) 0 0;
+        padding: 0;
+        color: palette(clr-neutral-darkest);
+        border: 0;
+        background: none;
+        cursor: pointer;
+
+        @include trans(color);
+
+        &:hover {
+            color: palette(clr-red);
+        }
+
+        .icon {
+            width: rem(28);
+            height: rem(28);
+        }
+    }
+
+    &__hinweis {
+        @include t-text-small;
+
+        margin: 0;
+        line-height: 1.2;
+        color: palette(clr-neutral);
+    }
+}

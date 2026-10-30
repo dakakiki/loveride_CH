@@ -780,7 +780,7 @@ hr {
 }
 
 /*
-* Forms: Contact Form 7 base (validation tips, response output, submitting state), the newsletter form layout (.nl-form) and the content form layout (.lr-form: labelled fields, two-field rows, short textarea, checkbox group in a grid or inline, privacy checkbox, submit)
+* Forms: Contact Form 7 base (validation tips, response output, submitting state), the newsletter form layout (.nl-form) and the content form layout (.lr-form: labelled fields, two- / three-field rows, sections with red label, short textarea, select with arrow, radio and checkbox groups, notes, privacy checkbox, submit)
 */
 .wpcf7 {
   --form-error: #A50B24;
@@ -872,6 +872,79 @@ hr {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+@media (min-width: 640px) {
+  .lr-form__zeile--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.lr-form__abschnitt {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.lr-form__abschnitt[hidden] {
+  display: none;
+}
+.lr-form__abschnitt > legend {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  padding: 0;
+  text-transform: uppercase;
+  color: #CE0E2D;
+}
+.lr-form__kind[hidden] {
+  display: none;
+}
+.lr-form__hinweis {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  margin: 0;
+  line-height: 1.2;
+  color: #555555;
+}
+.lr-form__mehr {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  line-height: 1.2;
+  color: #CE0E2D;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.lr-form__mehr::before {
+  content: "+";
+  font-size: 1.375rem;
+  line-height: 1;
+}
+.lr-form__mehr:hover {
+  text-decoration: none;
+  color: #A50B24;
+}
+.lr-form__mehr[hidden] {
+  display: none;
+}
+.lr-form--popup {
+  gap: 1.5rem;
+}
 .lr-form__feld {
   display: flex;
   flex-direction: column;
@@ -888,6 +961,7 @@ hr {
 .lr-form input[type=text],
 .lr-form input[type=email],
 .lr-form input[type=tel],
+.lr-form input[type=number],
 .lr-form textarea,
 .lr-form select {
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
@@ -908,6 +982,7 @@ hr {
 .lr-form input[type=text]::placeholder,
 .lr-form input[type=email]::placeholder,
 .lr-form input[type=tel]::placeholder,
+.lr-form input[type=number]::placeholder,
 .lr-form textarea::placeholder,
 .lr-form select::placeholder {
   color: #555555;
@@ -916,10 +991,48 @@ hr {
 .lr-form input[type=text]:focus-visible,
 .lr-form input[type=email]:focus-visible,
 .lr-form input[type=tel]:focus-visible,
+.lr-form input[type=number]:focus-visible,
 .lr-form textarea:focus-visible,
 .lr-form select:focus-visible {
   outline: 2px solid #1A1A1A;
   outline-offset: 1px;
+}
+.lr-form select {
+  padding-right: 2.75rem;
+  appearance: none;
+  background: #FFFFFF no-repeat right 1rem center/0.75rem url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231a1a1a' stroke-width='2'/%3E%3C/svg%3E");
+  cursor: pointer;
+}
+.lr-form select:invalid, .lr-form select:has(option[value=""]:checked) {
+  color: #555555;
+}
+.lr-form .wpcf7-radio {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem 1.5rem;
+}
+.lr-form .wpcf7-radio .wpcf7-list-item {
+  margin: 0;
+}
+.lr-form .wpcf7-radio label {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  line-height: 1.2;
+  color: #444444;
+  cursor: pointer;
+}
+.lr-form .wpcf7-radio input[type=radio] {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+  accent-color: #CE0E2D;
 }
 .lr-form textarea {
   height: 8.75rem;
@@ -2626,7 +2739,7 @@ html:has(.read-aloud:not([hidden])) {
   }
 }
 /*
-* Lightbox: full-screen <dialog> for photos (prev / next, counter) and the aftermovie (16:9 YouTube); used by Galerie-Slider
+* Lightbox: full-screen <dialog> for photos (prev / next, counter) and the aftermovie (16:9 YouTube); used by Galerie-Slider and Jahrgänge (components/lightbox.php)
 */
 .has-lightbox {
   overflow: hidden;
@@ -2738,6 +2851,125 @@ html:has(.read-aloud:not([hidden])) {
 }
 .lightbox--video .lightbox__arrow, .lightbox--video .lightbox__counter, .lightbox--single .lightbox__arrow, .lightbox--single .lightbox__counter {
   display: none;
+}
+
+/*
+* Popup (template_parts/global/popup.php): full-screen <dialog> with dark backdrop, scrolling white box 760 with red top line (label, title, close, note, form); full screen on mobile
+*/
+.has-popup {
+  overflow: hidden;
+}
+
+.popup {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  color: #1A1A1A;
+  border: 0;
+  background-color: rgba(26, 26, 26, 0.72);
+}
+.popup::backdrop {
+  background: transparent;
+}
+@media (min-width: 640px) {
+  .popup {
+    padding: clamp(24px, 9.1428571429px + 3.8095238095vw, 64px) clamp(16px, 7.0857142857px + 2.2857142857vw, 40px);
+  }
+}
+.popup__inhalt {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 47.5rem;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: clamp(24px, 15.0857142857px + 2.2857142857vw, 48px) clamp(20px, 9.6px + 2.6666666667vw, 48px);
+  border-top: 4px solid #CE0E2D;
+  background-color: #FFFFFF;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.25);
+}
+@media (min-width: 640px) {
+  .popup__inhalt {
+    min-height: 0;
+  }
+}
+.popup__kopf {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.popup__titelblock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.popup__oberzeile {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  text-transform: uppercase;
+  color: #CE0E2D;
+}
+.popup__titel {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(26px, 23.7714285714px + 0.5714285714vw, 32px);
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  margin: 0;
+}
+.popup__schliessen {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: -0.375rem -0.375rem 0 0;
+  padding: 0;
+  color: #1A1A1A;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  transition-property: color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.popup__schliessen:hover {
+  color: #CE0E2D;
+}
+.popup__schliessen .icon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+.popup__hinweis {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  margin: 0;
+  line-height: 1.2;
+  color: #555555;
 }
 
 /*

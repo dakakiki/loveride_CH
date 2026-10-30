@@ -1,5 +1,5 @@
 /*
-* Forms: Contact Form 7 base (validation tips, response output, submitting state), the newsletter form layout (.nl-form) and the content form layout (.lr-form: labelled fields, two-field rows, short textarea, checkbox group in a grid or inline, privacy checkbox, submit)
+* Forms: Contact Form 7 base (validation tips, response output, submitting state), the newsletter form layout (.nl-form) and the content form layout (.lr-form: labelled fields, two- / three-field rows, sections with red label, short textarea, select with arrow, radio and checkbox groups, notes, privacy checkbox, submit)
 */
 
 @use '../abstracts' as *;
@@ -97,6 +97,81 @@
         @include respond-min(sm) {
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
+
+        &--3 {
+            @include respond-min(sm) {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+    }
+
+    &__abschnitt {
+        display: flex;
+        flex-direction: column;
+        gap: rem(16);
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+        border: 0;
+
+        &[hidden] {
+            display: none;
+        }
+
+        > legend {
+            @include t-text-tiny($fw-bold);
+
+            margin-bottom: rem(16);
+            padding: 0;
+            text-transform: uppercase;
+            color: palette(clr-red);
+        }
+    }
+
+    &__kind[hidden] {
+        display: none;
+    }
+
+    &__hinweis {
+        @include t-text-small;
+
+        margin: 0;
+        line-height: 1.2;
+        color: palette(clr-neutral);
+    }
+
+    &__mehr {
+        @include t-text-small;
+
+        display: inline-flex;
+        align-self: flex-start;
+        align-items: center;
+        gap: rem(8);
+        padding: 0;
+        line-height: 1.2;
+        color: palette(clr-red);
+        border: 0;
+        background: none;
+        cursor: pointer;
+
+        &::before {
+            content: "+";
+            font-size: rem(22);
+            line-height: 1;
+        }
+
+        &:hover {
+            text-decoration: none;
+            color: palette(clr-red-dark);
+        }
+
+        &[hidden] {
+            display: none;
+        }
+    }
+
+    &--popup {
+        gap: rem(24);
     }
 
     &__feld {
@@ -114,6 +189,7 @@
     input[type="text"],
     input[type="email"],
     input[type="tel"],
+    input[type="number"],
     textarea,
     select {
         @include t-text;
@@ -135,6 +211,47 @@
         &:focus-visible {
             outline: 2px solid palette(clr-neutral-darkest);
             outline-offset: 1px;
+        }
+    }
+
+    select {
+        padding-right: rem(44);
+        appearance: none;
+        background: palette(clr-white) no-repeat right rem(16) center / rem(12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231a1a1a' stroke-width='2'/%3E%3C/svg%3E");
+        cursor: pointer;
+
+        &:invalid,
+        &:has(option[value=""]:checked) {
+            color: palette(clr-neutral);
+        }
+    }
+
+    .wpcf7-radio {
+        display: flex;
+        flex-wrap: wrap;
+        gap: rem(10) rem(24);
+
+        .wpcf7-list-item {
+            margin: 0;
+        }
+
+        label {
+            @include t-text-small;
+
+            display: flex;
+            align-items: center;
+            gap: rem(10);
+            line-height: 1.2;
+            color: palette(clr-neutral-dark);
+            cursor: pointer;
+        }
+
+        input[type="radio"] {
+            flex: none;
+            width: rem(20);
+            height: rem(20);
+            margin: 0;
+            accent-color: palette(clr-red);
         }
     }
 
