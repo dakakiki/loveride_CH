@@ -8,6 +8,7 @@ $cta-bild-edge: max(var(--padding-global), calc(100% - #{$container-large} / 2))
 
 .layout-cta-bild {
     display: grid;
+    background-color: palette(clr-neutral-lightest);
     grid-template-columns: minmax(0, 1fr);
 
     @include respond-min(lg) {

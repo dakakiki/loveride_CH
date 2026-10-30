@@ -1,0 +1,27 @@
+/*
+* Layout: News-Teaser (layout_news_teaser) – white section, plain News cards (layouts/_news.scss), „Alle News“ right on desktop
+*/
+
+@use '../abstracts' as *;
+
+.layout-news-teaser {
+    @include fluid-prop(padding-top, 40, 112);
+    @include fluid-prop(padding-bottom, 40, 112);
+
+    .section-head {
+        @include fluid-prop(margin-bottom, 40, 64);
+    }
+
+    .news-grid {
+        row-gap: rem(40);
+    }
+}
+
+.news-teaser__actions {
+    display: flex;
+    @include fluid-prop(margin-top, 40, 64);
+
+    @include respond-min(lg) {
+        justify-content: flex-end;
+    }
+}

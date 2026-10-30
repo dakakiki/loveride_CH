@@ -1,5 +1,5 @@
 /*
-* News: category tag and meta line, News card (+ featured), card grid, single article (head, title image, block content with H2–H4 and heading style "Mit Linie", links in two columns, tags, share), Weitere Beiträge
+* News: category tag (red / light) and meta line, News card (+ featured, plain for Home), card grid, single article (head, title image, block content with H2–H4 and heading style "Mit Linie", links in two columns, tags, share), Weitere Beiträge
 */
 
 @use '../abstracts' as *;
@@ -12,6 +12,14 @@
     color: palette(clr-white);
     text-transform: uppercase;
     background-color: palette(clr-red);
+}
+
+.news-tag--light {
+    @include t-text-small($fw-semibold);
+
+    color: palette(clr-neutral-darkest);
+    text-transform: none;
+    background-color: palette(clr-neutral-lightest);
 }
 
 .news-meta {
@@ -116,6 +124,35 @@
             inset: 0;
             z-index: 1;
         }
+    }
+
+    &--plain {
+        background: none;
+    }
+
+    &--plain &__media {
+        aspect-ratio: 405 / 270;
+    }
+
+    &--plain &__body {
+        gap: rem(8);
+        padding: rem(24) 0 0;
+    }
+
+    &--plain .news-meta {
+        margin-bottom: rem(8);
+    }
+
+    &--plain &__title {
+        margin-top: 0;
+    }
+
+    &--plain &__text {
+        color: palette(clr-neutral-darkest);
+    }
+
+    &--plain &__cta.btn--link {
+        padding-top: rem(16);
     }
 
     &--featured {

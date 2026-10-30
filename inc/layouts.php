@@ -31,6 +31,20 @@ add_filter( 'lr_layout_scripts', function ( array $scripts ): array {
 		'deps'   => array( 'lr-gsap' ),
 	);
 
+	$scripts['layout_programm'] = array(
+		'handle' => 'lr-programm',
+		'file'   => 'js/programm.min.js',
+		'min'    => 'js/programm.min.js',
+		'deps'   => array(),
+	);
+
+	$scripts['layout_logo_wand'] = array(
+		'handle' => 'lr-logo-wand',
+		'file'   => 'js/logo-wand.min.js',
+		'min'    => 'js/logo-wand.min.js',
+		'deps'   => array(),
+	);
+
 	$scripts['layout_news_archiv'] = array(
 		'handle' => 'lr-news',
 		'file'   => 'js/news.min.js',

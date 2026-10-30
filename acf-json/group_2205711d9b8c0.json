@@ -2049,6 +2049,670 @@
                     "min": "",
                     "max": ""
                 },
+                "layout_b54f41ff3a826": {
+                    "key": "layout_b54f41ff3a826",
+                    "name": "layout_news_teaser",
+                    "label": "Liste · News-Teaser",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_d94c83797923f",
+                            "label": "Inhalt",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "tab",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placement": "top",
+                            "endpoint": 0,
+                            "selected": 0
+                        },
+                        {
+                            "key": "field_d0cebf862d976",
+                            "label": "Sektionskopf",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5c124dd89c32c"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        },
+                        {
+                            "key": "field_4bec7c907414c",
+                            "label": "Anzahl Beiträge",
+                            "name": "anzahl",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 3,
+                            "min": 3,
+                            "max": 6,
+                            "step": 3,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_de52a0eb7328f",
+                            "label": "Anker",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "tab",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placement": "top",
+                            "endpoint": 0,
+                            "selected": 0
+                        },
+                        {
+                            "key": "field_5bdd0e0056e39",
+                            "label": "Anker",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_98b5ee9e5de1e"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_10ec4868b23d8": {
+                    "key": "layout_10ec4868b23d8",
+                    "name": "layout_logo_wand",
+                    "label": "Liste · Logo-Wand",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_c122b8e602294",
+                            "label": "Inhalt",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "tab",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placement": "top",
+                            "endpoint": 0,
+                            "selected": 0
+                        },
+                        {
+                            "key": "field_dbbd672a8acfd",
+                            "label": "Sektionskopf",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5c124dd89c32c"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        },
+                        {
+                            "key": "field_78e0f51d7b023",
+                            "label": "Buttons",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_d9dd686891012"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        },
+                        {
+                            "key": "field_1a325028cac2f",
+                            "label": "Text der leeren Kachel",
+                            "name": "platzhalter",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Dein Logo hier?",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_f603b8b48a2b2",
+                            "label": "Anker",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "tab",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placement": "top",
+                            "endpoint": 0,
+                            "selected": 0
+                        },
+                        {
+                            "key": "field_979ffa92ae751",
+                            "label": "Anker",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_98b5ee9e5de1e"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_74f45a2082701": {
+                    "key": "layout_74f45a2082701",
+                    "name": "layout_programm",
+                    "label": "Liste · Programm & Line-up",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_68fcc865dde44",
+                            "label": "Inhalt",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "tab",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placement": "top",
+                            "endpoint": 0,
+                            "selected": 0
+                        },
+                        {
+                            "key": "field_ec832e83fc481",
+                            "label": "Sektionskopf",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5c124dd89c32c"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        },
+                        {
+                            "key": "field_d514a0dbe029c",
+                            "label": "Programm als PDF",
+                            "name": "pdf",
+                            "aria-label": "",
+                            "type": "file",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_size": "",
+                            "max_size": "",
+                            "mime_types": "pdf"
+                        },
+                        {
+                            "key": "field_654e2ed59ce93",
+                            "label": "Programm",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "tab",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placement": "top",
+                            "endpoint": 0,
+                            "selected": 0
+                        },
+                        {
+                            "key": "field_70be7c0dad006",
+                            "label": "Tage",
+                            "name": "tage",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "pagination": 0,
+                            "min": 1,
+                            "max": 0,
+                            "collapsed": "field_1a70f239fd74f",
+                            "button_label": "Tag hinzufügen",
+                            "rows_per_page": 20,
+                            "sub_fields": [
+                                {
+                                    "key": "field_902bc152819b2",
+                                    "label": "Datum",
+                                    "name": "datum",
+                                    "aria-label": "",
+                                    "type": "date_picker",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "30",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "display_format": "d.m.Y",
+                                    "return_format": "Ymd",
+                                    "first_day": 1,
+                                    "parent_repeater": "field_70be7c0dad006",
+                                    "default_to_current_date": 0
+                                },
+                                {
+                                    "key": "field_1a70f239fd74f",
+                                    "label": "Untertitel",
+                                    "name": "untertitel",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "70",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "z. B. Love Ride, Vorabend",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_70be7c0dad006"
+                                },
+                                {
+                                    "key": "field_37bf5ccf4806f",
+                                    "label": "Programmpunkte",
+                                    "name": "eintraege",
+                                    "aria-label": "",
+                                    "type": "repeater",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "layout": "table",
+                                    "pagination": 0,
+                                    "min": 0,
+                                    "max": 0,
+                                    "collapsed": "",
+                                    "button_label": "Programmpunkt hinzufügen",
+                                    "rows_per_page": 20,
+                                    "parent_repeater": "field_70be7c0dad006",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_13166a0053af3",
+                                            "label": "Zeit",
+                                            "name": "zeit",
+                                            "aria-label": "",
+                                            "type": "time_picker",
+                                            "instructions": "",
+                                            "required": 1,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "10",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "display_format": "H:i",
+                                            "return_format": "H:i",
+                                            "parent_repeater": "field_37bf5ccf4806f"
+                                        },
+                                        {
+                                            "key": "field_3940f36b61c02",
+                                            "label": "Act",
+                                            "name": "act",
+                                            "aria-label": "",
+                                            "type": "post_object",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "18",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "post_type": [
+                                                "act"
+                                            ],
+                                            "post_status": [
+                                                "publish"
+                                            ],
+                                            "taxonomy": "",
+                                            "return_format": "id",
+                                            "multiple": 0,
+                                            "allow_null": 1,
+                                            "bidirectional": 0,
+                                            "ui": 1,
+                                            "bidirectional_target": [],
+                                            "parent_repeater": "field_37bf5ccf4806f"
+                                        },
+                                        {
+                                            "key": "field_d1c4eba773c1c",
+                                            "label": "Titel",
+                                            "name": "titel",
+                                            "aria-label": "",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "20",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "maxlength": "",
+                                            "placeholder": "leer = Name des Acts",
+                                            "prepend": "",
+                                            "append": "",
+                                            "parent_repeater": "field_37bf5ccf4806f"
+                                        },
+                                        {
+                                            "key": "field_5f048c5c3ffca",
+                                            "label": "Untertitel",
+                                            "name": "untertitel",
+                                            "aria-label": "",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "22",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "maxlength": "",
+                                            "placeholder": "leer = Genre, Herkunft",
+                                            "prepend": "",
+                                            "append": "",
+                                            "parent_repeater": "field_37bf5ccf4806f"
+                                        },
+                                        {
+                                            "key": "field_d23b01b03ee36",
+                                            "label": "Ort",
+                                            "name": "ort",
+                                            "aria-label": "",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "15",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "maxlength": "",
+                                            "placeholder": "z. B. Hauptbühne",
+                                            "prepend": "",
+                                            "append": "",
+                                            "parent_repeater": "field_37bf5ccf4806f"
+                                        },
+                                        {
+                                            "key": "field_4d1732fbdcec6",
+                                            "label": "Bild",
+                                            "name": "bild",
+                                            "aria-label": "",
+                                            "type": "image",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "15",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "return_format": "array",
+                                            "library": "all",
+                                            "min_width": "",
+                                            "min_height": "",
+                                            "min_size": "",
+                                            "max_width": "",
+                                            "max_height": "",
+                                            "max_size": "",
+                                            "mime_types": "",
+                                            "preview_size": "thumbnail",
+                                            "parent_repeater": "field_37bf5ccf4806f"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_cd7cbd21b004c",
+                            "label": "Acts",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "tab",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placement": "top",
+                            "endpoint": 0,
+                            "selected": 0
+                        },
+                        {
+                            "key": "field_e5fee6bdc1cc6",
+                            "label": "Alle Acts anzeigen",
+                            "name": "acts_anzeigen",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 1,
+                            "ui": 1,
+                            "ui_on_text": "Ja",
+                            "ui_off_text": "Nein"
+                        },
+                        {
+                            "key": "field_634279b7cab51",
+                            "label": "Titel",
+                            "name": "acts_titel",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_e5fee6bdc1cc6",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Alle Acts",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_a9d1d53657fd1",
+                            "label": "Anker",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "tab",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placement": "top",
+                            "endpoint": 0,
+                            "selected": 0
+                        },
+                        {
+                            "key": "field_f7a0a68369a61",
+                            "label": "Anker",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_98b5ee9e5de1e"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_108820f73fd1e": {
                     "key": "layout_108820f73fd1e",
                     "name": "layout_live",
@@ -2280,5 +2944,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1793289002
+    "modified": 1793355117
 }

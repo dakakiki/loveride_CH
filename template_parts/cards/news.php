@@ -1,19 +1,20 @@
 <?php
 /**
- * Card: News post (image, category, date, title, teaser, „Weiterlesen“), whole card clickable; featured = wide card with author and red button; used by News-Archiv and Weitere Beiträge.
+ * Card: News post (image, category, date, title, teaser, „Weiterlesen“), whole card clickable; featured = wide card with author and red button, plain = no panel, light tag, no date (Home News-Teaser); used by News-Archiv, Weitere Beiträge and News-Teaser.
  *
  * @package loveride
  */
 
 $lr_id       = (int) ( $args['post'] ?? get_the_ID() );
 $lr_featured = ! empty( $args['featured'] );
+$lr_plain    = ! $lr_featured && ! empty( $args['plain'] );
 $lr_tag      = in_array( $args['heading'] ?? 'h3', array( 'h2', 'h3' ), true ) ? $args['heading'] : 'h3';
 $lr_category = lr_news_category( $lr_id );
 $lr_teaser   = lr_news_teaser( $lr_id );
 $lr_author   = $lr_featured ? lr_news_author( $lr_id ) : '';
 $lr_title    = get_the_title( $lr_id );
 ?>
-<article class="news-card<?= $lr_featured ? ' news-card--featured' : ''; ?>">
+<article class="news-card<?= $lr_featured ? ' news-card--featured' : ''; ?><?= $lr_plain ? ' news-card--plain' : ''; ?>">
 
 	<div class="news-card__media">
 		<?php if ( has_post_thumbnail( $lr_id ) ) : ?>
@@ -27,12 +28,18 @@ $lr_title    = get_the_title( $lr_id );
 	</div>
 
 	<div class="news-card__body">
-		<p class="news-meta">
+		<?php if ( $lr_plain ) : ?>
 			<?php if ( $lr_category ) : ?>
-				<span class="news-tag"><?= esc_html( $lr_category->name ); ?></span>
+				<p class="news-meta"><span class="news-tag news-tag--light"><?= esc_html( $lr_category->name ); ?></span></p>
 			<?php endif; ?>
-			<span class="news-meta__text"><time datetime="<?= esc_attr( get_the_date( 'Y-m-d', $lr_id ) ); ?>"><?= esc_html( lr_news_date( $lr_id ) ); ?></time><?= $lr_author ? ' · ' . esc_html( $lr_author ) : ''; ?></span>
-		</p>
+		<?php else : ?>
+			<p class="news-meta">
+				<?php if ( $lr_category ) : ?>
+					<span class="news-tag"><?= esc_html( $lr_category->name ); ?></span>
+				<?php endif; ?>
+				<span class="news-meta__text"><time datetime="<?= esc_attr( get_the_date( 'Y-m-d', $lr_id ) ); ?>"><?= esc_html( lr_news_date( $lr_id ) ); ?></time><?= $lr_author ? ' · ' . esc_html( $lr_author ) : ''; ?></span>
+			</p>
+		<?php endif; ?>
 
 		<<?= $lr_tag; ?> class="news-card__title"><?= wp_kses_post( $lr_title ); ?></<?= $lr_tag; ?>>
 

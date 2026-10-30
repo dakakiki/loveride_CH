@@ -1,0 +1,334 @@
+/*
+* Layout: Programm & Line-up (layout_programm) – dark section: head with PDF button, day tabs (active red), programme rows (time, title, subtitle, image, place; live row red), Alle Acts grid with white cards and red top line
+*/
+
+@use '../abstracts' as *;
+
+.layout-programm {
+    @include fluid-prop(padding-top, 48, 96);
+    @include fluid-prop(padding-bottom, 48, 96);
+
+    .section-head {
+        max-width: rem(620);
+        margin-bottom: 0;
+    }
+
+    .section-head__text {
+        color: palette(clr-neutral-light);
+    }
+}
+
+.programm {
+    &__head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: rem(24) rem(48);
+        margin-bottom: rem(40);
+    }
+
+    &__tabs {
+        display: flex;
+        overflow-x: auto;
+        margin-bottom: rem(40);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        scrollbar-width: none;
+    }
+
+    &__tab {
+        display: flex;
+        flex: none;
+        flex-direction: column;
+        gap: rem(2);
+        padding: rem(16) fluid(20, 28);
+        color: palette(clr-neutral-light);
+        text-align: left;
+        border: 0;
+        background: none;
+        cursor: pointer;
+
+        @include trans((background-color, color));
+
+        &:focus-visible {
+            outline: 2px solid palette(clr-white);
+            outline-offset: -4px;
+        }
+
+        &:hover {
+            color: palette(clr-white);
+        }
+
+        &[aria-selected="true"] {
+            color: palette(clr-white);
+            background-color: palette(clr-red);
+        }
+    }
+
+    &__tab-date {
+        @include t-h6;
+    }
+
+    &__tab-sub {
+        @include t-text-tiny;
+    }
+
+    &__day {
+        &:focus-visible {
+            outline: 2px solid palette(clr-white);
+            outline-offset: 4px;
+        }
+    }
+
+    &__list {
+        @include reset-list;
+    }
+
+    &__acts {
+        @include fluid-prop(margin-top, 48, 72);
+    }
+
+    &__acts-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: rem(8) rem(24);
+        margin-bottom: rem(24);
+    }
+
+    &__acts-title {
+        @include t-h3;
+
+        color: inherit;
+    }
+
+    &__acts-count {
+        @include t-text-small;
+
+        margin: 0;
+        color: palette(clr-neutral-light);
+    }
+}
+
+.programm-item {
+    display: grid;
+    grid-template-columns: rem(56) minmax(0, 1fr);
+    grid-template-areas:
+        "time main"
+        "time ort";
+    column-gap: rem(16);
+    row-gap: rem(6);
+    align-items: center;
+    padding: rem(16) rem(12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+    @include trans(background-color);
+
+    @include respond-min(sm) {
+        grid-template-columns: rem(72) minmax(0, 1fr) rem(120);
+        grid-template-areas:
+            "time main media"
+            "time ort media";
+        column-gap: rem(24);
+        padding: rem(18) rem(16);
+    }
+
+    @include respond-min(lg) {
+        grid-template-columns: rem(90) minmax(0, 1fr) rem(120) rem(140);
+        grid-template-areas: "time main media ort";
+        column-gap: rem(32);
+        padding: rem(18) rem(24);
+    }
+
+    &.is-live {
+        background-color: palette(clr-red);
+        border-bottom-color: palette(clr-red);
+    }
+
+    &__time {
+        @include t-h5;
+
+        grid-area: time;
+        align-self: start;
+        margin: 0;
+        padding-top: rem(3);
+
+        @include respond-min(lg) {
+            align-self: center;
+            padding-top: 0;
+        }
+    }
+
+    &__main {
+        grid-area: main;
+        min-width: 0;
+    }
+
+    &__title {
+        @include t-text-medium($fw-bold);
+        @include break-word;
+
+        margin: 0;
+    }
+
+    &__sub {
+        @include t-text-small;
+
+        margin: rem(2) 0 0;
+        line-height: 1.2;
+    }
+
+    &__link {
+        color: inherit;
+        text-decoration: none;
+
+        @include focus-ring(palette(clr-white));
+
+        span {
+            display: inline-block;
+
+            @include trans(transform, 0.3s, ease);
+        }
+
+        &:hover span,
+        &:focus-visible span {
+            transform: translateX(3px);
+        }
+    }
+
+    &__media {
+        display: none;
+        grid-area: media;
+
+        @include respond-min(sm) {
+            display: block;
+        }
+    }
+
+    &__image {
+        display: block;
+        width: rem(120);
+        height: auto;
+        aspect-ratio: 120 / 72;
+        object-fit: cover;
+    }
+
+    &__ort {
+        @include t-text-small;
+
+        grid-area: ort;
+        margin: 0;
+        line-height: 1.2;
+        color: palette(clr-neutral-light);
+
+        @include respond-min(lg) {
+            color: inherit;
+        }
+    }
+
+    &.is-live &__ort {
+        color: inherit;
+    }
+}
+
+.acts-grid {
+    @include reset-list;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: rem(16);
+
+    @include respond-min(sm) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include respond-min(lg) {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    > li {
+        display: flex;
+    }
+}
+
+.act-card {
+    @include scheme-vars(weiss);
+
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    color: palette(clr-neutral-darkest);
+    background-color: palette(clr-white);
+
+    &__media {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 308 / 220;
+        background-color: palette(clr-neutral-lighter);
+    }
+
+    &__image {
+        @include image-cover;
+
+        position: absolute;
+        inset: 0;
+        transition: transform 0.6s ease;
+    }
+
+    &:hover &__image {
+        transform: scale(1.04);
+    }
+
+    &__body {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        gap: rem(8);
+        padding: rem(20) rem(20) rem(24);
+        border-top: 4px solid palette(clr-red);
+    }
+
+    &__genre {
+        @include t-text-tiny($fw-bold);
+
+        margin: 0;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: palette(clr-red-signal);
+    }
+
+    &__title {
+        @include t-h5;
+        @include break-word;
+
+        color: inherit;
+    }
+
+    &__text {
+        @include t-text-small;
+
+        margin: 0;
+        line-height: 1.2;
+    }
+
+    &__cta {
+        align-self: flex-start;
+        margin-top: auto;
+        padding-top: rem(8);
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .act-card__image {
+        transition: none;
+    }
+}
