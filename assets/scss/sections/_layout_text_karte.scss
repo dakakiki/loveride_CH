@@ -1,0 +1,81 @@
+/*
+* Layout: Text & Karte (layout_text_karte) – text column (head with red-square list, buttons) next to the map of one Anreise layer or its placeholder box (grey, icon, title, note); stacked below 991
+*/
+
+@use '../abstracts' as *;
+
+.layout-text-karte {
+    @include fluid-prop(padding-top, 48, 96);
+    @include fluid-prop(padding-bottom, 48, 96);
+
+    .section-head {
+        @include fluid-prop(margin-bottom, 24, 24);
+    }
+
+    .section-head__text {
+        @include t-text;
+        @include rich-text-accents;
+
+        max-width: rem(640);
+        color: palette(clr-neutral-dark);
+    }
+}
+
+.text-karte {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: fluid(32, 48) rem(80);
+
+    @include respond-min(lg) {
+        grid-template-columns: minmax(0, 640fr) minmax(0, 560fr);
+        align-items: start;
+    }
+
+    &__map,
+    &__platzhalter {
+        position: relative;
+        z-index: 0;
+        aspect-ratio: 560 / 440;
+        background-color: palette(clr-neutral-lighter);
+    }
+
+    &__map {
+        .leaflet-container {
+            font-family: inherit;
+            background-color: palette(clr-neutral-lighter);
+        }
+
+        .leaflet-tile-pane {
+            opacity: 0.5;
+        }
+    }
+
+    &__platzhalter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: rem(8);
+        padding: rem(32);
+        text-align: center;
+        color: palette(clr-neutral);
+    }
+
+    &__platzhalter-icon {
+        width: rem(48);
+        height: rem(48);
+    }
+
+    &__platzhalter-titel {
+        @include t-h5;
+
+        margin: 0;
+        text-transform: none;
+    }
+
+    &__platzhalter-text {
+        @include t-text-small;
+
+        margin: 0;
+    }
+}

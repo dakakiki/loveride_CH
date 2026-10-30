@@ -1,0 +1,154 @@
+/*
+* Layout: Karten-Grid (layout_karten) – section head and cards in 2 / 3 / 4 columns: icon on top or left, red label, title (small / standard / large), text, link; cards off-white on white, white on off-white, #333 on dark (#1A1A1A), red when highlighted, optional red top line
+*/
+
+@use '../abstracts' as *;
+
+.layout-karten {
+    @include fluid-prop(padding-top, 48, 96);
+    @include fluid-prop(padding-bottom, 48, 96);
+
+    --karte-bg: #{palette(clr-off-white)};
+    --karte-label: #{palette(clr-red)};
+    --karte-text: #{palette(clr-neutral-dark)};
+
+    .section-head {
+        @include fluid-prop(margin-bottom, 32, 48);
+    }
+
+    .section-head__text {
+        @include t-text;
+
+        max-width: rem(680);
+        color: palette(clr-neutral-dark);
+    }
+}
+
+.karten--offwhite {
+    --karte-bg: #{palette(clr-white)};
+}
+
+.karten--dunkel {
+    --scheme-accent: #{palette(clr-red-signal)};
+    --karte-bg: #{palette(clr-neutral-darker)};
+    --karte-label: #{palette(clr-neutral-light)};
+    --karte-text: #{palette(clr-neutral-light)};
+
+    background-color: palette(clr-neutral-darkest);
+
+    .section-head__text {
+        color: palette(clr-neutral-light);
+    }
+}
+
+.karten {
+    @include reset-list;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: rem(16);
+
+    @include respond-min(sm) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .karten--spalten-3 & {
+        @include respond-min(lg) {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+
+    .karten--spalten-4 & {
+        @include respond-min(xxl) {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+    }
+}
+
+.karte {
+    --karte-icon: #{palette(clr-red-signal)};
+
+    display: flex;
+    flex-direction: column;
+    gap: rem(12);
+    padding: fluid(24, 28);
+    color: var(--scheme-text);
+    background-color: var(--karte-bg);
+
+    .karten--linie & {
+        border-top: 4px solid palette(clr-red);
+    }
+
+    .karten--dunkel & {
+        --karte-icon: #{palette(clr-white)};
+    }
+
+    .karten--icon-links & {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: rem(20);
+    }
+
+    &--rot {
+        --karte-bg: #{palette(clr-red)};
+        --karte-label: #{palette(clr-white)};
+        --karte-text: #{palette(clr-white)};
+        --karte-icon: #{palette(clr-white)};
+
+        color: palette(clr-white);
+        border-top-color: palette(clr-red-dark);
+    }
+
+    &__icon {
+        flex: none;
+        width: rem(36);
+        height: rem(36);
+        color: var(--karte-icon);
+    }
+
+    &__body {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        gap: rem(12);
+        min-width: 0;
+    }
+
+    &__oberzeile {
+        @include t-text-tiny($fw-bold);
+
+        margin: 0;
+        text-transform: uppercase;
+        color: var(--karte-label);
+    }
+
+    &__titel {
+        @include t-h5;
+        @include break-word;
+
+        margin: 0;
+        color: inherit;
+
+        .karten--titel-klein & {
+            @include t-h6;
+        }
+
+        .karten--titel-gross & {
+            @include t-h4;
+        }
+    }
+
+    &__text {
+        @include t-text-small;
+
+        margin: 0;
+        line-height: 1.2;
+        color: var(--karte-text);
+    }
+
+    &__link {
+        align-self: flex-start;
+        margin-top: auto;
+        padding-top: rem(4);
+    }
+}

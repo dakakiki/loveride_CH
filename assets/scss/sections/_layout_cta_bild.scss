@@ -25,60 +25,7 @@ $cta-bild-edge-schmal: max(var(--padding-global), calc(90% - #{$container-large}
     }
 
     .section-head__text {
-        > p + p {
-            margin-top: rem(16);
-        }
-
-        > * + ul,
-        > * + ol,
-        > * + h4 {
-            @include fluid-prop(margin-top, 24, 32);
-        }
-
-        > ul + p,
-        > ol + p,
-        > h4 + p {
-            @include fluid-prop(margin-top, 20, 28);
-        }
-
-        ul {
-            display: flex;
-            flex-direction: column;
-            gap: rem(14);
-            margin-bottom: 0;
-            padding: 0;
-            list-style: none;
-
-            li {
-                @include t-text($fw-semibold);
-
-                position: relative;
-                padding-left: rem(22);
-                color: var(--scheme-text);
-
-                &::before {
-                    content: "";
-                    position: absolute;
-                    top: 0.5em;
-                    left: 0;
-                    width: rem(10);
-                    height: rem(10);
-                    background-color: palette(clr-red);
-                }
-            }
-        }
-
-        h4 {
-            @include t-text($fw-bold);
-
-            margin-bottom: 0;
-            padding: rem(4) 0 rem(4) rem(16);
-            line-height: 1.2;
-            text-transform: none;
-            letter-spacing: 0;
-            color: var(--scheme-text);
-            border-left: 4px solid palette(clr-red);
-        }
+        @include rich-text-accents;
     }
 }
 

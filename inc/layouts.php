@@ -40,6 +40,7 @@ add_filter( 'lr_layout_scripts', function ( array $scripts ): array {
 
 	$scripts['layout_gelaendeplan'] = $karten;
 	$scripts['layout_anreise']      = $karten;
+	$scripts['layout_text_karte']   = $karten;
 
 	$scripts['layout_programm'] = array(
 		'handle' => 'lr-programm',

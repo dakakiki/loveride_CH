@@ -1,6 +1,6 @@
 <?php
 /**
- * Anreise & Parken (Geteilte Inhalte → Anreise & Parken): GeoJSON uploads, map data for layout_anreise.
+ * Anreise & Parken (Geteilte Inhalte → Anreise & Parken): GeoJSON uploads, map data for layout_anreise and layout_text_karte, layer choices for layout_text_karte.
  *
  * @package loveride
  */
@@ -90,3 +90,15 @@ function lr_anreise_karte( array $karte ): array {
 		'ebenen' => $ebenen,
 	);
 }
+
+add_filter( 'acf/prepare_field/key=field_bdc7c3ce588de', function ( $field ) {
+
+	$ebenen = lr_anreise_karte( (array) ( lr_get_option( 'geteilt_anreise', array() )['karte'] ?? array() ) )['ebenen'];
+
+	$field['choices'] = array_combine(
+		array_map( fn( $ebene ) => sanitize_title( $ebene['name'] ), $ebenen ),
+		wp_list_pluck( $ebenen, 'name' )
+	) ?: array();
+
+	return $field;
+} );

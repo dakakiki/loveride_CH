@@ -1,5 +1,5 @@
 /*
-* Anreise & Parken (layout_anreise): Leaflet map with the grey swisstopo national map (no key, no cookies), red destination marker, one layer per Ebene (label markers with icon + GeoJSON lines); layer checkboxes toggle the layers
+* Anreise & Parken (layout_anreise) and Text & Karte (layout_text_karte): Leaflet map with the grey swisstopo national map (no key, no cookies), red destination marker, one layer per Ebene (label markers with icon + GeoJSON lines); layer checkboxes toggle the layers
 */
 
 import L from "leaflet";
@@ -93,12 +93,17 @@ document.querySelectorAll("[data-anreise]").forEach(function (section) {
         });
 
         if (ebene.geojson) {
-            group.addLayer(L.geoJSON(ebene.geojson, {
+            const shapes = L.geoJSON(ebene.geojson, {
                 style: { color: "#CE0E2D", weight: 5, opacity: 0.9, fillOpacity: 0.15 },
                 pointToLayer: function (feature, latlng) {
                     return L.circleMarker(latlng, { radius: 6, color: "#CE0E2D", weight: 3, fillColor: "#FFFFFF", fillOpacity: 1 });
                 }
-            }));
+            });
+            const area = shapes.getBounds();
+
+            group.addLayer(shapes);
+
+            if (ebene.aktiv && area.isValid()) bounds.push(area.getNorthWest(), area.getSouthEast());
         }
 
         if (ebene.aktiv) group.addTo(map);
@@ -117,7 +122,7 @@ document.querySelectorAll("[data-anreise]").forEach(function (section) {
     });
 
     if (bounds.length > 1) {
-        const side = mapEl.clientWidth < 600 ? 32 : 80;
+        const side = window.matchMedia("(max-width: 768px)").matches ? 32 : 110;
 
         map.fitBounds(L.latLngBounds(bounds), { paddingTopLeft: [side, 64], paddingBottomRight: [side, 24], maxZoom: config.zoom });
     }

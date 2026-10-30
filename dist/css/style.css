@@ -43,7 +43,7 @@ Author: Kommpass GmbH
 * Mixins: container, section spacing, color schemes, fluid properties and small helpers
 */
 /*
-* Typography: Figma text styles H1–H6, Tagline, Text Large–Tiny (Desktop / Mobile), compact rich text (legal text)
+* Typography: Figma text styles H1–H6, Tagline, Text Large–Tiny (Desktop / Mobile), compact rich text (legal text), text accents (red-square list, H4 note with red line)
 */
 /*
 * Buttons: Primary, Secondary, Link (Figma "Button"); colors follow the section scheme, Alternate on Dunkel / Rot
@@ -5149,12 +5149,12 @@ html:has(.read-aloud:not([hidden])) {
   }
 }
 
-.layout-anreise .leaflet-popup-content-wrapper {
+:is(.layout-anreise, .layout-text-karte) .leaflet-popup-content-wrapper {
   border-radius: 0;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
-.layout-anreise .leaflet-popup-content {
+:is(.layout-anreise, .layout-text-karte) .leaflet-popup-content {
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
   font-stretch: 100%;
   font-weight: 400;
@@ -5164,10 +5164,10 @@ html:has(.read-aloud:not([hidden])) {
   line-height: 1.3;
   color: #1A1A1A;
 }
-.layout-anreise .leaflet-popup-content strong {
+:is(.layout-anreise, .layout-text-karte) .leaflet-popup-content strong {
   display: block;
 }
-.layout-anreise .leaflet-popup-content p {
+:is(.layout-anreise, .layout-text-karte) .leaflet-popup-content p {
   margin: 0.25rem 0 0;
 }
 
@@ -5589,6 +5589,305 @@ html:has(.read-aloud:not([hidden])) {
     transition: none;
   }
 }
+/*
+* Layout: Karten-Grid (layout_karten) – section head and cards in 2 / 3 / 4 columns: icon on top or left, red label, title (small / standard / large), text, link; cards off-white on white, white on off-white, #333 on dark (#1A1A1A), red when highlighted, optional red top line
+*/
+.layout-karten {
+  padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+  padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+  --karte-bg: #F7F5F2;
+  --karte-label: #CE0E2D;
+  --karte-text: #444444;
+}
+.layout-karten .section-head {
+  margin-bottom: clamp(32px, 26.0571428571px + 1.5238095238vw, 48px);
+}
+.layout-karten .section-head__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  max-width: 42.5rem;
+  color: #444444;
+}
+
+.karten--offwhite {
+  --karte-bg: #FFFFFF;
+}
+
+.karten--dunkel {
+  --scheme-accent: #DC0D15;
+  --karte-bg: #333333;
+  --karte-label: #B3AFA8;
+  --karte-text: #B3AFA8;
+  background-color: #1A1A1A;
+}
+.karten--dunkel .section-head__text {
+  color: #B3AFA8;
+}
+
+.karten {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+@media (min-width: 640px) {
+  .karten {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 991px) {
+  .karten--spalten-3 .karten {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1280px) {
+  .karten--spalten-4 .karten {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.karte {
+  --karte-icon: #DC0D15;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: clamp(24px, 22.5142857143px + 0.380952381vw, 28px);
+  color: var(--scheme-text);
+  background-color: var(--karte-bg);
+}
+.karten--linie .karte {
+  border-top: 4px solid #CE0E2D;
+}
+.karten--dunkel .karte {
+  --karte-icon: #FFFFFF;
+}
+.karten--icon-links .karte {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+.karte--rot {
+  --karte-bg: #CE0E2D;
+  --karte-label: #FFFFFF;
+  --karte-text: #FFFFFF;
+  --karte-icon: #FFFFFF;
+  color: #FFFFFF;
+  border-top-color: #A50B24;
+}
+.karte__icon {
+  flex: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: var(--karte-icon);
+}
+.karte__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+}
+.karte__oberzeile {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  text-transform: uppercase;
+  color: var(--karte-label);
+}
+.karte__titel {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(22px, 21.2571428571px + 0.1904761905vw, 24px);
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  margin: 0;
+  color: inherit;
+}
+.karten--titel-klein .karte__titel {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(19px, 18.6285714286px + 0.0952380952vw, 20px);
+}
+.karten--titel-gross .karte__titel {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(26px, 23.7714285714px + 0.5714285714vw, 32px);
+}
+.karte__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  margin: 0;
+  line-height: 1.2;
+  color: var(--karte-text);
+}
+.karte__link {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 0.25rem;
+}
+
+/*
+* Layout: Text & Karte (layout_text_karte) – text column (head with red-square list, buttons) next to the map of one Anreise layer or its placeholder box (grey, icon, title, note); stacked below 991
+*/
+.layout-text-karte {
+  padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+  padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+}
+.layout-text-karte .section-head {
+  margin-bottom: 24px;
+}
+.layout-text-karte .section-head__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+}
+.layout-text-karte .section-head__text > p + p {
+  margin-top: 1rem;
+}
+.layout-text-karte .section-head__text > * + ul,
+.layout-text-karte .section-head__text > * + ol,
+.layout-text-karte .section-head__text > * + h4 {
+  margin-top: clamp(24px, 21.0285714286px + 0.7619047619vw, 32px);
+}
+.layout-text-karte .section-head__text > ul + p,
+.layout-text-karte .section-head__text > ol + p,
+.layout-text-karte .section-head__text > h4 + p {
+  margin-top: clamp(20px, 17.0285714286px + 0.7619047619vw, 28px);
+}
+.layout-text-karte .section-head__text ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+}
+.layout-text-karte .section-head__text ul li {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 600;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  position: relative;
+  padding-left: 1.375rem;
+  color: var(--scheme-text);
+}
+.layout-text-karte .section-head__text ul li::before {
+  content: "";
+  position: absolute;
+  top: 0.5em;
+  left: 0;
+  width: 0.625rem;
+  height: 0.625rem;
+  background-color: #CE0E2D;
+}
+.layout-text-karte .section-head__text h4 {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  margin-bottom: 0;
+  padding: 0.25rem 0 0.25rem 1rem;
+  line-height: 1.2;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--scheme-text);
+  border-left: 4px solid #CE0E2D;
+}
+.layout-text-karte .section-head__text {
+  max-width: 40rem;
+  color: #444444;
+}
+
+.text-karte {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(32px, 26.0571428571px + 1.5238095238vw, 48px) 5rem;
+}
+@media (min-width: 991px) {
+  .text-karte {
+    grid-template-columns: minmax(0, 640fr) minmax(0, 560fr);
+    align-items: start;
+  }
+}
+.text-karte__map, .text-karte__platzhalter {
+  position: relative;
+  z-index: 0;
+  aspect-ratio: 560/440;
+  background-color: #E0DDD8;
+}
+.text-karte__map .leaflet-container {
+  font-family: inherit;
+  background-color: #E0DDD8;
+}
+.text-karte__map .leaflet-tile-pane {
+  opacity: 0.5;
+}
+.text-karte__platzhalter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  text-align: center;
+  color: #555555;
+}
+.text-karte__platzhalter-icon {
+  width: 3rem;
+  height: 3rem;
+}
+.text-karte__platzhalter-titel {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(22px, 21.2571428571px + 0.1904761905vw, 24px);
+  margin: 0;
+  text-transform: none;
+}
+.text-karte__platzhalter-text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  margin: 0;
+}
+
 /*
 * Layout: Preise (layout_preise) – off-white section, price cards in 4 / 2 / 1 columns (white with grey border; free = red price; highlighted = dark with red border and the red Tickets button), small footnote
 */

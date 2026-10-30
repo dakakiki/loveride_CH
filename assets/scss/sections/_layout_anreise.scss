@@ -257,12 +257,12 @@
     }
 }
 
-.layout-anreise .leaflet-popup-content-wrapper {
+:is(.layout-anreise, .layout-text-karte) .leaflet-popup-content-wrapper {
     border-radius: 0;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
-.layout-anreise .leaflet-popup-content {
+:is(.layout-anreise, .layout-text-karte) .leaflet-popup-content {
     @include t-text-small;
 
     margin: rem(14) rem(32) rem(14) rem(16);
