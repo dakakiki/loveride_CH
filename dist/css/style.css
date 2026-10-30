@@ -5243,6 +5243,131 @@ html:has(.read-aloud:not([hidden])) {
 }
 
 /*
+* Layout: Übernachten (layout_uebernachten) – off-white or white section, head left of the accommodation cards from 1280 (above below), white cards with red top line, red icon and type label, phone and website link; 3 / 1 columns
+*/
+.layout-uebernachten {
+  padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+  padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+}
+.layout-uebernachten .section-head {
+  margin-bottom: 0;
+}
+.layout-uebernachten .section-head__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  max-width: 40rem;
+  color: #444444;
+}
+
+.uebernachten {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(32px, 26.0571428571px + 1.5238095238vw, 48px) 5rem;
+}
+@media (min-width: 1280px) {
+  .uebernachten {
+    grid-template-columns: minmax(0, 360fr) minmax(0, 840fr);
+    align-items: start;
+  }
+}
+
+.unterkuenfte {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .unterkuenfte {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.unterkunft {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: clamp(24px, 21.0285714286px + 0.7619047619vw, 32px);
+  color: #1A1A1A;
+  border-top: 4px solid #CE0E2D;
+  background-color: #FFFFFF;
+}
+@media (min-width: 1280px) {
+  .unterkunft {
+    min-height: 22.625rem;
+  }
+}
+.unterkunft__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #CE0E2D;
+}
+.unterkunft__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+.unterkunft__typ {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  text-transform: uppercase;
+  color: #CE0E2D;
+}
+.unterkunft__title {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(22px, 21.2571428571px + 0.1904761905vw, 24px);
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  margin: 0;
+  color: inherit;
+}
+.unterkunft__telefon {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 600;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: inherit;
+  text-decoration: none;
+  transition-property: color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.unterkunft__telefon:hover {
+  color: #CE0E2D;
+}
+.unterkunft__telefon-icon {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #444444;
+}
+.unterkunft__cta {
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+/*
 * Layout: Preise (layout_preise) – off-white section, price cards in 4 / 2 / 1 columns (white with grey border; free = red price; highlighted = dark with red border and the red Tickets button), small footnote
 */
 .layout-preise {
