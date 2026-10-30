@@ -89,6 +89,11 @@
         gap: rem(20);
     }
 
+    .karten--titel-gross:not(.karten--zeitleiste) & {
+        gap: rem(14);
+        padding: fluid(24, 32);
+    }
+
     &--rot {
         --karte-bg: #{palette(clr-red)};
         --karte-label: #{palette(clr-white)};
@@ -96,7 +101,7 @@
         --karte-icon: #{palette(clr-white)};
 
         color: palette(clr-white);
-        border-top-color: palette(clr-red-dark);
+        border-top-color: palette(clr-red);
     }
 
     &__icon {
@@ -112,6 +117,10 @@
         flex-direction: column;
         gap: rem(12);
         min-width: 0;
+
+        .karten--titel-gross:not(.karten--zeitleiste) & {
+            gap: rem(14);
+        }
     }
 
     &__oberzeile {
@@ -144,6 +153,10 @@
         margin: 0;
         line-height: 1.2;
         color: var(--karte-text);
+
+        .karten--titel-gross:not(.karten--zeitleiste) & {
+            @include t-text;
+        }
     }
 
     &__link {

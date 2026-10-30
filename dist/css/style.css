@@ -780,7 +780,7 @@ hr {
 }
 
 /*
-* Forms: Contact Form 7 base (validation tips, response output, submitting state), the newsletter form layout (.nl-form) and the content form layout (.lr-form: labelled fields, two-field rows, checkbox group, privacy checkbox, submit)
+* Forms: Contact Form 7 base (validation tips, response output, submitting state), the newsletter form layout (.nl-form) and the content form layout (.lr-form: labelled fields, two-field rows, short textarea, checkbox group in a grid or inline, privacy checkbox, submit)
 */
 .wpcf7 {
   --form-error: #A50B24;
@@ -926,6 +926,9 @@ hr {
   min-height: 6.25rem;
   resize: vertical;
 }
+.lr-form textarea.lr-form__textarea--kurz {
+  height: 6.25rem;
+}
 .lr-form .wpcf7-checkbox {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -969,6 +972,19 @@ hr {
   margin-bottom: 0.625rem;
   padding: 0;
   color: #1A1A1A;
+}
+.lr-form__gruppe--inline .wpcf7-checkbox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem 1.25rem;
+}
+.lr-form__gruppe--inline .wpcf7-checkbox label {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  color: #444444;
 }
 .lr-form .wpcf7-acceptance .wpcf7-list-item {
   margin: 0;
@@ -5816,13 +5832,17 @@ html:has(.read-aloud:not([hidden])) {
   align-items: flex-start;
   gap: 1.25rem;
 }
+.karten--titel-gross:not(.karten--zeitleiste) .karte {
+  gap: 0.875rem;
+  padding: clamp(24px, 21.0285714286px + 0.7619047619vw, 32px);
+}
 .karte--rot {
   --karte-bg: #CE0E2D;
   --karte-label: #FFFFFF;
   --karte-text: #FFFFFF;
   --karte-icon: #FFFFFF;
   color: #FFFFFF;
-  border-top-color: #A50B24;
+  border-top-color: #CE0E2D;
 }
 .karte__icon {
   flex: none;
@@ -5836,6 +5856,9 @@ html:has(.read-aloud:not([hidden])) {
   flex-direction: column;
   gap: 0.75rem;
   min-width: 0;
+}
+.karten--titel-gross:not(.karten--zeitleiste) .karte__body {
+  gap: 0.875rem;
 }
 .karte__oberzeile {
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
@@ -5891,6 +5914,13 @@ html:has(.read-aloud:not([hidden])) {
   margin: 0;
   line-height: 1.2;
   color: var(--karte-text);
+}
+.karten--titel-gross:not(.karten--zeitleiste) .karte__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
 }
 .karte__link {
   align-self: flex-start;
@@ -6278,11 +6308,15 @@ html:has(.read-aloud:not([hidden])) {
 }
 
 /*
-* Layout: Banner (layout_banner) – band with optional icon, title (large 40 / medium 32 / small 24) and text left, buttons right (stacked on mobile); red (white text, white button), dark #1A1A1A (white button, outline hover) or off-white
+* Layout: Banner (layout_banner) – band with optional icon, title (large 40 / medium 32 / small 24 = compact band, icon 36 centred) and text left, buttons right (stacked on mobile); red (white text, white button), dark #1A1A1A (white button, outline hover) or off-white
 */
 .layout-banner {
   padding-top: clamp(40px, 34.0571428571px + 1.5238095238vw, 56px);
   padding-bottom: clamp(40px, 34.0571428571px + 1.5238095238vw, 56px);
+}
+.layout-banner.banner--titel-klein {
+  padding-top: clamp(40px, 37.0285714286px + 0.7619047619vw, 48px);
+  padding-bottom: clamp(40px, 37.0285714286px + 0.7619047619vw, 48px);
 }
 
 .banner--rot {
@@ -6330,10 +6364,21 @@ html:has(.read-aloud:not([hidden])) {
   margin-top: 0.25rem;
   color: var(--banner-icon);
 }
+.banner--titel-klein .banner__icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-top: 0;
+}
+.banner--titel-klein .banner__inhalt {
+  align-items: center;
+}
 .banner__text {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+.banner--titel-klein .banner__text {
+  gap: 0.25rem;
 }
 .banner__titel {
   font-family: "Open Sans", Arial, Helvetica, sans-serif;

@@ -1,5 +1,5 @@
 /*
-* Forms: Contact Form 7 base (validation tips, response output, submitting state), the newsletter form layout (.nl-form) and the content form layout (.lr-form: labelled fields, two-field rows, checkbox group, privacy checkbox, submit)
+* Forms: Contact Form 7 base (validation tips, response output, submitting state), the newsletter form layout (.nl-form) and the content form layout (.lr-form: labelled fields, two-field rows, short textarea, checkbox group in a grid or inline, privacy checkbox, submit)
 */
 
 @use '../abstracts' as *;
@@ -142,6 +142,10 @@
         height: rem(140);
         min-height: rem(100);
         resize: vertical;
+
+        &.lr-form__textarea--kurz {
+            height: rem(100);
+        }
     }
 
     .wpcf7-checkbox {
@@ -185,6 +189,18 @@
             margin-bottom: rem(10);
             padding: 0;
             color: palette(clr-neutral-darkest);
+        }
+
+        &--inline .wpcf7-checkbox {
+            display: flex;
+            flex-wrap: wrap;
+            gap: rem(10) rem(20);
+
+            label {
+                @include t-text-small;
+
+                color: palette(clr-neutral-dark);
+            }
         }
     }
 

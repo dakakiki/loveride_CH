@@ -1,6 +1,6 @@
 <?php
 /**
- * Layout: Banner (layout_banner) – band with optional icon, title and text on the left and buttons on the right, red / dark / off-white, three title sizes; Ride-Out „Als Passagier mitfahren“, „Bike-Show“, later Helfen „Helferadmin“, „Danke“, Rückblick „Chronik“.
+ * Layout: Banner (layout_banner) – band with optional icon, title and text on the left and buttons on the right, red / dark / off-white, three title sizes; Ride-Out „Als Passagier mitfahren“, „Bike-Show“, Helfen „Helferadmin“ (Klein), „Danke“, later Rückblick „Chronik“.
  *
  * @package loveride
  */

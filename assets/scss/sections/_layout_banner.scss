@@ -1,5 +1,5 @@
 /*
-* Layout: Banner (layout_banner) – band with optional icon, title (large 40 / medium 32 / small 24) and text left, buttons right (stacked on mobile); red (white text, white button), dark #1A1A1A (white button, outline hover) or off-white
+* Layout: Banner (layout_banner) – band with optional icon, title (large 40 / medium 32 / small 24 = compact band, icon 36 centred) and text left, buttons right (stacked on mobile); red (white text, white button), dark #1A1A1A (white button, outline hover) or off-white
 */
 
 @use '../abstracts' as *;
@@ -7,6 +7,11 @@
 .layout-banner {
     @include fluid-prop(padding-top, 40, 56);
     @include fluid-prop(padding-bottom, 40, 56);
+
+    &.banner--titel-klein {
+        @include fluid-prop(padding-top, 40, 48);
+        @include fluid-prop(padding-bottom, 40, 48);
+    }
 }
 
 .banner--rot {
@@ -54,12 +59,26 @@
         height: rem(40);
         margin-top: rem(4);
         color: var(--banner-icon);
+
+        .banner--titel-klein & {
+            width: rem(36);
+            height: rem(36);
+            margin-top: 0;
+        }
+    }
+
+    .banner--titel-klein &__inhalt {
+        align-items: center;
     }
 
     &__text {
         display: flex;
         flex-direction: column;
         gap: rem(8);
+
+        .banner--titel-klein & {
+            gap: rem(4);
+        }
     }
 
     &__titel {
