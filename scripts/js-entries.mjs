@@ -15,5 +15,6 @@ export const entries = [
   { in: "assets/js/news.js", out: "dist/js/news.min.js", bundle: false },
   { in: "assets/js/logo-wand.js", out: "dist/js/logo-wand.min.js", bundle: false },
   { in: "assets/js/programm.js", out: "dist/js/programm.min.js", bundle: false },
+  { in: "assets/js/gelaendeplan.js", out: "dist/js/gelaendeplan.min.js", bundle: true },
   { in: "assets/js/read-aloud.js", out: "dist/js/read-aloud.min.js", bundle: false },
 ];

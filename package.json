@@ -36,6 +36,7 @@
         "terser": "^5.44.1"
     },
     "dependencies": {
-        "gsap": "^3.14.2"
+        "gsap": "^3.14.2",
+        "leaflet": "^1.9.4"
     }
 }

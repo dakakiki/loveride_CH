@@ -1,0 +1,252 @@
+/*
+* Layout: Geländeplan (layout_gelaendeplan) – map (swisstopo aerial / plan graphic) with black label markers (number + title, arrow down) next to the numbered legend (rows divided by lines; red = highlighted, active = red title and number), PDF button, Food & Drinks points with icons on off-white
+*/
+
+@use '../abstracts' as *;
+
+.layout-gelaendeplan {
+    @include fluid-prop(padding-top, 48, 96);
+    @include fluid-prop(padding-bottom, 48, 96);
+
+    .section-head {
+        @include fluid-prop(margin-bottom, 32, 48);
+    }
+
+    .section-head__text {
+        @include t-text;
+
+        max-width: rem(720);
+        color: palette(clr-neutral-dark);
+    }
+}
+
+.gelaende {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: rem(32) rem(48);
+
+    @include respond-min(lg) {
+        grid-template-columns: minmax(0, 820fr) minmax(0, 412fr);
+        align-items: start;
+    }
+
+    &__map {
+        position: relative;
+        z-index: 0;
+        aspect-ratio: 4 / 3;
+        background-color: palette(clr-neutral-lightest);
+
+        @include respond-min(md) {
+            aspect-ratio: 820 / 520;
+        }
+
+        .leaflet-container {
+            font-family: inherit;
+        }
+    }
+
+    &__fallback {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    &__legende {
+        @include reset-list;
+
+        > li {
+            border-bottom: 1px solid palette(clr-neutral-lighter);
+        }
+    }
+
+    &__ort {
+        display: flex;
+        align-items: center;
+        gap: rem(16);
+        width: 100%;
+        padding: rem(14) 0;
+        color: palette(clr-neutral-darkest);
+        text-align: left;
+        border: 0;
+        background: none;
+
+        &:is(button) {
+            cursor: pointer;
+
+            &:hover .gelaende__titel,
+            &[aria-pressed="true"] .gelaende__titel {
+                color: palette(clr-red);
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--focus-color);
+                outline-offset: 2px;
+            }
+        }
+
+        &[aria-pressed="true"] .gelaende__nr {
+            background-color: palette(clr-red);
+        }
+    }
+
+    &__nr {
+        @include t-text-medium($fw-bold);
+
+        display: grid;
+        flex: none;
+        place-items: center;
+        width: rem(32);
+        height: rem(32);
+        line-height: 1;
+        color: palette(clr-white);
+        background-color: palette(clr-neutral-darkest);
+    }
+
+    &__ort--rot &__nr {
+        background-color: palette(clr-red);
+    }
+
+    &__titel {
+        @include t-text($fw-semibold);
+        @include trans(color);
+    }
+
+    &__pdf {
+        margin-top: rem(24);
+    }
+}
+
+.gelaende-marker {
+    --pin-bg: #{palette(clr-neutral-darkest)};
+    --pin-nr: #{palette(clr-neutral-darkest)};
+
+    &--rot {
+        --pin-bg: #{palette(clr-red)};
+        --pin-nr: #{palette(clr-red)};
+    }
+
+    &__label {
+        @include t-text-small($fw-semibold);
+
+        position: absolute;
+        bottom: rem(9);
+        left: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: rem(8);
+        padding: rem(5) rem(12) rem(5) rem(5);
+        line-height: 1.2;
+        color: palette(clr-white);
+        white-space: nowrap;
+        background-color: var(--pin-bg);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+        transform: translateX(-50%);
+        cursor: pointer;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            border-top: rem(9) solid var(--pin-bg);
+            border-right: rem(8) solid transparent;
+            border-left: rem(8) solid transparent;
+            transform: translateX(-50%);
+        }
+    }
+
+    &__nr {
+        display: grid;
+        place-items: center;
+        min-width: rem(24);
+        height: rem(24);
+        padding: 0 rem(4);
+        font-weight: $fw-bold;
+        line-height: 1;
+        color: var(--pin-nr);
+        background-color: palette(clr-white);
+    }
+
+    &:hover &__label,
+    &.is-active &__label {
+        outline: 2px solid palette(clr-white);
+    }
+
+    &.is-active {
+        --pin-bg: #{palette(clr-red)};
+        --pin-nr: #{palette(clr-red)};
+    }
+
+    @include respond-max(md) {
+        &__label {
+            padding-right: rem(5);
+        }
+
+        &:not(.is-active) &__text {
+            display: none;
+        }
+
+        &.is-active &__label {
+            padding-right: rem(12);
+        }
+    }
+}
+
+.gelaende-punkte {
+    @include fluid-prop(margin-top, 40, 48);
+
+    &__title {
+        @include t-h4;
+
+        margin-bottom: rem(24);
+    }
+
+    &__list {
+        @include reset-list;
+
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: rem(16);
+
+        @include respond-min(md) {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+}
+
+.gelaende-punkt {
+    display: flex;
+    align-items: flex-start;
+    gap: rem(16);
+    padding: rem(24);
+    background-color: palette(clr-off-white);
+
+    &__icon {
+        flex: none;
+        width: rem(32);
+        height: rem(32);
+        color: palette(clr-red);
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        gap: rem(6);
+    }
+
+    &__title {
+        @include t-text($fw-bold);
+
+        margin: 0;
+        line-height: 1.2;
+    }
+
+    &__desc {
+        @include t-text-small;
+
+        margin: 0;
+        line-height: 1.2;
+        color: palette(clr-neutral-dark);
+    }
+}

@@ -31,6 +31,13 @@ add_filter( 'lr_layout_scripts', function ( array $scripts ): array {
 		'deps'   => array( 'lr-gsap' ),
 	);
 
+	$scripts['layout_gelaendeplan'] = array(
+		'handle' => 'lr-gelaendeplan',
+		'file'   => 'js/gelaendeplan.min.js',
+		'min'    => 'js/gelaendeplan.min.js',
+		'deps'   => array(),
+	);
+
 	$scripts['layout_programm'] = array(
 		'handle' => 'lr-programm',
 		'file'   => 'js/programm.min.js',
