@@ -4778,6 +4778,7 @@ html:has(.read-aloud:not([hidden])) {
   padding: 0.3125rem 0.75rem 0.3125rem 0.3125rem;
   line-height: 1.2;
   color: #FFFFFF;
+  width: max-content;
   white-space: nowrap;
   background-color: var(--pin-bg);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
@@ -4888,6 +4889,357 @@ html:has(.read-aloud:not([hidden])) {
   margin: 0;
   line-height: 1.2;
   color: #444444;
+}
+
+/*
+* Layout: Anreise & Parken (layout_anreise) – dark section: head with Anfahrtsplan button, softened grey swisstopo map (simple, or with the off-white layer panel and red checkboxes), label markers (icon + title, destination red), Wege boxes (#333, red top line, red icon)
+*/
+.layout-anreise {
+  padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+  padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+  --scheme-accent: #DC0D15;
+  --btn-secondary-hover-bg: #FFFFFF;
+  --btn-secondary-hover-border: #FFFFFF;
+  --btn-secondary-hover-text: #1A1A1A;
+  background-color: #1A1A1A;
+}
+.layout-anreise .section-head {
+  max-width: 40rem;
+  margin-bottom: 0;
+}
+.layout-anreise .section-head__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  color: #B3AFA8;
+}
+
+.anreise__head {
+  margin-bottom: clamp(32px, 26.0571428571px + 1.5238095238vw, 48px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem 3rem;
+}
+
+.anreise-karte {
+  margin-bottom: clamp(32px, 26.0571428571px + 1.5238095238vw, 48px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  color: #1A1A1A;
+}
+.anreise-karte__map {
+  position: relative;
+  z-index: 0;
+  aspect-ratio: 1/1;
+  background-color: #E0DDD8;
+}
+@media (min-width: 768px) {
+  .anreise-karte__map {
+    aspect-ratio: 16/9;
+  }
+}
+@media (min-width: 991px) {
+  .anreise-karte__map {
+    aspect-ratio: 1280/480;
+  }
+}
+.anreise-karte__map .leaflet-container {
+  font-family: inherit;
+  background-color: #E0DDD8;
+}
+.anreise-karte__map .leaflet-tile-pane {
+  opacity: 0.5;
+}
+@media (min-width: 991px) {
+  .anreise-karte--ebenen {
+    grid-template-columns: 21.25rem minmax(0, 1fr);
+  }
+}
+@media (min-width: 991px) {
+  .anreise-karte--ebenen .anreise-karte__map {
+    aspect-ratio: auto;
+    min-height: 35rem;
+  }
+}
+.anreise-karte__ebenen {
+  min-width: 0;
+  margin: 0;
+  padding: 1.5rem 1.25rem;
+  border: 0;
+  background-color: #F7F5F2;
+}
+@media (min-width: 991px) {
+  .anreise-karte__ebenen {
+    padding: 1.75rem 1.5rem;
+  }
+}
+.anreise-karte__legend {
+  float: left;
+  width: 100%;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  color: #DC0D15;
+}
+.anreise-karte__liste {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  clear: both;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0 1.5rem;
+}
+@media (min-width: 640px) {
+  .anreise-karte__liste {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 991px) {
+  .anreise-karte__liste {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.25rem;
+  }
+}
+
+.anreise-ebene {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  cursor: pointer;
+}
+@media (min-width: 991px) {
+  .anreise-ebene {
+    padding: 0.625rem 0;
+  }
+}
+.anreise-ebene__input {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.anreise-ebene__box {
+  position: relative;
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid #1A1A1A;
+  background-color: #FFFFFF;
+  transition-property: background-color, border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.anreise-ebene__box::after {
+  content: "";
+  position: absolute;
+  top: 0.0625rem;
+  left: 0.3125rem;
+  width: 0.375rem;
+  height: 0.6875rem;
+  border: solid #FFFFFF;
+  border-width: 0 2px 2px 0;
+  opacity: 0;
+  transform: rotate(45deg);
+}
+.anreise-ebene__input:checked + .anreise-ebene__box {
+  border-color: #CE0E2D;
+  background-color: #CE0E2D;
+}
+.anreise-ebene__input:checked + .anreise-ebene__box::after {
+  opacity: 1;
+}
+.anreise-ebene__input:focus-visible + .anreise-ebene__box {
+  outline: 2px solid #1A1A1A;
+  outline-offset: 2px;
+}
+.anreise-ebene__icon {
+  flex: none;
+  width: 1.375rem;
+  height: 1.375rem;
+}
+.anreise-ebene__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.anreise-ebene__name {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+}
+.anreise-ebene__hinweis {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  line-height: 1.2;
+  color: #444444;
+}
+
+.anreise-marker {
+  --pin-bg: #1A1A1A;
+}
+.anreise-marker--ziel {
+  --pin-bg: #CE0E2D;
+}
+.anreise-marker__label {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  position: absolute;
+  bottom: 0.5625rem;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem 0.5rem 0.625rem;
+  color: #FFFFFF;
+  width: max-content;
+  white-space: nowrap;
+  background-color: var(--pin-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+.anreise-marker__label svg {
+  flex: none;
+  width: 1.375rem;
+  height: 1.375rem;
+}
+.anreise-marker__label::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  border-top: 0.5625rem solid var(--pin-bg);
+  border-right: 0.5rem solid transparent;
+  border-left: 0.5rem solid transparent;
+  transform: translateX(-50%);
+}
+.anreise-marker:hover .anreise-marker__label, .anreise-marker.is-active .anreise-marker__label {
+  outline: 2px solid #FFFFFF;
+}
+@media (max-width: 768px) {
+  .anreise-marker:not(.is-active) .anreise-marker__label {
+    padding: 0.5rem;
+  }
+  .anreise-marker:not(.is-active) .anreise-marker__text {
+    display: none;
+  }
+}
+
+.layout-anreise .leaflet-popup-content-wrapper {
+  border-radius: 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.layout-anreise .leaflet-popup-content {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  margin: 0.875rem 2rem 0.875rem 1rem;
+  line-height: 1.3;
+  color: #1A1A1A;
+}
+.layout-anreise .leaflet-popup-content strong {
+  display: block;
+}
+.layout-anreise .leaflet-popup-content p {
+  margin: 0.25rem 0 0;
+}
+
+.anreise-wege {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+@media (min-width: 640px) {
+  .anreise-wege {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1280px) {
+  .anreise-wege {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.anreise-weg {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: clamp(24px, 22.5142857143px + 0.380952381vw, 28px);
+  color: #FFFFFF;
+  border-top: 4px solid #CE0E2D;
+  background-color: #333333;
+}
+.anreise-weg__icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  color: #DC0D15;
+}
+.anreise-weg__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.anreise-weg__title {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(22px, 21.2571428571px + 0.1904761905vw, 24px);
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  margin: 0;
+  color: inherit;
+}
+.anreise-weg__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  margin: 0;
+  line-height: 1.2;
+  color: #B3AFA8;
+}
+.anreise-weg__cta {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+.anreise-weg__cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 
 /*

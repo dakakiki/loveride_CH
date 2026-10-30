@@ -31,12 +31,15 @@ add_filter( 'lr_layout_scripts', function ( array $scripts ): array {
 		'deps'   => array( 'lr-gsap' ),
 	);
 
-	$scripts['layout_gelaendeplan'] = array(
-		'handle' => 'lr-gelaendeplan',
-		'file'   => 'js/gelaendeplan.min.js',
-		'min'    => 'js/gelaendeplan.min.js',
+	$karten = array(
+		'handle' => 'lr-karten',
+		'file'   => 'js/karten.min.js',
+		'min'    => 'js/karten.min.js',
 		'deps'   => array(),
 	);
+
+	$scripts['layout_gelaendeplan'] = $karten;
+	$scripts['layout_anreise']      = $karten;
 
 	$scripts['layout_programm'] = array(
 		'handle' => 'lr-programm',

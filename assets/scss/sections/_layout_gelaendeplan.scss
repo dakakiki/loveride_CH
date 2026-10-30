@@ -138,6 +138,7 @@
         padding: rem(5) rem(12) rem(5) rem(5);
         line-height: 1.2;
         color: palette(clr-white);
+        width: max-content;
         white-space: nowrap;
         background-color: var(--pin-bg);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);

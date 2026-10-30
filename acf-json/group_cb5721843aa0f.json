@@ -1000,46 +1000,42 @@
                     "layout": "block",
                     "sub_fields": [
                         {
-                            "key": "field_038deba7f0e2a",
-                            "label": "Breitengrad",
-                            "name": "lat",
+                            "key": "field_67e15ab031df5",
+                            "label": "Ziel",
+                            "name": "ziel",
                             "aria-label": "",
-                            "type": "number",
+                            "type": "text",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "33",
+                                "width": "40",
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": 47.398,
-                            "min": "",
-                            "max": "",
-                            "step": "any",
+                            "default_value": "Flugplatz Dübendorf",
+                            "maxlength": "",
                             "placeholder": "",
                             "prepend": "",
                             "append": ""
                         },
                         {
-                            "key": "field_8f955313e7474",
-                            "label": "Längengrad",
-                            "name": "lng",
+                            "key": "field_a782ff191e5eb",
+                            "label": "Position Ziel",
+                            "name": "position",
                             "aria-label": "",
-                            "type": "number",
+                            "type": "text",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "33",
+                                "width": "40",
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": 8.648,
-                            "min": "",
-                            "max": "",
-                            "step": "any",
-                            "placeholder": "",
+                            "default_value": "47.3985, 8.6432",
+                            "maxlength": "",
+                            "placeholder": "47.3985, 8.6432",
                             "prepend": "",
                             "append": ""
                         },
@@ -1053,13 +1049,13 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "33",
+                                "width": "20",
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": 14,
-                            "min": 8,
-                            "max": 19,
+                            "default_value": 15,
+                            "min": 10,
+                            "max": 18,
                             "step": "",
                             "placeholder": "",
                             "prepend": "",
@@ -1083,7 +1079,7 @@
                             "pagination": 0,
                             "min": 0,
                             "max": 0,
-                            "collapsed": "",
+                            "collapsed": "field_795bea7f435a8",
                             "button_label": "Ebene hinzufügen",
                             "rows_per_page": 20,
                             "sub_fields": [
@@ -1171,7 +1167,7 @@
                                     },
                                     "default_value": "",
                                     "maxlength": "",
-                                    "placeholder": "folgt vor dem Event",
+                                    "placeholder": "z. B. folgt vor dem Event",
                                     "prepend": "",
                                     "append": "",
                                     "parent_repeater": "field_28a328578130c"
@@ -1221,47 +1217,22 @@
                                             "parent_repeater": "field_5209ffe2a8831"
                                         },
                                         {
-                                            "key": "field_076493b390354",
-                                            "label": "Breitengrad",
-                                            "name": "lat",
+                                            "key": "field_1879ad40d5b96",
+                                            "label": "Position",
+                                            "name": "position",
                                             "aria-label": "",
-                                            "type": "number",
+                                            "type": "text",
                                             "instructions": "",
                                             "required": 0,
                                             "conditional_logic": 0,
                                             "wrapper": {
-                                                "width": "20",
+                                                "width": "30",
                                                 "class": "",
                                                 "id": ""
                                             },
                                             "default_value": "",
-                                            "min": "",
-                                            "max": "",
-                                            "step": "any",
-                                            "placeholder": "",
-                                            "prepend": "",
-                                            "append": "",
-                                            "parent_repeater": "field_5209ffe2a8831"
-                                        },
-                                        {
-                                            "key": "field_871672c1d1307",
-                                            "label": "Längengrad",
-                                            "name": "lng",
-                                            "aria-label": "",
-                                            "type": "number",
-                                            "instructions": "",
-                                            "required": 0,
-                                            "conditional_logic": 0,
-                                            "wrapper": {
-                                                "width": "20",
-                                                "class": "",
-                                                "id": ""
-                                            },
-                                            "default_value": "",
-                                            "min": "",
-                                            "max": "",
-                                            "step": "any",
-                                            "placeholder": "",
+                                            "maxlength": "",
+                                            "placeholder": "z. B. 47.3990, 8.6420",
                                             "prepend": "",
                                             "append": "",
                                             "parent_repeater": "field_5209ffe2a8831"
@@ -1276,7 +1247,7 @@
                                             "required": 0,
                                             "conditional_logic": 0,
                                             "wrapper": {
-                                                "width": "30",
+                                                "width": "40",
                                                 "class": "",
                                                 "id": ""
                                             },
@@ -1291,7 +1262,7 @@
                                 },
                                 {
                                     "key": "field_405d5c12aece2",
-                                    "label": "GeoJSON",
+                                    "label": "Linien \/ Flächen (GeoJSON)",
                                     "name": "geojson",
                                     "aria-label": "",
                                     "type": "file",
@@ -1307,7 +1278,7 @@
                                     "library": "all",
                                     "min_size": "",
                                     "max_size": "",
-                                    "mime_types": "geojson,json",
+                                    "mime_types": "geojson",
                                     "parent_repeater": "field_28a328578130c"
                                 }
                             ]
@@ -1849,5 +1820,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1793360284
+    "modified": 1793361944
 }

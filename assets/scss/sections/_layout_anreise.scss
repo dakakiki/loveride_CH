@@ -1,0 +1,347 @@
+/*
+* Layout: Anreise & Parken (layout_anreise) – dark section: head with Anfahrtsplan button, softened grey swisstopo map (simple, or with the off-white layer panel and red checkboxes), label markers (icon + title, destination red), Wege boxes (#333, red top line, red icon)
+*/
+
+@use '../abstracts' as *;
+
+.layout-anreise {
+    @include fluid-prop(padding-top, 48, 96);
+    @include fluid-prop(padding-bottom, 48, 96);
+
+    --scheme-accent: #{palette(clr-red-signal)};
+    --btn-secondary-hover-bg: #{palette(clr-white)};
+    --btn-secondary-hover-border: #{palette(clr-white)};
+    --btn-secondary-hover-text: #{palette(clr-neutral-darkest)};
+
+    background-color: palette(clr-neutral-darkest);
+
+    .section-head {
+        max-width: rem(640);
+        margin-bottom: 0;
+    }
+
+    .section-head__text {
+        @include t-text;
+
+        color: palette(clr-neutral-light);
+    }
+}
+
+.anreise__head {
+    @include fluid-prop(margin-bottom, 32, 48);
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: rem(24) rem(48);
+}
+
+.anreise-karte {
+    @include fluid-prop(margin-bottom, 32, 48);
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    color: palette(clr-neutral-darkest);
+
+    &__map {
+        position: relative;
+        z-index: 0;
+        aspect-ratio: 1 / 1;
+        background-color: palette(clr-neutral-lighter);
+
+        @include respond-min(md) {
+            aspect-ratio: 16 / 9;
+        }
+
+        @include respond-min(lg) {
+            aspect-ratio: 1280 / 480;
+        }
+
+        .leaflet-container {
+            font-family: inherit;
+            background-color: palette(clr-neutral-lighter);
+        }
+
+        .leaflet-tile-pane {
+            opacity: 0.5;
+        }
+    }
+
+    &--ebenen {
+        @include respond-min(lg) {
+            grid-template-columns: rem(340) minmax(0, 1fr);
+        }
+    }
+
+    &--ebenen &__map {
+        @include respond-min(lg) {
+            aspect-ratio: auto;
+            min-height: rem(560);
+        }
+    }
+
+    &__ebenen {
+        min-width: 0;
+        margin: 0;
+        padding: rem(24) rem(20);
+        border: 0;
+        background-color: palette(clr-off-white);
+
+        @include respond-min(lg) {
+            padding: rem(28) rem(24);
+        }
+    }
+
+    &__legend {
+        float: left;
+        width: 100%;
+        margin: 0 0 rem(12);
+        padding: 0;
+        color: palette(clr-red-signal);
+    }
+
+    &__liste {
+        @include reset-list;
+
+        clear: both;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0 rem(24);
+
+        @include respond-min(sm) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        @include respond-min(lg) {
+            grid-template-columns: minmax(0, 1fr);
+            gap: rem(4);
+        }
+    }
+}
+
+.anreise-ebene {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: rem(12);
+    padding: rem(8) 0;
+    cursor: pointer;
+
+    @include respond-min(lg) {
+        padding: rem(10) 0;
+    }
+
+    &__input {
+        @include visually-hidden;
+    }
+
+    &__box {
+        position: relative;
+        flex: none;
+        width: rem(20);
+        height: rem(20);
+        border: 2px solid palette(clr-neutral-darkest);
+        background-color: palette(clr-white);
+
+        @include trans((background-color, border-color));
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: rem(1);
+            left: rem(5);
+            width: rem(6);
+            height: rem(11);
+            border: solid palette(clr-white);
+            border-width: 0 2px 2px 0;
+            opacity: 0;
+            transform: rotate(45deg);
+        }
+    }
+
+    &__input:checked + &__box {
+        border-color: palette(clr-red);
+        background-color: palette(clr-red);
+
+        &::after {
+            opacity: 1;
+        }
+    }
+
+    &__input:focus-visible + &__box {
+        outline: 2px solid palette(clr-neutral-darkest);
+        outline-offset: 2px;
+    }
+
+    &__icon {
+        flex: none;
+        width: rem(22);
+        height: rem(22);
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+    }
+
+    &__name {
+        @include t-text;
+    }
+
+    &__hinweis {
+        @include t-text-small;
+
+        line-height: 1.2;
+        color: palette(clr-neutral-dark);
+    }
+}
+
+.anreise-marker {
+    --pin-bg: #{palette(clr-neutral-darkest)};
+
+    &--ziel {
+        --pin-bg: #{palette(clr-red)};
+    }
+
+    &__label {
+        @include t-text-tiny($fw-bold);
+
+        position: absolute;
+        bottom: rem(9);
+        left: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: rem(8);
+        padding: rem(8) rem(14) rem(8) rem(10);
+        color: palette(clr-white);
+        width: max-content;
+        white-space: nowrap;
+        background-color: var(--pin-bg);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+        transform: translateX(-50%);
+        cursor: pointer;
+
+        svg {
+            flex: none;
+            width: rem(22);
+            height: rem(22);
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            border-top: rem(9) solid var(--pin-bg);
+            border-right: rem(8) solid transparent;
+            border-left: rem(8) solid transparent;
+            transform: translateX(-50%);
+        }
+    }
+
+    &:hover &__label,
+    &.is-active &__label {
+        outline: 2px solid palette(clr-white);
+    }
+
+    @include respond-max(md) {
+        &:not(.is-active) &__label {
+            padding: rem(8);
+        }
+
+        &:not(.is-active) &__text {
+            display: none;
+        }
+    }
+}
+
+.layout-anreise .leaflet-popup-content-wrapper {
+    border-radius: 0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.layout-anreise .leaflet-popup-content {
+    @include t-text-small;
+
+    margin: rem(14) rem(32) rem(14) rem(16);
+    line-height: 1.3;
+    color: palette(clr-neutral-darkest);
+
+    strong {
+        display: block;
+    }
+
+    p {
+        margin: rem(4) 0 0;
+    }
+}
+
+.anreise-wege {
+    @include reset-list;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: rem(16);
+
+    @include respond-min(sm) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include respond-min(xxl) {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+.anreise-weg {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: rem(16);
+    padding: fluid(24, 28);
+    color: palette(clr-white);
+    border-top: 4px solid palette(clr-red);
+    background-color: palette(clr-neutral-darker);
+
+    &__icon {
+        width: rem(36);
+        height: rem(36);
+        color: palette(clr-red-signal);
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: rem(8);
+    }
+
+    &__title {
+        @include t-h5;
+        @include break-word;
+
+        margin: 0;
+        color: inherit;
+    }
+
+    &__text {
+        @include t-text-small;
+
+        margin: 0;
+        line-height: 1.2;
+        color: palette(clr-neutral-light);
+    }
+
+    &__cta {
+        align-self: flex-start;
+        margin-top: auto;
+        padding-top: rem(8);
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+    }
+}
