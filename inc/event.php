@@ -57,6 +57,36 @@ function lr_event_value( string $type ): string {
 }
 
 /**
+ * Eckdaten rows (Page-Hero, Medienmitteilungen info box): typ = Event-Daten value or „eigen“, vor = text before an Event-Daten value.
+ *
+ * @return array<int, array{label: string, wert: string}>
+ */
+function lr_eckdaten( array $rows ): array {
+
+	$facts = array();
+
+	foreach ( $rows as $row ) {
+		$type  = $row['typ'] ?? 'eigen';
+		$value = $type === 'eigen' ? trim( (string) ( $row['wert'] ?? '' ) ) : lr_event_value( $type );
+
+		if ( $value !== '' && $type !== 'eigen' && ! empty( $row['vor'] ) ) {
+			$value = trim( $row['vor'] ) . ' ' . $value;
+		}
+
+		if ( $value === '' || empty( $row['label'] ) ) {
+			continue;
+		}
+
+		$facts[] = array(
+			'label' => (string) $row['label'],
+			'wert'  => $value,
+		);
+	}
+
+	return $facts;
+}
+
+/**
  * @param string $variant full "Save the Date: So, 2. Mai 2027 · Ort · 8.00 bis 17.00 Uhr" | medium (without hours) | short "So, 2. Mai 2027 · Ort"
  */
 function lr_topbar_text( string $variant = 'full', bool $custom = true ): string {

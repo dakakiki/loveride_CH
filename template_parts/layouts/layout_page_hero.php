@@ -18,25 +18,7 @@ if ( ! $lr_titel && ! $lr_medien ) {
 	return;
 }
 
-$lr_facts = array();
-
-foreach ( (array) ( get_sub_field( 'eckdaten' ) ?: array() ) as $lr_row ) {
-	$lr_type  = $lr_row['typ'] ?? 'eigen';
-	$lr_value = $lr_type === 'eigen' ? trim( (string) ( $lr_row['wert'] ?? '' ) ) : lr_event_value( $lr_type );
-
-	if ( $lr_value !== '' && $lr_type !== 'eigen' && ! empty( $lr_row['vor'] ) ) {
-		$lr_value = trim( $lr_row['vor'] ) . ' ' . $lr_value;
-	}
-
-	if ( $lr_value === '' || empty( $lr_row['label'] ) ) {
-		continue;
-	}
-
-	$lr_facts[] = array(
-		'label' => $lr_row['label'],
-		'wert'  => $lr_value,
-	);
-}
+$lr_facts = lr_eckdaten( (array) ( get_sub_field( 'eckdaten' ) ?: array() ) );
 
 $lr_count    = count( $lr_medien );
 $lr_autoplay = $lr_count > 1 && get_sub_field( 'autoplay' );

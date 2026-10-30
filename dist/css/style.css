@@ -46,7 +46,7 @@ Author: Kommpass GmbH
 * Typography: Figma text styles H1–H6, Tagline, Text Large–Tiny (Desktop / Mobile), compact rich text (legal text), text accents (red-square list, H4 note with red line)
 */
 /*
-* Buttons: Primary, Secondary, Link (Figma "Button"); colors follow the section scheme, Alternate on Dunkel / Rot
+* Buttons: Primary, Secondary, Link (Figma "Button"); colors follow the section scheme, Alternate on Dunkel / Rot; filter chip (Aussteller, years)
 */
 /*
 * Layouts: global styles and site-wide elements
@@ -3218,6 +3218,53 @@ html:has(.read-aloud:not([hidden])) {
   }
 }
 /*
+* Lists: name list in 4 / 2 columns (1 below 360px) with lines, hidden names beyond the visible count and „Alle … anzeigen“ (Sponsoren Gönner, Rückblick Helferlisten)
+*/
+.namensliste {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: 1rem;
+}
+@media (min-width: 360px) {
+  .namensliste {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 640px) {
+  .namensliste {
+    column-gap: 2rem;
+  }
+}
+@media (min-width: 991px) {
+  .namensliste {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.namensliste li {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  min-height: 4rem;
+  padding: 0.5rem 0;
+  line-height: 1.2;
+  border-bottom: 1px solid #E0DDD8;
+}
+.namensliste li[hidden] {
+  display: none;
+}
+.namensliste__alle {
+  align-self: flex-start;
+  margin-top: 0.25rem;
+}
+
+/*
 * Scroll animations: initial state for .fade-up / .fade-left / .fade-right and [data-gsap-cards] children until GSAP takes over (gsap.js)
 */
 .js .fade-up:not(.fade-up-initialized),
@@ -3900,7 +3947,7 @@ html:has(.read-aloud:not([hidden])) {
   }
 }
 /*
-* Layout: Bild & Text (layout_cta_bild) – photo to the edge (half 1:1 or narrow 4:5), text panel aligned with the container, list with red squares and H4 note with red line in the text; backgrounds light grey (#F2F0ED) / off-white / white / dark (red primary button); mobile: photo on top
+* Layout: Bild & Text (layout_cta_bild) – photo to the edge (half 1:1 or narrow 4:5) or cover (square 400 with red frame inside the container), text panel aligned with the container, list with red squares and H4 note with red line in the text; backgrounds light grey (#F2F0ED) / off-white / white / dark (red tagline, red primary button; white on cover); mobile: photo on top
 */
 .layout-cta-bild {
   display: grid;
@@ -3986,6 +4033,9 @@ html:has(.read-aloud:not([hidden])) {
   --btn-primary-hover-border: #FFFFFF;
   --btn-primary-hover-text: #FFFFFF;
 }
+.cta-bild--dunkel .section-head__tagline {
+  color: #DC0D15;
+}
 
 @media (min-width: 991px) {
   .cta-bild--schmal {
@@ -4064,6 +4114,58 @@ html:has(.read-aloud:not([hidden])) {
   .cta-bild--schmal.cta-bild--bild-rechts .cta-bild__body {
     padding-left: max(var(--padding-global), 90% - 1280px / 2);
   }
+}
+
+.cta-bild--cover {
+  row-gap: 2rem;
+  padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+  padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+  padding-inline: max(var(--padding-global), (100% - 1280px) / 2);
+}
+@media (min-width: 991px) {
+  .cta-bild--cover {
+    grid-template-columns: minmax(0, 400px) minmax(0, 1fr);
+    align-items: center;
+    min-height: 0;
+    column-gap: clamp(48px, 36.1142857143px + 3.0476190476vw, 80px);
+  }
+  .cta-bild--cover.cta-bild--bild-rechts {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 400px);
+  }
+}
+.cta-bild--cover .cta-bild__media {
+  width: 100%;
+  max-width: 25rem;
+  aspect-ratio: 1;
+  background-color: #CE0E2D;
+}
+.cta-bild--cover .cta-bild__image {
+  inset: 0.625rem;
+  width: calc(100% - 1.25rem);
+  height: calc(100% - 1.25rem);
+}
+.cta-bild--cover .cta-bild__body, .cta-bild--cover.cta-bild--bild-links .cta-bild__body, .cta-bild--cover.cta-bild--bild-rechts .cta-bild__body {
+  padding: 0;
+}
+.cta-bild--cover .cta-bild__content {
+  max-width: 50rem;
+}
+.cta-bild--cover .section-head__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(18px, 17.2571428571px + 0.1904761905vw, 20px);
+  line-height: 1.5;
+  max-width: 37.5rem;
+  color: #444444;
+}
+.cta-bild--cover.cta-bild--dunkel {
+  --btn-primary-bg: #FFFFFF;
+  --btn-primary-border: #FFFFFF;
+  --btn-primary-text: #1A1A1A;
+}
+.cta-bild--cover.cta-bild--dunkel .section-head__text {
+  color: #B3AFA8;
 }
 
 /*
@@ -7087,7 +7189,7 @@ html:has(.read-aloud:not([hidden])) {
 }
 
 /*
-* Layout: Sponsoren (layout_sponsoren) – white section, one block per tier with red label (or off-white intro box): portraits (one wide: logo left, text right; several: cards with logo on top, 2 columns), logo grid with grey frame (2 / 3 / 4 columns, off-white name tile without logo), name list in 4 columns with lines and „Alle … anzeigen“
+* Layout: Sponsoren (layout_sponsoren) – white section, one block per tier with red label (or off-white intro box): portraits (one wide: logo left, text right; several: cards with logo on top, 2 columns), logo grid with grey frame (2 / 3 / 4 columns, off-white name tile without logo), name list (.namensliste in layouts/_listen.scss)
 */
 .layout-sponsoren {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -7338,45 +7440,6 @@ html:has(.read-aloud:not([hidden])) {
   color: #CE0E2D;
 }
 
-.sponsoren-namen {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  column-gap: 2rem;
-}
-@media (min-width: 640px) {
-  .sponsoren-namen {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (min-width: 991px) {
-  .sponsoren-namen {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-.sponsoren-namen li {
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
-  font-stretch: 100%;
-  font-weight: 400;
-  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
-  line-height: 1.5;
-  display: flex;
-  align-items: center;
-  min-height: 4rem;
-  padding: 0.5rem 0;
-  line-height: 1.2;
-  border-bottom: 1px solid #E0DDD8;
-}
-.sponsoren-namen li[hidden] {
-  display: none;
-}
-.sponsoren-namen__alle {
-  align-self: flex-start;
-  margin-top: 0.25rem;
-}
-
 /*
 * Layout: Aussteller (layout_aussteller) – white section, category filter buttons (active dark), exhibitor cards in 4 / 2 / 1 columns: white logo box, red category, name, website link
 */
@@ -7421,7 +7484,7 @@ html:has(.read-aloud:not([hidden])) {
 .aussteller-filter__button:hover {
   border-color: #1A1A1A;
 }
-.aussteller-filter__button[aria-pressed=true] {
+.aussteller-filter__button[aria-pressed=true], .aussteller-filter__button[aria-selected=true], .aussteller-filter__button.is-active {
   color: #FFFFFF;
   border-color: #1A1A1A;
   background-color: #1A1A1A;
@@ -7609,6 +7672,909 @@ html:has(.read-aloud:not([hidden])) {
   line-height: 1.5;
   margin: 0;
   color: #444444;
+}
+
+/*
+* Layout: Medienmitteilungen (layout_medienmitteilungen) – Aktuell: head and download rows (red document icon, title, file type, download icon, lines) next to the dark info box (red top line, label, title, facts with lines, full-width white button), stacked below 991; Archiv: rows (red year, title, download icon) in a white box on off-white
+*/
+.layout-medienmitteilungen {
+  padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+  padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+}
+.layout-medienmitteilungen .section-head__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(18px, 17.2571428571px + 0.1904761905vw, 20px);
+  line-height: 1.5;
+  max-width: 40rem;
+  color: #444444;
+}
+
+.medien-aktuell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(40px, 31.0857142857px + 2.2857142857vw, 64px);
+}
+@media (min-width: 991px) {
+  .medien-aktuell--mit-box {
+    grid-template-columns: minmax(0, 776fr) minmax(0, 440fr);
+    align-items: start;
+  }
+}
+.medien-aktuell .section-head {
+  margin-bottom: 1.5rem;
+}
+
+.downloads {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.download {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.125rem 0;
+  color: #1A1A1A;
+  border-bottom: 1px solid #E0DDD8;
+  text-decoration: none;
+}
+.download__doc, .download__icon {
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.download__doc {
+  color: #CE0E2D;
+}
+.download__icon {
+  transition-property: transform;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.download__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+.download__titel {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  line-height: 1.2;
+  transition-property: color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.download__typ {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  line-height: 1.2;
+  color: #444444;
+}
+.download:hover .download__titel {
+  color: #CE0E2D;
+}
+.download:hover .download__icon {
+  transform: translateY(2px);
+}
+
+.medien-info {
+  --scheme-text: #FFFFFF;
+  --scheme-background: #333333;
+  --scheme-foreground: #444444;
+  --scheme-border: #555555;
+  --scheme-accent: #FFFFFF;
+  --btn-primary-bg: #FFFFFF;
+  --btn-primary-border: #FFFFFF;
+  --btn-primary-text: #1A1A1A;
+  --btn-primary-hover-bg: #1A1A1A;
+  --btn-primary-hover-border: #1A1A1A;
+  --btn-primary-hover-text: #FFFFFF;
+  --btn-secondary-border: #FFFFFF;
+  --btn-secondary-text: #FFFFFF;
+  --btn-secondary-hover-bg: #1A1A1A;
+  --btn-secondary-hover-border: #1A1A1A;
+  --btn-secondary-hover-text: #FFFFFF;
+  --btn-link-text: #FFFFFF;
+  --focus-color: #FFFFFF;
+  --btn-primary-hover-bg: transparent;
+  --btn-primary-hover-border: #FFFFFF;
+  --btn-primary-hover-text: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: clamp(28px, 25.0285714286px + 0.7619047619vw, 36px);
+  color: #FFFFFF;
+  border-top: 4px solid #CE0E2D;
+  background-color: #1A1A1A;
+}
+.medien-info__oberzeile {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  text-transform: uppercase;
+  color: #DC0D15;
+}
+.medien-info__titel {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(26px, 23.7714285714px + 0.5714285714vw, 32px);
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  margin: 0;
+  color: #FFFFFF;
+}
+.medien-info__fakten {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+}
+.medien-info__fakten > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #FFFFFF;
+}
+.medien-info__fakten dt {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  line-height: 1.2;
+  color: #B3AFA8;
+}
+.medien-info__fakten dd {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  margin: 0;
+  line-height: 1.2;
+}
+.medien-info__button {
+  justify-content: center;
+  width: 100%;
+}
+
+.medien-archiv {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  padding: 0 clamp(20px, 15.5428571429px + 1.1428571429vw, 32px);
+  background-color: #FFFFFF;
+}
+.layout-medienmitteilungen.scheme-weiss .medien-archiv {
+  background-color: #F7F5F2;
+}
+.medien-archiv__eintrag {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem clamp(16px, 13.0285714286px + 0.7619047619vw, 24px);
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #E0DDD8;
+}
+.medien-archiv__eintrag:last-child {
+  border-bottom: 0;
+}
+.medien-archiv__jahr {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(26px, 23.7714285714px + 0.5714285714vw, 32px);
+  flex: none;
+  width: clamp(72px, 54.1714285714px + 4.5714285714vw, 120px);
+  color: #CE0E2D;
+}
+.medien-archiv__link {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+  color: #1A1A1A;
+  text-decoration: none;
+}
+.medien-archiv__link:hover .medien-archiv__titel {
+  color: #CE0E2D;
+}
+.medien-archiv__link:hover .medien-archiv__icon {
+  transform: translateY(2px);
+}
+.medien-archiv__titel {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 600;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  flex: 1 1 auto;
+  min-width: 0;
+  transition-property: color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.medien-archiv__icon {
+  flex: none;
+  width: 1.375rem;
+  height: 1.375rem;
+  margin-left: auto;
+  transition-property: transform;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+/*
+* Layout: Bilder-Download (layout_bilder_download) – head with buttons at its bottom right (below on mobile), press photos as white cards (photo 416:280, bold title, red download icon) in 3 / 2 / 1 columns on off-white or white
+*/
+.layout-bilder-download {
+  padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+  padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+}
+.layout-bilder-download .section-head__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(18px, 17.2571428571px + 0.1904761905vw, 20px);
+  line-height: 1.5;
+  max-width: 42.5rem;
+  color: #444444;
+}
+
+.bilder-download__kopf {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem 2rem;
+  margin-bottom: clamp(32px, 26.0571428571px + 1.5238095238vw, 48px);
+}
+.bilder-download__kopf .section-head {
+  margin-bottom: 0;
+}
+@media (min-width: 991px) {
+  .bilder-download__kopf {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.bilder-download__buttons {
+  flex: none;
+}
+
+.bilder-download {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+@media (min-width: 640px) {
+  .bilder-download {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 991px) {
+  .bilder-download {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.bild-download {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+}
+.layout-bilder-download.scheme-weiss .bild-download {
+  background-color: #F7F5F2;
+}
+.bild-download__foto {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 416/280;
+  background-color: #E0DDD8;
+}
+.bild-download__bild {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  position: absolute;
+  inset: 0;
+}
+.bild-download__info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem;
+  color: #1A1A1A;
+  text-decoration: none;
+}
+.bild-download__info:hover .bild-download__titel {
+  color: #CE0E2D;
+}
+.bild-download__info:hover .bild-download__icon {
+  transform: translateY(2px);
+}
+.bild-download__titel {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  flex: 1 1 auto;
+  min-width: 0;
+  transition-property: color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.bild-download__icon {
+  flex: none;
+  width: 1.375rem;
+  height: 1.375rem;
+  color: #CE0E2D;
+  transition-property: transform;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+/*
+* Layout: Kontaktperson (layout_kontaktperson) – round photo 96 (dark behind), red label, name, Ressort left; phone and e-mail with red icons right (below on mobile)
+*/
+.layout-kontaktperson {
+  padding-top: clamp(48px, 39.0857142857px + 2.2857142857vw, 72px);
+  padding-bottom: clamp(48px, 39.0857142857px + 2.2857142857vw, 72px);
+}
+
+.kontaktperson {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem 3rem;
+}
+@media (min-width: 768px) {
+  .kontaktperson {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.kontaktperson__person {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 13.0285714286px + 0.7619047619vw, 24px);
+  min-width: 0;
+}
+.kontaktperson__foto {
+  position: relative;
+  flex: none;
+  overflow: hidden;
+  width: clamp(72px, 63.0857142857px + 2.2857142857vw, 96px);
+  height: clamp(72px, 63.0857142857px + 2.2857142857vw, 96px);
+  border-radius: 50%;
+  background-color: #333333;
+}
+.kontaktperson__bild {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  position: absolute;
+  inset: 0;
+  object-position: center top;
+}
+.kontaktperson__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  min-width: 0;
+}
+.kontaktperson__oberzeile {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  text-transform: uppercase;
+  color: #DC0D15;
+}
+.kontaktperson__name {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(26px, 23.7714285714px + 0.5714285714vw, 32px);
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  margin: 0;
+}
+.kontaktperson__rolle {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  margin: 0;
+  color: #B3AFA8;
+}
+.kontaktperson__kanaele {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.kontaktperson__kanaele a {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 600;
+  font-size: clamp(18px, 17.2571428571px + 0.1904761905vw, 20px);
+  line-height: 1.5;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #1A1A1A;
+  text-decoration: none;
+  transition-property: color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.kontaktperson__kanaele a:hover {
+  color: #CE0E2D;
+}
+.kontaktperson__icon {
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #DC0D15;
+}
+
+/*
+* Layout: Jahrgänge (layout_jahrgaenge) – head with year buttons (filter chips, „Ältere Jahre“ select) at its bottom right; Jahreskarten: white cards with red top line in 2 columns (year, red edition, date, 4 numbers with lines, „–“ grey) and square pagination; Aftermovie: poster 2:1 with dark overlay and red play circle, video inline; Fotogalerie: square photos in 4 / 2 columns; Helferliste: name list, organisations, „Alle … anzeigen“
+*/
+.layout-jahrgaenge {
+  padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+  padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
+}
+.layout-jahrgaenge .section-head__text {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(18px, 17.2571428571px + 0.1904761905vw, 20px);
+  line-height: 1.5;
+  max-width: 42.5rem;
+  color: #444444;
+}
+
+.jahrgaenge__kopf {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem 2rem;
+  margin-bottom: clamp(32px, 26.0571428571px + 1.5238095238vw, 48px);
+}
+.jahrgaenge--helfer .jahrgaenge__kopf {
+  margin-bottom: clamp(32px, 29.0285714286px + 0.7619047619vw, 40px);
+}
+.jahrgaenge__kopf .section-head {
+  margin-bottom: 0;
+}
+@media (min-width: 991px) {
+  .jahrgaenge__kopf {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.jahr-filter {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.jahr-filter__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.jahr-filter__button {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  padding: 0.625rem 1rem;
+  color: #1A1A1A;
+  border: 1px solid #B3AFA8;
+  background: none;
+  cursor: pointer;
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.jahr-filter__button:hover {
+  border-color: #1A1A1A;
+}
+.jahr-filter__button[aria-pressed=true], .jahr-filter__button[aria-selected=true], .jahr-filter__button.is-active {
+  color: #FFFFFF;
+  border-color: #1A1A1A;
+  background-color: #1A1A1A;
+}
+.jahr-filter__aelter {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  padding: 0.625rem 1rem;
+  color: #1A1A1A;
+  border: 1px solid #B3AFA8;
+  background: none;
+  cursor: pointer;
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.jahr-filter__aelter:hover {
+  border-color: #1A1A1A;
+}
+.jahr-filter__aelter[aria-pressed=true], .jahr-filter__aelter[aria-selected=true], .jahr-filter__aelter.is-active {
+  color: #FFFFFF;
+  border-color: #1A1A1A;
+  background-color: #1A1A1A;
+}
+.jahr-filter__aelter {
+  padding-right: 2.5rem;
+  appearance: none;
+  background: no-repeat right 0.875rem center/0.75rem url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231a1a1a' stroke-width='2'/%3E%3C/svg%3E");
+}
+.jahr-filter__aelter.is-active {
+  background: no-repeat right 0.875rem center/0.75rem url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E"), #1A1A1A;
+}
+
+.jahreskarten {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+}
+@media (min-width: 991px) {
+  .jahreskarten {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.jahreskarte {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  padding: clamp(24px, 19.5428571429px + 1.1428571429vw, 36px) clamp(20px, 12.5714285714px + 1.9047619048vw, 40px);
+  border-top: 4px solid #CE0E2D;
+  background-color: #FFFFFF;
+}
+.layout-jahrgaenge.scheme-weiss .jahreskarte {
+  background-color: #F7F5F2;
+}
+.jahreskarte__kopf {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.jahreskarte__jahr {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(36px, 30.0571428571px + 1.5238095238vw, 52px);
+  margin: 0;
+}
+.jahreskarte__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.125rem;
+  margin: 0;
+  text-align: right;
+}
+.jahreskarte__ausgabe {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: #CE0E2D;
+}
+.jahreskarte__datum {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  line-height: 1.2;
+  color: #444444;
+}
+.jahreskarte__zahlen {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 1rem;
+  margin: 0;
+}
+@media (min-width: 640px) {
+  .jahreskarte__zahlen {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+  }
+}
+.jahreskarte__zahl {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 0.25rem;
+  padding: 1rem 0;
+  border-top: 1px solid #E0DDD8;
+}
+@media (min-width: 640px) {
+  .jahreskarte__zahl {
+    padding-bottom: 0;
+  }
+}
+.jahreskarte__zahl dt {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(15px, 14.6285714286px + 0.0952380952vw, 16px);
+  line-height: 1.5;
+  line-height: 1.2;
+  color: #444444;
+}
+.jahreskarte__zahl dd {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 75%;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: clamp(22px, 21.2571428571px + 0.1904761905vw, 24px);
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  margin: 0;
+}
+.jahreskarte__zahl--leer dd {
+  color: #B3AFA8;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: clamp(32px, 26.0571428571px + 1.5238095238vw, 48px);
+}
+.pagination__item {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 700;
+  font-size: clamp(17px, 16.6285714286px + 0.0952380952vw, 18px);
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  line-height: 1;
+  color: #1A1A1A;
+  border: 1px solid #B3AFA8;
+  text-decoration: none;
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.pagination__item:hover {
+  border-color: #1A1A1A;
+}
+.pagination__item.is-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+.pagination__item[aria-current=page] {
+  color: #FFFFFF;
+  border-color: #1A1A1A;
+  background-color: #1A1A1A;
+}
+.pagination__item .icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.jahrgang-video {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  background-color: #1A1A1A;
+}
+@media (min-width: 768px) {
+  .jahrgang-video {
+    aspect-ratio: 2/1;
+  }
+}
+.jahrgang-video::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+.jahrgang-video__poster {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  position: absolute;
+  inset: 0;
+}
+.jahrgang-video__play {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.jahrgang-video__play:hover .jahrgang-video__icon {
+  transform: scale(1.06);
+}
+.jahrgang-video__play:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: -6px;
+}
+.jahrgang-video__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(64px, 52.1142857143px + 3.0476190476vw, 96px);
+  height: clamp(64px, 52.1142857143px + 3.0476190476vw, 96px);
+  color: #FFFFFF;
+  border-radius: 50%;
+  background-color: #CE0E2D;
+  transition-property: transform;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+.jahrgang-video__icon .icon {
+  width: 58%;
+  height: 58%;
+}
+.jahrgang-video__frame {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.jahrgang-video.is-playing::after, .jahrgang-video.is-playing .jahrgang-video__play, .jahrgang-video.is-playing .jahrgang-video__poster {
+  display: none;
+}
+
+.jahrgang-galerie {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+@media (min-width: 768px) {
+  .jahrgang-galerie {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+.jahrgang-galerie li[hidden] {
+  display: none;
+}
+.jahrgang-galerie__link {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 1;
+  background-color: #E0DDD8;
+}
+.jahrgang-galerie__link:focus-visible {
+  outline: 2px solid #1A1A1A;
+  outline-offset: 2px;
+}
+.jahrgang-galerie__bild {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  position: absolute;
+  inset: 0;
+  transition-property: transform;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+.jahrgang-galerie__link:hover .jahrgang-galerie__bild {
+  transform: scale(1.04);
+}
+.jahrgang-galerie__buttons {
+  margin-top: clamp(32px, 26.0571428571px + 1.5238095238vw, 48px);
+}
+
+.jahrgang-helfer__organisationen {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: clamp(18px, 17.2571428571px + 0.1904761905vw, 20px);
+  line-height: 1.5;
+  max-width: 80rem;
+  margin: 1.5rem 0 0;
+  color: #444444;
+}
+
+.jahrgaenge--helfer .namensliste__alle {
+  margin-top: 1.5rem;
 }
 
 /*

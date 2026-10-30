@@ -101,13 +101,13 @@ usort( $lr_stufen, fn( $a, $b ) => (int) get_field( 'reihenfolge', $a ) <=> (int
 					</ul>
 				<?php else : ?>
 					<?php $lr_sichtbar = max( 4, (int) ( get_field( 'anzahl_sichtbar', $lr_stufe ) ?: 20 ) ); ?>
-					<ul class="sponsoren-namen">
+					<ul class="namensliste">
 						<?php foreach ( $lr_sponsors as $lr_i => $lr_sponsor ) : ?>
 							<li<?= $lr_i >= $lr_sichtbar ? ' hidden' : ''; ?>><?= esc_html( get_the_title( $lr_sponsor ) ); ?></li>
 						<?php endforeach; ?>
 					</ul>
 					<?php if ( count( $lr_sponsors ) > $lr_sichtbar ) : ?>
-						<button type="button" class="btn--secondary sponsoren-namen__alle" data-alle>
+						<button type="button" class="btn--secondary namensliste__alle" data-alle>
 							<?= esc_html( sprintf( __( 'Alle %d anzeigen', 'loveride' ), count( $lr_sponsors ) ) ); ?>
 						</button>
 					<?php endif; ?>

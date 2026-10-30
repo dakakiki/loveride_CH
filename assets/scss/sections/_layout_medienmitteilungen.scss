@@ -1,0 +1,230 @@
+/*
+* Layout: Medienmitteilungen (layout_medienmitteilungen) – Aktuell: head and download rows (red document icon, title, file type, download icon, lines) next to the dark info box (red top line, label, title, facts with lines, full-width white button), stacked below 991; Archiv: rows (red year, title, download icon) in a white box on off-white
+*/
+
+@use '../abstracts' as *;
+
+.layout-medienmitteilungen {
+    @include fluid-prop(padding-top, 48, 96);
+    @include fluid-prop(padding-bottom, 48, 96);
+
+    .section-head__text {
+        @include t-text-medium;
+
+        max-width: rem(640);
+        color: palette(clr-neutral-dark);
+    }
+}
+
+.medien-aktuell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: fluid(40, 64);
+
+    &--mit-box {
+        @include respond-min(lg) {
+            grid-template-columns: minmax(0, 776fr) minmax(0, 440fr);
+            align-items: start;
+        }
+    }
+
+    .section-head {
+        margin-bottom: rem(24);
+    }
+}
+
+.downloads {
+    @include reset-list;
+}
+
+.download {
+    display: flex;
+    align-items: center;
+    gap: rem(16);
+    padding: rem(18) 0;
+    color: palette(clr-neutral-darkest);
+    border-bottom: 1px solid palette(clr-neutral-lighter);
+    text-decoration: none;
+
+    &__doc,
+    &__icon {
+        flex: none;
+        width: rem(24);
+        height: rem(24);
+    }
+
+    &__doc {
+        color: palette(clr-red);
+    }
+
+    &__icon {
+        @include trans(transform);
+    }
+
+    &__text {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        gap: rem(2);
+        min-width: 0;
+    }
+
+    &__titel {
+        @include t-text($fw-bold);
+        @include break-word;
+
+        line-height: 1.2;
+        @include trans(color);
+    }
+
+    &__typ {
+        @include t-text-small;
+
+        line-height: 1.2;
+        color: palette(clr-neutral-dark);
+    }
+
+    &:hover {
+        .download__titel {
+            color: palette(clr-red);
+        }
+
+        .download__icon {
+            transform: translateY(2px);
+        }
+    }
+}
+
+.medien-info {
+    @include scheme-vars(dunkel);
+
+    --btn-primary-hover-bg: transparent;
+    --btn-primary-hover-border: #{palette(clr-white)};
+    --btn-primary-hover-text: #{palette(clr-white)};
+
+    display: flex;
+    flex-direction: column;
+    gap: rem(16);
+    padding: fluid(28, 36);
+    color: palette(clr-white);
+    border-top: 4px solid palette(clr-red);
+    background-color: palette(clr-neutral-darkest);
+
+    &__oberzeile {
+        @include t-text-tiny($fw-bold);
+
+        margin: 0;
+        text-transform: uppercase;
+        color: palette(clr-red-signal);
+    }
+
+    &__titel {
+        @include t-h4;
+        @include break-word;
+
+        margin: 0;
+        color: palette(clr-white);
+    }
+
+    &__fakten {
+        display: flex;
+        flex-direction: column;
+        gap: rem(16);
+        margin: 0;
+
+        > div {
+            display: flex;
+            flex-direction: column;
+            gap: rem(2);
+            padding: rem(12) 0;
+            border-bottom: 1px solid palette(clr-white);
+        }
+
+        dt {
+            @include t-text-small;
+
+            line-height: 1.2;
+            color: palette(clr-neutral-light);
+        }
+
+        dd {
+            @include t-text($fw-bold);
+
+            margin: 0;
+            line-height: 1.2;
+        }
+    }
+
+    &__button {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+.medien-archiv {
+    @include reset-list;
+
+    padding: 0 fluid(20, 32);
+    background-color: palette(clr-white);
+
+    .layout-medienmitteilungen.scheme-weiss & {
+        background-color: palette(clr-off-white);
+    }
+
+    &__eintrag {
+        display: flex;
+        align-items: center;
+        gap: rem(12) fluid(16, 24);
+        padding: rem(20) 0;
+        border-bottom: 1px solid palette(clr-neutral-lighter);
+
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+
+    &__jahr {
+        @include t-h4;
+
+        flex: none;
+        width: fluid(72, 120);
+        color: palette(clr-red);
+    }
+
+    &__link {
+        display: flex;
+        flex: 1 1 auto;
+        align-items: center;
+        gap: rem(16);
+        min-width: 0;
+        color: palette(clr-neutral-darkest);
+        text-decoration: none;
+
+        &:hover {
+            .medien-archiv__titel {
+                color: palette(clr-red);
+            }
+
+            .medien-archiv__icon {
+                transform: translateY(2px);
+            }
+        }
+    }
+
+    &__titel {
+        @include t-text($fw-semibold);
+        @include break-word;
+
+        flex: 1 1 auto;
+        min-width: 0;
+        @include trans(color);
+    }
+
+    &__icon {
+        flex: none;
+        width: rem(22);
+        height: rem(22);
+        margin-left: auto;
+        @include trans(transform);
+    }
+}

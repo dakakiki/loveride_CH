@@ -27,25 +27,7 @@
     margin-bottom: rem(32);
 
     &__button {
-        @include t-text-tiny($fw-bold);
-
-        padding: rem(10) rem(16);
-        color: palette(clr-neutral-darkest);
-        border: 1px solid palette(clr-neutral-light);
-        background: none;
-        cursor: pointer;
-
-        @include trans((background-color, border-color, color));
-
-        &:hover {
-            border-color: palette(clr-neutral-darkest);
-        }
-
-        &[aria-pressed="true"] {
-            color: palette(clr-white);
-            border-color: palette(clr-neutral-darkest);
-            background-color: palette(clr-neutral-darkest);
-        }
+        @include btn-filter;
     }
 }
 

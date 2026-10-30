@@ -1,0 +1,107 @@
+/*
+* Layout: Kontaktperson (layout_kontaktperson) – round photo 96 (dark behind), red label, name, Ressort left; phone and e-mail with red icons right (below on mobile)
+*/
+
+@use '../abstracts' as *;
+
+.layout-kontaktperson {
+    @include fluid-prop(padding-top, 48, 72);
+    @include fluid-prop(padding-bottom, 48, 72);
+}
+
+.kontaktperson {
+    display: flex;
+    flex-direction: column;
+    gap: rem(24) rem(48);
+
+    @include respond-min(md) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__person {
+        display: flex;
+        align-items: center;
+        gap: fluid(16, 24);
+        min-width: 0;
+    }
+
+    &__foto {
+        position: relative;
+        flex: none;
+        overflow: hidden;
+        width: fluid(72, 96);
+        height: fluid(72, 96);
+        border-radius: 50%;
+        background-color: palette(clr-neutral-darker);
+    }
+
+    &__bild {
+        @include image-cover;
+
+        position: absolute;
+        inset: 0;
+        object-position: center top;
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        gap: rem(6);
+        min-width: 0;
+    }
+
+    &__oberzeile {
+        @include t-text-tiny($fw-bold);
+
+        margin: 0;
+        text-transform: uppercase;
+        color: palette(clr-red-signal);
+    }
+
+    &__name {
+        @include t-h4;
+        @include break-word;
+
+        margin: 0;
+    }
+
+    &__rolle {
+        @include t-text;
+
+        margin: 0;
+        color: palette(clr-neutral-light);
+    }
+
+    &__kanaele {
+        @include reset-list;
+
+        display: flex;
+        flex-direction: column;
+        gap: rem(12);
+
+        a {
+            @include t-text-medium($fw-semibold);
+            @include break-word;
+
+            display: inline-flex;
+            align-items: center;
+            gap: rem(12);
+            color: palette(clr-neutral-darkest);
+            text-decoration: none;
+            @include trans(color);
+
+            &:hover {
+                color: palette(clr-red);
+            }
+        }
+    }
+
+    &__icon {
+        flex: none;
+        width: rem(24);
+        height: rem(24);
+        color: palette(clr-red-signal);
+    }
+}

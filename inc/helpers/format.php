@@ -137,3 +137,8 @@ function lr_url_domain( string $url ): string {
 
 	return $host !== '' ? preg_replace( '/^www\./i', '', $host ) : trim( $url );
 }
+
+function lr_youtube_id( string $url ): string {
+
+	return preg_match( '~(?:youtu\.be/|[?&]v=|/embed/|/shorts/|/live/)([A-Za-z0-9_-]{11})~', $url, $match ) ? $match[1] : '';
+}

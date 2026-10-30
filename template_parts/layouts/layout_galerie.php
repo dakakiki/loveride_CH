@@ -13,7 +13,7 @@ $lr_head = array(
 
 $lr_bilder  = array_values( array_filter( (array) ( get_sub_field( 'bilder' ) ?: array() ) ) );
 $lr_poster  = get_sub_field( 'vorschaubild' );
-$lr_youtube = preg_match( '~(?:youtu\.be/|[?&]v=|/embed/|/shorts/|/live/)([A-Za-z0-9_-]{11})~', (string) get_sub_field( 'video' ), $lr_match ) ? $lr_match[1] : '';
+$lr_youtube = lr_youtube_id( (string) get_sub_field( 'video' ) );
 
 if ( ! array_filter( $lr_head ) && ! $lr_bilder && ! $lr_youtube && ! $lr_poster ) {
 	return;
@@ -79,12 +79,6 @@ $lr_poster_html = $lr_poster
 	</div>
 
 	<?php if ( $lr_bilder || $lr_youtube ) : ?>
-		<dialog class="lightbox" data-lightbox aria-label="<?= esc_attr__( 'Bild- und Videoansicht', 'loveride' ); ?>">
-			<button type="button" class="lightbox__button lightbox__close" data-lightbox-close aria-label="<?= esc_attr__( 'Schliessen', 'loveride' ); ?>" autofocus><?= lr_ui_icon( 'close' ); ?></button>
-			<div class="lightbox__stage" data-lightbox-stage></div>
-			<button type="button" class="lightbox__button lightbox__arrow lightbox__arrow--prev" data-lightbox-prev aria-label="<?= esc_attr__( 'Vorheriges Bild', 'loveride' ); ?>"><?= lr_ui_icon( 'arrow_back' ); ?></button>
-			<button type="button" class="lightbox__button lightbox__arrow lightbox__arrow--next" data-lightbox-next aria-label="<?= esc_attr__( 'Nächstes Bild', 'loveride' ); ?>"><?= lr_ui_icon( 'arrow_forward' ); ?></button>
-			<p class="lightbox__counter" data-lightbox-counter aria-live="polite"></p>
-		</dialog>
+		<?php get_template_part( 'template_parts/components/lightbox' ); ?>
 	<?php endif; ?>
 </section>

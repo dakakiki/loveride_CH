@@ -1,5 +1,5 @@
 /*
-* Layout: Bild & Text (layout_cta_bild) – photo to the edge (half 1:1 or narrow 4:5), text panel aligned with the container, list with red squares and H4 note with red line in the text; backgrounds light grey (#F2F0ED) / off-white / white / dark (red primary button); mobile: photo on top
+* Layout: Bild & Text (layout_cta_bild) – photo to the edge (half 1:1 or narrow 4:5) or cover (square 400 with red frame inside the container), text panel aligned with the container, list with red squares and H4 note with red line in the text; backgrounds light grey (#F2F0ED) / off-white / white / dark (red tagline, red primary button; white on cover); mobile: photo on top
 */
 
 @use '../abstracts' as *;
@@ -42,6 +42,10 @@ $cta-bild-edge-schmal: max(var(--padding-global), calc(90% - #{$container-large}
     --btn-primary-hover-bg: transparent;
     --btn-primary-hover-border: #{palette(clr-white)};
     --btn-primary-hover-text: #{palette(clr-white)};
+
+    .section-head__tagline {
+        color: palette(clr-red-signal);
+    }
 }
 
 .cta-bild--schmal {
@@ -130,6 +134,65 @@ $cta-bild-edge-schmal: max(var(--padding-global), calc(90% - #{$container-large}
 
         &--schmal.cta-bild--bild-rechts &__body {
             padding-left: $cta-bild-edge-schmal;
+        }
+    }
+}
+
+.cta-bild--cover {
+    row-gap: rem(32);
+    @include fluid-prop(padding-top, 48, 96);
+    @include fluid-prop(padding-bottom, 48, 96);
+
+    padding-inline: max(var(--padding-global), calc((100% - #{$container-large}) / 2));
+
+    @include respond-min(lg) {
+        grid-template-columns: minmax(0, 400px) minmax(0, 1fr);
+        align-items: center;
+        min-height: 0;
+        @include fluid-prop(column-gap, 48, 80);
+
+        &.cta-bild--bild-rechts {
+            grid-template-columns: minmax(0, 1fr) minmax(0, 400px);
+        }
+    }
+
+    .cta-bild__media {
+        width: 100%;
+        max-width: rem(400);
+        aspect-ratio: 1;
+        background-color: palette(clr-red);
+    }
+
+    .cta-bild__image {
+        inset: rem(10);
+        width: calc(100% - #{rem(20)});
+        height: calc(100% - #{rem(20)});
+    }
+
+    .cta-bild__body,
+    &.cta-bild--bild-links .cta-bild__body,
+    &.cta-bild--bild-rechts .cta-bild__body {
+        padding: 0;
+    }
+
+    .cta-bild__content {
+        max-width: rem(800);
+    }
+
+    .section-head__text {
+        @include t-text-medium;
+
+        max-width: rem(600);
+        color: palette(clr-neutral-dark);
+    }
+
+    &.cta-bild--dunkel {
+        --btn-primary-bg: #{palette(clr-white)};
+        --btn-primary-border: #{palette(clr-white)};
+        --btn-primary-text: #{palette(clr-neutral-darkest)};
+
+        .section-head__text {
+            color: palette(clr-neutral-light);
         }
     }
 }

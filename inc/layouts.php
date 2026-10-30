@@ -70,6 +70,13 @@ add_filter( 'lr_layout_scripts', function ( array $scripts ): array {
 		'deps'   => array(),
 	);
 
+	$scripts['layout_jahrgaenge'] = array(
+		'handle' => 'lr-jahrgaenge',
+		'file'   => 'js/jahrgaenge.min.js',
+		'min'    => 'js/jahrgaenge.min.js',
+		'deps'   => array(),
+	);
+
 	$scripts['layout_event_teaser'] = array(
 		'handle' => 'lr-countdown',
 		'file'   => 'js/countdown.min.js',
