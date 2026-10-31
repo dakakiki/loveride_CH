@@ -1,5 +1,5 @@
 /*
-* Popups (inc/popups.php): links with data-popup or to #loverider-anmeldung / #aussteller-anmeldung open the <dialog>, also from the URL hash; close on X, Esc and outside click, focus back to the opener; data-popup-wahl preselects the radio option starting with it; Loverider form: partner and children only for „Family“ (hidden fields disabled), „Weiteres Kind hinzufügen“ shows up to 3 children
+* Popups (inc/popups.php): links with data-popup or to #loverider-anmeldung / #aussteller-anmeldung open the <dialog>, also from the URL hash; close on X, Esc and outside click with a short fade out, focus back to the opener; data-popup-wahl preselects the radio option starting with it; Loverider form: partner and children only for „Family“ (hidden fields disabled), „Weiteres Kind hinzufügen“ shows up to 3 children
 */
 
 (function () {
@@ -9,6 +9,7 @@
 
     if (!dialogs.length) return;
 
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     let opener = null;
 
     const find = function (id) {
@@ -91,6 +92,29 @@
         sync();
     };
 
+    const hide = function (dialog) {
+        if (!dialog.open || dialog.classList.contains("is-closing")) return;
+
+        if (reduce.matches) {
+            dialog.close();
+            return;
+        }
+
+        const done = function () {
+            window.clearTimeout(timer);
+            dialog.removeEventListener("animationend", end);
+            dialog.classList.remove("is-closing");
+            dialog.close();
+        };
+        const end = function (event) {
+            if (event.target === dialog) done();
+        };
+        const timer = window.setTimeout(done, 400);
+
+        dialog.addEventListener("animationend", end);
+        dialog.classList.add("is-closing");
+    };
+
     const open = function (dialog, trigger) {
         const wahl = trigger && trigger.dataset.popupWahl;
 
@@ -117,11 +141,16 @@
         setupForm(dialog);
 
         dialog.querySelector("[data-popup-close]").addEventListener("click", function () {
-            dialog.close();
+            hide(dialog);
         });
 
         dialog.addEventListener("click", function (event) {
-            if (event.target === dialog) dialog.close();
+            if (event.target === dialog) hide(dialog);
+        });
+
+        dialog.addEventListener("cancel", function (event) {
+            event.preventDefault();
+            hide(dialog);
         });
 
         dialog.addEventListener("close", function () {

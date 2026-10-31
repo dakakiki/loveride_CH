@@ -2854,7 +2854,7 @@ html:has(.read-aloud:not([hidden])) {
 }
 
 /*
-* Popup (template_parts/global/popup.php): full-screen <dialog> with dark backdrop, scrolling white box 760 with red top line (label, title, close, note, form); full screen on mobile
+* Popup (template_parts/global/popup.php): full-screen <dialog> with dark backdrop, scrolling white box 760 with red top line (label, title, close, note, form); full screen on mobile; fades in and out (box slides up slightly, .is-closing set by popups.js), no motion with reduced motion
 */
 .has-popup {
   overflow: hidden;
@@ -2877,6 +2877,18 @@ html:has(.read-aloud:not([hidden])) {
 }
 .popup::backdrop {
   background: transparent;
+}
+.popup[open] {
+  animation: popup-ein 0.25s ease-out;
+}
+.popup[open] .popup__inhalt {
+  animation: popup-inhalt-ein 0.3s ease-out;
+}
+.popup.is-closing {
+  animation: popup-aus 0.2s ease-in forwards;
+}
+.popup.is-closing .popup__inhalt {
+  animation: popup-inhalt-aus 0.2s ease-in forwards;
 }
 @media (min-width: 640px) {
   .popup {
@@ -2972,6 +2984,32 @@ html:has(.read-aloud:not([hidden])) {
   color: #555555;
 }
 
+@keyframes popup-ein {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes popup-aus {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes popup-inhalt-ein {
+  from {
+    transform: translateY(1rem);
+  }
+}
+@keyframes popup-inhalt-aus {
+  to {
+    transform: translateY(1rem);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .popup,
+  .popup__inhalt {
+    animation: none !important;
+  }
+}
 /*
 * News: category tag (red / light) and meta line, News card (+ featured, plain for Home), card grid, single article (head, title image, block content with H2–H4 and heading style "Mit Linie", links in two columns, tags, share), Weitere Beiträge
 */

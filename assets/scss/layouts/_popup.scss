@@ -1,5 +1,5 @@
 /*
-* Popup (template_parts/global/popup.php): full-screen <dialog> with dark backdrop, scrolling white box 760 with red top line (label, title, close, note, form); full screen on mobile
+* Popup (template_parts/global/popup.php): full-screen <dialog> with dark backdrop, scrolling white box 760 with red top line (label, title, close, note, form); full screen on mobile; fades in and out (box slides up slightly, .is-closing set by popups.js), no motion with reduced motion
 */
 
 @use '../abstracts' as *;
@@ -25,6 +25,22 @@
 
     &::backdrop {
         background: transparent;
+    }
+
+    &[open] {
+        animation: popup-ein 0.25s ease-out;
+    }
+
+    &[open] &__inhalt {
+        animation: popup-inhalt-ein 0.3s ease-out;
+    }
+
+    &.is-closing {
+        animation: popup-aus 0.2s ease-in forwards;
+    }
+
+    &.is-closing &__inhalt {
+        animation: popup-inhalt-aus 0.2s ease-in forwards;
     }
 
     @include respond-min(sm) {
@@ -110,5 +126,36 @@
         margin: 0;
         line-height: 1.2;
         color: palette(clr-neutral);
+    }
+}
+
+@keyframes popup-ein {
+    from {
+        opacity: 0;
+    }
+}
+
+@keyframes popup-aus {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes popup-inhalt-ein {
+    from {
+        transform: translateY(#{rem(16)});
+    }
+}
+
+@keyframes popup-inhalt-aus {
+    to {
+        transform: translateY(#{rem(16)});
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .popup,
+    .popup__inhalt {
+        animation: none !important;
     }
 }
