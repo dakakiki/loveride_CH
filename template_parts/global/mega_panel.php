@@ -1,9 +1,4 @@
 <?php
-/**
- * Mega panel: dropdown of one main menu group (intro, links with subtitle, highlighted box), desktop only.
- *
- * @package loveride
- */
 
 $lr_group = $args['group'] ?? array();
 

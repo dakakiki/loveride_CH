@@ -1,9 +1,4 @@
 <?php
-/**
- * Component: section head (Baustein – Sektionskopf: tagline, title, text, optional link) – used by content layouts; split = text in a second column, animate = scroll reveal.
- *
- * @package loveride
- */
 
 $lr_tagline = (string) ( $args['tagline'] ?? '' );
 $lr_titel   = (string) ( $args['titel'] ?? '' );

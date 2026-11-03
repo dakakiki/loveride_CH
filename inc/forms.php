@@ -1,9 +1,4 @@
 <?php
-/**
- * Forms: Contact Form 7 setup (markup without automatic paragraphs).
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

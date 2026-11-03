@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Anreise & Parken (layout_anreise) – dark section from Geteilte Inhalte → Anreise & Parken: head with Anfahrtsplan button, swisstopo map (simple or with layer panel), Wege boxes (links from the shared content or all to one page); Programm & Event, Anreise.
- *
- * @package loveride
- */
 
 $lr_data = (array) lr_get_option( 'geteilt_anreise', array() );
 $lr_text = trim( (string) get_sub_field( 'text' ) );

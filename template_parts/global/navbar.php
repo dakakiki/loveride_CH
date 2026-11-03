@@ -1,9 +1,4 @@
 <?php
-/**
- * Navbar: logo, main navigation (mega menu toggles), header CTAs and mobile menu toggle.
- *
- * @package loveride
- */
 
 $lr_tree    = $args['tree'] ?? array();
 $lr_buttons = lr_header_buttons();

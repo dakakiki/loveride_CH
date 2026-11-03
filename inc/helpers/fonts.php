@@ -1,9 +1,4 @@
 <?php
-/**
- * Fonts: preload of the self-hosted Open Sans variable font (latin subset).
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Bild & Text (layout_cta_bild) – photo to the edge (half or narrow, left or right) or a square cover with red frame inside the container next to a text panel (tagline, title, text with red-square list and H4 note with red line, buttons) on light grey / off-white / white / dark; Home „Ohne dich kein Love Ride“, „Teil deinen Platz“, Event „Familien“, Rückblick „Hymne“ (Cover).
- *
- * @package loveride
- */
 
 $lr_bild = get_sub_field( 'bild' );
 

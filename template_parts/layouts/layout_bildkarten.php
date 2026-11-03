@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Bild-Karten (layout_bildkarten) – section head and dark image cards (photo, title, text, optional link → whole card clickable) in 4 / 2 / 1 columns; Event „Attraktionen“.
- *
- * @package loveride
- */
 
 $lr_head = array(
 	'tagline' => (string) get_sub_field( 'tagline' ),

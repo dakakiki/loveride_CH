@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Übernachten (layout_uebernachten) – head next to accommodation cards (type label + icon, name, phone, website) from Geteilte Inhalte → Übernachten, off-white or white; Programm & Event, Anreise, Ride-Out.
- *
- * @package loveride
- */
 
 $lr_data = (array) lr_get_option( 'geteilt_uebernachten', array() );
 

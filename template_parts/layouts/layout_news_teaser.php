@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: News-Teaser (layout_news_teaser) – section head, latest News as plain cards (3 or 6), „Alle News“ to the News page; Home „Neuigkeiten“.
- *
- * @package loveride
- */
 
 $lr_head = array(
 	'tagline' => (string) get_sub_field( 'tagline' ),

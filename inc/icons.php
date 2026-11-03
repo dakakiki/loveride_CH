@@ -1,9 +1,4 @@
 <?php
-/**
- * Icons: Material Symbols from assets/icons, inline output and choices for ACF "icon" select fields.
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

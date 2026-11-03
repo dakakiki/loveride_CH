@@ -1,9 +1,4 @@
 <?php
-/**
- * ACF WYSIWYG: text color picker limited to the Love Ride palette (mirrors abstracts/_colors.scss), first toolbar row of Full and Basic.
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

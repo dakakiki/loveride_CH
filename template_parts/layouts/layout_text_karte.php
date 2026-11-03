@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Text & Karte (layout_text_karte) – text column (head with red-square list, buttons) next to a map with one layer from Geteilte Inhalte → Anreise & Parken or an own route file (GPX / GeoJSON), or a placeholder box while there is nothing to show; normal or wide map; Anreise „Rücksicht auf der Strecke“, Ride-Out „Route“.
- *
- * @package loveride
- */
 
 $lr_head = array(
 	'tagline' => (string) get_sub_field( 'tagline' ),

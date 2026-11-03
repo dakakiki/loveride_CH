@@ -1,9 +1,4 @@
 <?php
-/**
- * SVG: inline output with unique IDs, SVG upload for administrators.
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

@@ -1,17 +1,9 @@
 <?php
-/**
- * Medien: Medienmitteilung posts sorted by their date (newest first) and their files per language for the download lists.
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- * @return WP_Post[] newest first (field „Datum“, otherwise publish date)
- */
 function lr_medienmitteilungen(): array {
 
 	$posts = get_posts( array(
@@ -33,9 +25,6 @@ function lr_medienmitteilung_datum( WP_Post $post ): string {
 	return preg_match( '/^\d{8}$/', $datum ) ? $datum : get_the_date( 'Ymd', $post );
 }
 
-/**
- * @return array<int, array{titel: string, url: string, typ: string, sprache: string}> files in the order entered
- */
 function lr_medienmitteilung_dateien( WP_Post $post ): array {
 
 	$sprachen = array(

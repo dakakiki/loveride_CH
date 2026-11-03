@@ -1,9 +1,4 @@
 <?php
-/**
- * Event-Daten: access to the next Love Ride (date, times, place, countdown start) and the Topbar text (Theme-Einstellungen → Topbar).
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -56,11 +51,6 @@ function lr_event_value( string $type ): string {
 	return '';
 }
 
-/**
- * Eckdaten rows (Page-Hero, Medienmitteilungen info box): typ = Event-Daten value or „eigen“, vor = text before an Event-Daten value.
- *
- * @return array<int, array{label: string, wert: string}>
- */
 function lr_eckdaten( array $rows ): array {
 
 	$facts = array();
@@ -86,9 +76,6 @@ function lr_eckdaten( array $rows ): array {
 	return $facts;
 }
 
-/**
- * @param string $variant full "Save the Date: So, 2. Mai 2027 · Ort · 8.00 bis 17.00 Uhr" | medium (without hours) | short "So, 2. Mai 2027 · Ort"
- */
 function lr_topbar_text( string $variant = 'full', bool $custom = true ): string {
 
 	$text  = $custom ? trim( (string) lr_get_option( 'topbar_text', '' ) ) : '';

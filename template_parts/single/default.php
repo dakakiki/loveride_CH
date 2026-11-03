@@ -1,10 +1,3 @@
-<?php
-/**
- * Single default: title and content for post types without a dedicated part.
- *
- * @package loveride
- */
-?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 

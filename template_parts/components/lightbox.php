@@ -1,10 +1,3 @@
-<?php
-/**
- * Component: lightbox <dialog> for photos and the aftermovie (assets/js/modules/lightbox.js) – used by Galerie-Slider and Jahrgänge (Fotogalerie).
- *
- * @package loveride
- */
-?>
 <dialog class="lightbox" data-lightbox aria-label="<?= esc_attr__( 'Bild- und Videoansicht', 'loveride' ); ?>">
 	<button type="button" class="lightbox__button lightbox__close" data-lightbox-close aria-label="<?= esc_attr__( 'Schliessen', 'loveride' ); ?>" autofocus><?= lr_ui_icon( 'close' ); ?></button>
 	<div class="lightbox__stage" data-lightbox-stage></div>

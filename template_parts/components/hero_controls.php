@@ -1,9 +1,4 @@
 <?php
-/**
- * Component: hero slider controls (dots, counter, arrows) – used by Hero-Slider and Page-Hero.
- *
- * @package loveride
- */
 
 $lr_count = (int) ( $args['count'] ?? 0 );
 

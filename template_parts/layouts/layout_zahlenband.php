@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Zahlenband (layout_zahlenband) – numbers with count-up; content from Geteilte Inhalte «Wirkung» (Home, Charity) or own (Partner, Helfen, Rückblick); gross = red gradient with image, kompakt = dark row.
- *
- * @package loveride
- */
 
 $lr_data = get_sub_field( 'quelle' ) === 'eigen'
 	? (array) ( get_sub_field( 'inhalt' ) ?: array() )

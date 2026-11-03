@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Preise (layout_preise) – section head, optional benefits box (title, two-column list), price cards (label, price, text; standard / free with red price / highlighted dark card; own button (link or popup) or, on highlighted cards, the central Tickets button), footnote; Event „Tickets & Preise“, Sponsoren & Partner „Loverider-Club“.
- *
- * @package loveride
- */
 
 $lr_head = array(
 	'tagline' => (string) get_sub_field( 'tagline' ),

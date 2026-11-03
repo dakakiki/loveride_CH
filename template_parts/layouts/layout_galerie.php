@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Galerie-Slider (layout_galerie) – section head, aftermovie poster and a photo slider bleeding to the right edge with dots and arrows; photos and the aftermovie (YouTube without cookies) open in a lightbox; Home „So fühlt sich der Love Ride an“.
- *
- * @package loveride
- */
 
 $lr_head = array(
 	'tagline' => (string) get_sub_field( 'tagline' ),
@@ -50,7 +45,6 @@ $lr_poster_html = $lr_poster
 			<div class="galerie__slider" data-galerie>
 				<ul class="galerie__track" aria-label="<?= esc_attr__( 'Fotogalerie', 'loveride' ); ?>" data-gsap-cards>
 					<?php foreach ( $lr_bilder as $lr_i => $lr_bild ) : ?>
-						<?php /* translators: 1: image number, 2: image count */ ?>
 						<?php $lr_label = sprintf( __( 'Bild %1$d von %2$d vergrössern', 'loveride' ), $lr_i + 1, count( $lr_bilder ) ) . ( ! empty( $lr_bild['alt'] ) ? ': ' . $lr_bild['alt'] : '' ); ?>
 						<li class="galerie__item">
 							<a class="galerie__link" href="<?= esc_url( wp_get_attachment_image_url( $lr_bild['ID'], 'full' ) ); ?>" data-lightbox-index="<?= (int) $lr_i; ?>" aria-label="<?= esc_attr( $lr_label ); ?>">

@@ -1,9 +1,4 @@
 <?php
-/**
- * Live-Hinweise: content from Geteilte Inhalte (tab Live-Hinweise), info line from Event-Daten and "Zuletzt aktualisiert" timestamp; used by layout_live (Home, Anreise).
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

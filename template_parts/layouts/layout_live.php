@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Live-Hinweise (layout_live) – box with notice and tiles from Geteilte Inhalte → Live-Hinweise, only while switched on; Home, Anreise.
- *
- * @package loveride
- */
 
 if ( ! lr_live_active() ) {
 	return;

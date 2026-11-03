@@ -1,9 +1,4 @@
 <?php
-/**
- * Popup (inc/popups.php): <dialog> with red label, title, close button, note and the Contact Form 7 form; Partner „Loverider-Anmeldung“, „Aussteller-Anmeldung“.
- *
- * @package loveride
- */
 
 $lr_id      = (string) ( $args['id'] ?? '' );
 $lr_form    = (int) ( $args['formular'] ?? 0 );

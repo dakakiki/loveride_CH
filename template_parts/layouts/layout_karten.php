@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Karten-Grid (layout_karten) – section head and cards (icon on top or left, optionally numbered, label, optional title, text, footer line with icon, optional link; single cards red) in 2 / 3 / 4 columns on white, off-white or dark, optional red top line, optional dark box (icon, title, text, button) and central Tickets button below; variant Zeitleiste = steps in one row (label as large time / year, red = highlighted step); Anreise „Notfall“, Ride-Out „Ablauf“, „Solo-Biker“, „Regeln“, Passagiere & Charity „Barrierefreiheit“, „Partnerorganisationen“, „Spendenverwendung“.
- *
- * @package loveride
- */
 
 $lr_head = array(
 	'tagline' => (string) get_sub_field( 'tagline' ),

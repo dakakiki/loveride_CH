@@ -1,9 +1,4 @@
 <?php
-/**
- * Admin: hides the unused core "Beiträge" (News uses its own post type), Seiten-Layouts row titles and collapsed repeater rows.
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

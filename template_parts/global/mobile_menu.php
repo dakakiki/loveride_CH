@@ -1,9 +1,4 @@
 <?php
-/**
- * Mobile menu: accordion of the main menu groups, quick links (menu-topbar) and header CTAs, below the nav breakpoint.
- *
- * @package loveride
- */
 
 $lr_tree    = $args['tree'] ?? array();
 $lr_quick   = lr_menu_items( 'menu-topbar' );

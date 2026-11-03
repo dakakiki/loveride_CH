@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Geländeplan (layout_gelaendeplan) – section head, Leaflet map (swisstopo aerial image or the site plan graphic) with numbered markers, numbered legend (click zooms to the place), PDF button, Food & Drinks points with icons; Event #gelaende.
- *
- * @package loveride
- */
 
 $lr_head = array(
 	'tagline' => (string) get_sub_field( 'tagline' ),

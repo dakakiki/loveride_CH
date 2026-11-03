@@ -1,9 +1,4 @@
 <?php
-/**
- * Component: buttons (Baustein – Buttons: link + style primary / secondary / link, optional popup instead of the link) – used by content layouts; class = extra classes on the wrapper.
- *
- * @package loveride
- */
 
 $lr_buttons = array_filter(
 	(array) ( $args['buttons'] ?? array() ),

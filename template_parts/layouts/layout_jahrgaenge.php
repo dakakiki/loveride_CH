@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Jahrgänge (layout_jahrgaenge) – Jahrgang posts by year: Jahreskarten (2 columns: year, edition, date, Kennzahlen; paged), Aftermovie (poster, YouTube without cookies loaded on click), Fotogalerie (4 columns, „Mehr Bilder laden“, lightbox, external gallery link) or Helferliste (names by last name, „Alle … anzeigen“, organisations); year buttons (5 newest, older years in a select), „{jahr}“ in the section head shows the chosen year; Rückblick.
- *
- * @package loveride
- */
 
 $lr_darstellung = in_array( get_sub_field( 'darstellung' ), array( 'aftermovie', 'galerie', 'helfer' ), true ) ? get_sub_field( 'darstellung' ) : 'karten';
 $lr_hintergrund = get_sub_field( 'hintergrund' ) === 'offwhite' ? 'offwhite' : 'weiss';
@@ -65,7 +60,7 @@ $lr_filter = $lr_darstellung !== 'karten' && count( $lr_jahrgaenge ) > 1;
 			<?php
 			$lr_pro_seite = max( 2, (int) ( get_sub_field( 'pro_seite' ) ?: 6 ) );
 			$lr_seiten    = (int) ceil( count( $lr_jahrgaenge ) / $lr_pro_seite );
-			$lr_seite     = min( max( 1, absint( wp_unslash( $_GET['jahre'] ?? 1 ) ) ), $lr_seiten ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$lr_seite     = min( max( 1, absint( wp_unslash( $_GET['jahre'] ?? 1 ) ) ), $lr_seiten );
 			$lr_seite_url = fn( int $seite ) => ( $seite > 1 ? add_query_arg( 'jahre', $seite ) : remove_query_arg( 'jahre' ) ) . '#' . $lr_id;
 			?>
 			<ul class="jahreskarten" data-gsap-cards>

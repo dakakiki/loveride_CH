@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Programm & Line-up (layout_programm) – dark section: head with PDF button, day tabs, programme list (time, title / act, subtitle, image, place) with live bar on the event day (programm.js), Alle Acts grid (Act posts, „Mehr zum Act“ to the band website); Event #line-up / #acts.
- *
- * @package loveride
- */
 
 $lr_head = array(
 	'tagline' => (string) get_sub_field( 'tagline' ),

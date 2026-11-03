@@ -1,9 +1,4 @@
 <?php
-/**
- * Seiten-Layouts (ACF flexible content "layouts"): per-layout scripts, admin row titles, unique anchors per page.
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -154,7 +149,7 @@ function lr_find_values_by_key( $data, string $key ): array {
 
 add_action( 'acf/validate_save_post', function () {
 
-	$rows = $_POST['acf'][ LR_LAYOUTS_FIELD ] ?? null; // phpcs:ignore WordPress.Security.NonceVerification
+	$rows = $_POST['acf'][ LR_LAYOUTS_FIELD ] ?? null;
 
 	if ( ! is_array( $rows ) ) {
 		return;
@@ -171,7 +166,6 @@ add_action( 'acf/validate_save_post', function () {
 			}
 
 			if ( isset( $seen[ $anker ] ) ) {
-				/* translators: %s: anchor */
 				acf_add_validation_error( '', sprintf( __( 'Der Anker «#%s» wird auf dieser Seite mehrfach verwendet.', 'loveride' ), $anker ) );
 			}
 

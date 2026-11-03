@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Event-Teaser (layout_event_teaser) – next Love Ride from Event-Daten: year logo, title, text, countdown to the opening, Save the Date, „Programm folgt“ (until the programme is published), central Tickets button, footnote; Home.
- *
- * @package loveride
- */
 
 $lr_teaser   = (array) ( lr_event( 'teaser', array() ) ?: array() );
 $lr_titel    = trim( (string) lr_event( 'titel' ) );
@@ -64,7 +59,6 @@ $lr_units = array(
 			<?php if ( $lr_seconds > 0 ) : ?>
 				<div class="event-teaser__countdown fade-up" data-countdown="<?= esc_attr( $lr_start->format( 'c' ) ); ?>">
 					<p class="screen-reader-text" data-countdown-text>
-						<?php /* translators: %d: days until the Love Ride */ ?>
 						<?= esc_html( sprintf( _n( 'Noch %d Tag bis zum Love Ride', 'Noch %d Tage bis zum Love Ride', $lr_units['tage'][0], 'loveride' ), $lr_units['tage'][0] ) ); ?>
 					</p>
 					<ul class="countdown" aria-hidden="true">

@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Kontaktperson (layout_kontaktperson) – one team member (Mitglied) as contact: round photo, label, name, Ressort (or function), phone and e-mail on the right; Medien „Medienkontakt“.
- *
- * @package loveride
- */
 
 $lr_person = get_post( (int) get_sub_field( 'person' ) );
 

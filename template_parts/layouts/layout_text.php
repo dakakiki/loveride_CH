@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Text (layout_text) – section head, small note and rich text; Impressum, Datenschutz and general text.
- *
- * @package loveride
- */
 
 $lr_head = array(
 	'tagline' => (string) get_sub_field( 'tagline' ),

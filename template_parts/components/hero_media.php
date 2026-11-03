@@ -1,9 +1,4 @@
 <?php
-/**
- * Component: hero background (image, optional MP4 video, overlay) – used by hero layouts.
- *
- * @package loveride
- */
 
 $lr_bild  = $args['bild'] ?? null;
 $lr_video = $args['video'] ?? null;

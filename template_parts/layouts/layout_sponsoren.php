@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Sponsoren (layout_sponsoren) – section head, then the chosen Sponsoren-Stufen (none = all) in their order, each with its label (or intro box) and display: portrait (one wide, several as cards), logo grid (2 / 3 / 4 columns, name tile without logo) or alphabetical name list with „Alle … anzeigen“; Sponsoren & Partner.
- *
- * @package loveride
- */
 
 $lr_head = array(
 	'tagline' => (string) get_sub_field( 'tagline' ),

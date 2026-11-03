@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Gut zu wissen (layout_gut_zu_wissen) – dark section with the selected points from Geteilte Inhalte → Gut zu wissen (none selected = all) in one row, red top line, icon, title, text; Programm & Event, Ride-Out, Passagiere & Charity.
- *
- * @package loveride
- */
 
 $lr_auswahl = array_filter( (array) get_sub_field( 'punkte' ) );
 $lr_punkte  = lr_gut_zu_wissen_punkte();

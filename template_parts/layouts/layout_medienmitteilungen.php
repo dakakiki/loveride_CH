@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Medienmitteilungen (layout_medienmitteilungen) – Medienmitteilung posts: „Aktuell“ = newest (title, date + lead, files as download list) with a dark info box (Eckdaten from Event-Daten or own values, button); „Archiv“ = all older ones as rows (year, title, download of the German or first file) in a white box; Medien #aktuell, #archiv.
- *
- * @package loveride
- */
 
 $lr_archiv = get_sub_field( 'darstellung' ) === 'archiv';
 $lr_alle   = lr_medienmitteilungen();

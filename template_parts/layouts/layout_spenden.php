@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Spenden (layout_spenden) – red section from Geteilte Inhalte → Spenden: call with the central Spenden button and note, white panel with further ways to donate (icon, label, title, text; link or copy IBAN); Passagiere & Charity, can be placed on any page.
- *
- * @package loveride
- */
 
 $lr_data = (array) lr_get_option( 'geteilt_spenden', array() );
 

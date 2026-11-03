@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Hinweis-Box (layout_hinweis_box) – centred white box with red frame: icon in a red circle, tagline, title, text, link; Ride-Out „Bitte nicht abklatschen!“.
- *
- * @package loveride
- */
 
 $lr_head = array(
 	'tagline' => (string) get_sub_field( 'tagline' ),

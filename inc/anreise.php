@@ -1,9 +1,4 @@
 <?php
-/**
- * Anreise & Parken (Geteilte Inhalte → Anreise & Parken): GeoJSON and GPX uploads (GPX read as GeoJSON), map data for layout_anreise and layout_text_karte, layer choices for layout_text_karte.
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

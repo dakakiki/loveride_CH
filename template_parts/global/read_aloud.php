@@ -1,9 +1,4 @@
 <?php
-/**
- * Read aloud: floating "Seite vorlesen" button (Theme-Einstellungen → Vorlesen), all pages; shown by read-aloud.js when a German voice is available.
- *
- * @package loveride
- */
 
 if ( ! lr_read_aloud_enabled() ) {
 	return;

@@ -1,9 +1,4 @@
 <?php
-/**
- * Formatting helpers per style guide (dates, times, CHF amounts, numbers, phone links, website domains), e.g. So, 2. Mai 2027 · 8.00 Uhr · CHF 30.– · 5'000 · moto.ch.
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -42,9 +37,6 @@ function lr_to_datetime( $date ): ?DateTimeImmutable {
 	}
 }
 
-/**
- * @param string $style short "So, 2. Mai 2027" | long "Sonntag, 2. Mai 2027" | plain "2. Mai 2027" | upper "SO, 2. MAI"
- */
 function lr_format_date( $date, string $style = 'short' ): string {
 
 	$dt = lr_to_datetime( $date );

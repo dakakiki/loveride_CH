@@ -1,9 +1,4 @@
 <?php
-/**
- * Card: News post (image, category, date, title, teaser, „Weiterlesen“), whole card clickable; featured = wide card with author and red button, plain = no panel, light tag, no date (Home News-Teaser); used by News-Archiv, Weitere Beiträge and News-Teaser.
- *
- * @package loveride
- */
 
 $lr_id       = (int) ( $args['post'] ?? get_the_ID() );
 $lr_featured = ! empty( $args['featured'] );

@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Logo-Wand (layout_logo_wand) – section head and buttons next to a 2-column grid of partner logos (Sponsoren „In Logo-Leiste“, 5 random per load via logo-wand.js) and a dashed „Dein Logo hier?“ tile linking like the first button; Home „Danke an unsere Partner“.
- *
- * @package loveride
- */
 
 $lr_head = array(
 	'tagline' => (string) get_sub_field( 'tagline' ),

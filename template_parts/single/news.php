@@ -1,9 +1,4 @@
 <?php
-/**
- * Single News: back link, category, date, author (WP user), title, excerpt as lead, title image, block content, links in two columns (News – Details, always new tab), tags, share buttons, Weitere Beiträge (by tag, then category).
- *
- * @package loveride
- */
 
 $lr_id       = get_the_ID();
 $lr_category = lr_news_category( $lr_id );

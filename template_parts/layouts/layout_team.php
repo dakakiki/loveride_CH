@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Team (layout_team) – section head and team members of the chosen Teamgruppen (none = all) in their order: photo, function, name, profession; 4 / 2 columns; Über uns „Committee“.
- *
- * @package loveride
- */
 
 $lr_head = array(
 	'tagline' => (string) get_sub_field( 'tagline' ),

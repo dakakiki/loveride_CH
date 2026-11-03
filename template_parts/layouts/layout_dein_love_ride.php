@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Dein Love Ride (layout_dein_love_ride) – dark target-group cards (image, title, text, link) from Geteilte Inhalte → Dein Love Ride, whole card clickable; Home, can be placed on any page.
- *
- * @package loveride
- */
 
 $lr_data = (array) lr_get_option( 'geteilt_dein_love_ride', array() );
 

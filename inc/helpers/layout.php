@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout helpers: section wrapper attributes for ACF flexible layouts (Seiten-Layouts).
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

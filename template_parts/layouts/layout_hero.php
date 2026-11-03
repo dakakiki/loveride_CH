@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Hero-Slider (layout_hero) – full-screen slides with image/video background, used on Home.
- *
- * @package loveride
- */
 
 $lr_slides = array_values( array_filter( (array) ( get_sub_field( 'slides' ) ?: array() ), function ( $slide ) {
 	return ! empty( $slide['hintergrund']['bild'] ) || ! empty( $slide['inhalt']['titel'] );

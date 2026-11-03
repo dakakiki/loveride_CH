@@ -1,9 +1,4 @@
 <?php
-/**
- * Read aloud: option check and script for the "Seite vorlesen" floater (Theme-Einstellungen → Vorlesen), all frontend pages.
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

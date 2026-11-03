@@ -1,9 +1,4 @@
 <?php
-/**
- * ACF options pages: Theme-Einstellungen (Event-Daten, Geteilte Inhalte).
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

@@ -1,13 +1,8 @@
 <?php
-/**
- * Layout: News-Archiv (layout_news_archiv) – newest post highlighted, grid of News cards, „Ältere Beiträge laden“ (?seite=N, appended without reload by news.js); News page.
- *
- * @package loveride
- */
 
 $lr_per_page = max( 3, (int) ( get_sub_field( 'pro_seite' ) ?: 9 ) );
 $lr_featured = (bool) get_sub_field( 'neuester' );
-$lr_page     = max( 1, absint( wp_unslash( $_GET['seite'] ?? 1 ) ) ); // phpcs:ignore WordPress.Security.NonceVerification
+$lr_page     = max( 1, absint( wp_unslash( $_GET['seite'] ?? 1 ) ) );
 $lr_offset   = $lr_page === 1 ? 0 : ( $lr_featured ? 1 : 0 ) + ( $lr_page - 1 ) * $lr_per_page;
 $lr_count    = $lr_per_page + ( $lr_featured && $lr_page === 1 ? 1 : 0 );
 

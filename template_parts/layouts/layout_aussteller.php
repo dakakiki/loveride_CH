@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Aussteller (layout_aussteller) – section head, optional filter by Aussteller-Kategorie and cards (logo, category, name, website) of all exhibitors; Sponsoren & Partner „Alle Aussteller“.
- *
- * @package loveride
- */
 
 $lr_head = array(
 	'tagline' => (string) get_sub_field( 'tagline' ),

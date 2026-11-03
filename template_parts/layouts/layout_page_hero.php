@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Page-Hero (layout_page_hero) – page head with image/video slider or without image, tagline, title, text and Eckdaten (Event-Daten or own values).
- *
- * @package loveride
- */
 
 $lr_ohne_bild = get_sub_field( 'variante' ) === 'ohne';
 $lr_medien    = $lr_ohne_bild ? array() : array_values( array_filter( (array) ( get_sub_field( 'medien' ) ?: array() ), function ( $item ) {

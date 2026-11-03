@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Bild-Kacheln (layout_bildkacheln) – section head in two columns and full-width image tiles (numbered, dark / red / light by order), each linking to a page; Home „Drei Welten“.
- *
- * @package loveride
- */
 
 $lr_head = array(
 	'tagline' => (string) get_sub_field( 'tagline' ),

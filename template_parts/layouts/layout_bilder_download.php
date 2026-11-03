@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Bilder-Download (layout_bilder_download) – section head with buttons on the right (ZIP, Logos) and a gallery of press photos as cards (photo, title, download of the original file) in 3 / 2 / 1 columns; Medien #bilder.
- *
- * @package loveride
- */
 
 $lr_bilder = array_values( array_filter( (array) ( get_sub_field( 'bilder' ) ?: array() ), fn( $bild ) => ! empty( $bild['ID'] ) ) );
 

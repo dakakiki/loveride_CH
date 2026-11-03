@@ -1,9 +1,4 @@
 <?php
-/**
- * News: category, date, author, teaser (excerpt) and tag helpers, URL of the News page (page with layout_news_archiv), further posts (3 random with a shared tag, then same category), YouTube embeds without cookies, News script on single posts.
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -56,7 +51,7 @@ function lr_news_page_url(): string {
 			'post_status'    => 'publish',
 			'posts_per_page' => 1,
 			'fields'         => 'ids',
-			'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery
+			'meta_query'     => array(
 				array(
 					'key'     => 'layouts',
 					'value'   => '"layout_news_archiv"',
@@ -89,7 +84,7 @@ function lr_news_more( int $post_id, int $count = 3 ): array {
 			'post__not_in'   => array_merge( $ids, array( $post_id ) ),
 			'orderby'        => 'rand',
 			'fields'         => 'ids',
-			'tax_query'      => array( // phpcs:ignore WordPress.DB.SlowDBQuery
+			'tax_query'      => array(
 				array(
 					'taxonomy' => $taxonomy,
 					'terms'    => $terms,

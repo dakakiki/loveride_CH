@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: Schritte (layout_schritte) – numbered steps (label, title, text), optional contact person box, contact details from Theme-Einstellungen (address, phone, e-mail, donation account) and note with icon, and an optional side column: a box with icon points and a note, a facts box (label / value), or a Contact Form 7 form in a white box (head then moves into the left column); white / off-white / dark, optionally without top spacing; Passagiere & Charity „So fährst du mit“, „Gesuch stellen“, Sponsoren & Partner „Sponsoring anfragen“, Über uns „Verein“, „Kontakt“, later Helfen „Anmeldung“.
- *
- * @package loveride
- */
 
 $lr_head = array(
 	'tagline' => (string) get_sub_field( 'tagline' ),

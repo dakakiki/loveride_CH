@@ -1,9 +1,4 @@
 <?php
-/**
- * Debug: dd_array( $data, $text_color, $bg_color, $die ) – formatted print_r for development.
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

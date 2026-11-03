@@ -1,9 +1,4 @@
 <?php
-/**
- * Menus: nested item tree with ACF mega menu fields (menu-main), flat item lists, logo helpers, central Tickets/Spenden buttons (Theme-Einstellungen → Buttons).
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

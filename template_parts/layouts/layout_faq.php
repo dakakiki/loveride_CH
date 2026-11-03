@@ -1,9 +1,4 @@
 <?php
-/**
- * Layout: FAQ (layout_faq) – head with buttons next to an accordion of FAQ posts from the chosen FAQ-Kategorien (order = Reihenfolge), first question optionally open; Programm & Event, Ride-Out, Passagiere & Charity, Helfen.
- *
- * @package loveride
- */
 
 $lr_head = array(
 	'tagline' => (string) get_sub_field( 'tagline' ),

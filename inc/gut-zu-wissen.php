@@ -1,9 +1,4 @@
 <?php
-/**
- * Gut zu wissen (Geteilte Inhalte → Gut zu wissen): points with a stable Kennung (filled from the title when empty), choices for the point selection in layout_gut_zu_wissen.
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

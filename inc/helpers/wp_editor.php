@@ -1,9 +1,4 @@
 <?php
-/**
- * Editors: block editor (pages, News) with allowed core blocks only (News: text, headings H2–H4, lists, images, YouTube), no patterns or block directory, paragraph style "Hinweis", heading style "Mit Linie" (red line on the left); TinyMCE (ACF WYSIWYG) formats without H1, format dropdown also in the Basic toolbar.
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

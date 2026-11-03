@@ -1,9 +1,4 @@
 <?php
-/**
- * ACF helpers: options access, layout detection, layout rendering, responsive images.
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

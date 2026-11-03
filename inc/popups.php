@@ -1,9 +1,4 @@
 <?php
-/**
- * Popups (Geteilte Inhalte → Popups): Loverider- and Aussteller-Anmeldung as <dialog> with a Contact Form 7 form; a button with „Popup“ registers its popup and the dialogs are printed in the footer only on pages that use them; links to #loverider-anmeldung / #aussteller-anmeldung open them.
- *
- * @package loveride
- */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -14,9 +9,6 @@ const LR_POPUPS = array(
 	'aussteller' => 'aussteller-anmeldung',
 );
 
-/**
- * @return string[] popups used on the current page (registers $popup when given)
- */
 function lr_popup_use( ?string $popup = null ): array {
 
 	static $used = array();
@@ -35,9 +27,6 @@ function lr_popup_daten( string $popup ): array {
 	return (array) ( $popups[ $popup ] ?? array() );
 }
 
-/**
- * Link attributes for a button that opens a popup; $wahl preselects the radio option starting with it (e.g. „Family Rider“).
- */
 function lr_popup_attrs( string $popup, string $wahl = '' ): string {
 
 	if ( ! isset( LR_POPUPS[ $popup ] ) || ! (int) ( lr_popup_daten( $popup )['formular'] ?? 0 ) ) {
