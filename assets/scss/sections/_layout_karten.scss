@@ -1,7 +1,3 @@
-/*
-* Layout: Karten-Grid (layout_karten) – section head and cards in 2 / 3 / 4 columns: icon on top or left (optionally with number 01, 02 …), red label, cards without title show the text larger, title (small / standard / large), text, link; cards off-white on white, white on off-white, #333 on dark (#1A1A1A), red when highlighted, optional red top line, footer line (bold, optional icon) at the bottom of the card, dark box (icon, title, text, white button) and Tickets button below; Zeitleiste = one row of steps with a grey top line (highlighted step red, 6px), large time / year
-*/
-
 @use '../abstracts' as *;
 
 .layout-karten {

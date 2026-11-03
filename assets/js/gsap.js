@@ -1,7 +1,3 @@
-/*
-* GSAP scroll reveals: .fade-up / .fade-left / .fade-right, .group-* stagger, [data-gsap-cards] (all pages)
-*/
-
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 

@@ -1,16 +1,6 @@
-@charset "UTF-8";
 /*
 Theme Name: Love Ride Switzerland
 Author: Kommpass GmbH
-*/
-/*
-* Abstracts: variables, functions and mixins (no CSS output except @font-face)
-*/
-/*
-* Colors: Figma primitives, semantic colors and the four section schemes (Weiss, Off White, Dunkel, Rot)
-*/
-/*
-* Fonts: Open Sans variable (wght 300–800, wdth 75–100), self-hosted; wdth 75 = Open Sans Condensed
 */
 @font-face {
   font-family: "Open Sans";
@@ -30,30 +20,6 @@ Author: Kommpass GmbH
   font-display: swap;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/*
-* Variables: grid, containers, section spacing and header heights (Figma "Spacing & Sizing", Desktop / Mobile)
-*/
-/*
-* Breakpoints: respond-min / respond-max / respond-between
-*/
-/*
-* Functions: fluid() clamp between mobile and desktop artboard, rem(), em()
-*/
-/*
-* Mixins: container, section spacing, color schemes, fluid properties and small helpers
-*/
-/*
-* Typography: Figma text styles H1–H6, Tagline, Text Large–Tiny (Desktop / Mobile), compact rich text (legal text), text accents (red-square list, H4 note with red line)
-*/
-/*
-* Buttons: Primary, Secondary, Link (Figma "Button"); colors follow the section scheme, Alternate on Dunkel / Rot; filter chip (Aussteller, years)
-*/
-/*
-* Layouts: global styles and site-wide elements
-*/
-/*
-* Root: CSS custom properties (palette, page padding, header height, header offset incl. admin bar – measured in custom.js), default scheme Weiss
-*/
 :root {
   --clr-white: #FFFFFF;
   --clr-black: #000000;
@@ -111,9 +77,6 @@ body.admin-bar {
   }
 }
 
-/*
-* Color schemes: .scheme-weiss / -offwhite / -dunkel / -rot on sections (ACF "farbschema")
-*/
 .scheme-weiss {
   --scheme-text: #1A1A1A;
   --scheme-background: #FFFFFF;
@@ -206,9 +169,6 @@ body.admin-bar {
   background-color: var(--scheme-background);
 }
 
-/*
-* Base: element defaults, typography classes, container, section spacing, rich text (all pages)
-*/
 *,
 *::before,
 *::after {
@@ -540,9 +500,6 @@ hr {
   border: 0;
 }
 
-/*
-* Button classes: .btn--primary / --secondary / --link, .btn--small (ACF "Baustein – Buttons"); .arrow-link = bold text link with "→" (Figma Text/Regular/Bold)
-*/
 .btn--primary {
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
   font-stretch: 100%;
@@ -779,9 +736,6 @@ hr {
   gap: 1rem;
 }
 
-/*
-* Forms: Contact Form 7 base (validation tips, response output, submitting state), the newsletter form layout (.nl-form) and the content form layout (.lr-form: labelled fields, two- / three-field rows, sections with red label, short textarea, select with arrow, radio and checkbox groups, notes, privacy checkbox, submit)
-*/
 .wpcf7 {
   --form-error: #A50B24;
 }
@@ -1131,9 +1085,6 @@ hr {
   display: none;
 }
 
-/*
-* Topbar: red bar above the navbar with Save-the-Date text and quick links (all pages)
-*/
 .topbar {
   --scheme-text: #FFFFFF;
   --scheme-background: #CE0E2D;
@@ -1244,9 +1195,6 @@ hr {
   color: #1A1A1A;
 }
 
-/*
-* Header: fixed site header with Navbar (logo, main navigation, CTAs, mobile menu toggle), all pages
-*/
 .header {
   position: sticky;
   top: 0;
@@ -1364,9 +1312,6 @@ hr {
   display: block;
 }
 
-/*
-* Navigation: desktop main menu (menu-main) with mega panels dropping below the Navbar
-*/
 @media (max-width: 1279px) {
   .nav-main {
     display: none;
@@ -1573,9 +1518,6 @@ hr {
   text-decoration: underline;
 }
 
-/*
-* Mobile menu: full-height accordion menu below the header, quick links and CTA bar (below the nav breakpoint)
-*/
 .mobile-menu {
   position: fixed;
   top: var(--lr-header-bottom, 108px);
@@ -1727,9 +1669,6 @@ html.has-mobile-menu {
   padding-right: var(--lr-scrollbar, 0px);
 }
 
-/*
-* Footer: next Love Ride, newsletter, partner logos, contact/donation, menu columns and legal links (all pages)
-*/
 .footer {
   --scheme-text: #FFFFFF;
   --scheme-background: #333333;
@@ -2165,9 +2104,6 @@ html.has-mobile-menu {
   line-height: 1.5;
 }
 
-/*
-* Hero component: background media with overlay, slide stack and slider controls (dots, counter, arrows); Hero-Slider and Page-Hero
-*/
 .hero-media {
   position: absolute;
   inset: 0;
@@ -2361,9 +2297,6 @@ html.has-mobile-menu {
     animation: none;
   }
 }
-/*
-* Section head: Baustein – Sektionskopf (tagline, title, text) in content layouts, --split = text in a second column (template_parts/components/section_head.php)
-*/
 .section-head {
   display: flex;
   flex-direction: column;
@@ -2423,9 +2356,6 @@ html.has-mobile-menu {
   }
 }
 
-/*
-* Block editor output: core blocks without the dequeued block library CSS (page content, News)
-*/
 .wysiwyg .has-text-align-left {
   text-align: left;
 }
@@ -2616,9 +2546,6 @@ html.has-mobile-menu {
   border-left: 4px solid #CE0E2D;
 }
 
-/*
-* Read aloud: floating "Seite vorlesen" button (Figma "LR/Vorlesen-Button") and the highlight of the block being read, all pages
-*/
 .read-aloud {
   --read-aloud-edge: 1.5rem;
   position: fixed;
@@ -2738,9 +2665,6 @@ html:has(.read-aloud:not([hidden])) {
     transition: none;
   }
 }
-/*
-* Lightbox: full-screen <dialog> for photos (prev / next, counter) and the aftermovie (16:9 YouTube); used by Galerie-Slider and Jahrgänge (components/lightbox.php)
-*/
 .has-lightbox {
   overflow: hidden;
 }
@@ -2853,9 +2777,6 @@ html:has(.read-aloud:not([hidden])) {
   display: none;
 }
 
-/*
-* Popup (template_parts/global/popup.php): full-screen <dialog> with dark backdrop, scrolling white box 760 with red top line (label, title, close, note, form); full screen on mobile; fades in and out (box slides up slightly, .is-closing set by popups.js), no motion with reduced motion
-*/
 .has-popup {
   overflow: hidden;
 }
@@ -3010,9 +2931,6 @@ html:has(.read-aloud:not([hidden])) {
     animation: none !important;
   }
 }
-/*
-* News: category tag (red / light) and meta line, News card (+ featured, plain for Home), card grid, single article (head, title image, block content with H2–H4 and heading style "Mit Linie", links in two columns, tags, share), Weitere Beiträge
-*/
 .news-tag {
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
   font-stretch: 100%;
@@ -3487,9 +3405,6 @@ html:has(.read-aloud:not([hidden])) {
     transition: none;
   }
 }
-/*
-* Lists: name list in 4 / 2 columns (1 below 360px) with lines, hidden names beyond the visible count and „Alle … anzeigen“ (Sponsoren Gönner, Rückblick Helferlisten)
-*/
 .namensliste {
   margin: 0;
   padding: 0;
@@ -3534,9 +3449,6 @@ html:has(.read-aloud:not([hidden])) {
   margin-top: 0.25rem;
 }
 
-/*
-* Scroll animations: initial state for .fade-up / .fade-left / .fade-right and [data-gsap-cards] children until GSAP takes over (gsap.js)
-*/
 .js .fade-up:not(.fade-up-initialized),
 .js .fade-left:not(.fade-left-initialized),
 .js .fade-right:not(.fade-right-initialized),
@@ -3552,12 +3464,6 @@ html:has(.read-aloud:not([hidden])) {
     visibility: visible;
   }
 }
-/*
-* Sections: one file per ACF flexible layout (_layout_*.scss) and shared block (_shared_*.scss)
-*/
-/*
-* Layout: Hero-Slider (layout_hero) – slides with own content and logo, height = viewport minus header (topbar + navbar), spacing/title/logo shrink on low viewports; used on Home
-*/
 .layout-hero {
   --hero-pad-bottom: 6.25rem;
   position: relative;
@@ -3672,9 +3578,6 @@ html:has(.read-aloud:not([hidden])) {
   }
 }
 
-/*
-* Layout: Page-Hero (layout_page_hero) – page head with image/video slider and overlay or without image, design heights 720/640/600/520 capped at viewport minus header, large title, Eckdaten; subpages
-*/
 .layout-page-hero {
   --page-hero-h: 600px;
   position: relative;
@@ -3829,9 +3732,6 @@ html:has(.read-aloud:not([hidden])) {
   margin: 0;
 }
 
-/*
-* Layout: Text (layout_text) – note and rich text, narrow (800) or wide; general text between sections
-*/
 .text-section__inner {
   max-width: 50rem;
 }
@@ -3897,9 +3797,6 @@ html:has(.read-aloud:not([hidden])) {
   max-width: none;
 }
 
-/*
-* Layout: Bild-Kacheln (layout_bildkacheln) – full-width image tiles with numbered panels (dark / red / light), whole tile clickable; Home „Drei Welten“
-*/
 .layout-bildkacheln .section-head {
   margin-bottom: clamp(40px, 31.0857142857px + 2.2857142857vw, 64px);
 }
@@ -4081,9 +3978,6 @@ html:has(.read-aloud:not([hidden])) {
     transition: none;
   }
 }
-/*
-* Layout: Bild-Karten (layout_bildkarten) – white section, dark image cards (white title, grey text, photo zooms on hover) in 4 / 2 / 1 columns; linked cards are clickable as a whole
-*/
 .layout-bildkarten {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
   padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -4216,9 +4110,6 @@ html:has(.read-aloud:not([hidden])) {
     transition: none;
   }
 }
-/*
-* Layout: Bild & Text (layout_cta_bild) – photo to the edge (half 1:1 or narrow 4:5) or cover (square 400 with red frame inside the container), text panel aligned with the container, list with red squares and H4 note with red line in the text; backgrounds light grey (#F2F0ED) / off-white / white / dark (red tagline, red primary button; white on cover); mobile: photo on top
-*/
 .layout-cta-bild {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -4438,9 +4329,6 @@ html:has(.read-aloud:not([hidden])) {
   color: #B3AFA8;
 }
 
-/*
-* Layout: Galerie-Slider (layout_galerie) – aftermovie banner with play button, scroll-snap photo slider bleeding to the right edge, dots and arrows; photos zoom on hover (lightbox: layouts/_lightbox.scss)
-*/
 .layout-galerie {
   padding-top: clamp(40px, 13.2571428571px + 6.8571428571vw, 112px);
   padding-bottom: clamp(40px, 13.2571428571px + 6.8571428571vw, 112px);
@@ -4673,9 +4561,6 @@ html:has(.read-aloud:not([hidden])) {
     scroll-behavior: auto;
   }
 }
-/*
-* Layout: News-Archiv (layout_news_archiv) – off-white section with highlighted newest post, card grid and centred „Ältere Beiträge laden“ (cards: layouts/_news.scss)
-*/
 .layout-news-archiv {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
   padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -4700,9 +4585,6 @@ html:has(.read-aloud:not([hidden])) {
   margin: 0;
 }
 
-/*
-* Layout: News-Teaser (layout_news_teaser) – white section, plain News cards (layouts/_news.scss), „Alle News“ right on desktop
-*/
 .layout-news-teaser {
   padding-top: clamp(40px, 13.2571428571px + 6.8571428571vw, 112px);
   padding-bottom: clamp(40px, 13.2571428571px + 6.8571428571vw, 112px);
@@ -4724,9 +4606,6 @@ html:has(.read-aloud:not([hidden])) {
   }
 }
 
-/*
-* Layout: Logo-Wand (layout_logo_wand) – off-white section, text and buttons left, 2-column grid of white logo tiles and a dashed „Dein Logo hier?“ tile right; stacked on mobile
-*/
 .layout-logo-wand {
   padding-top: clamp(40px, 13.2571428571px + 6.8571428571vw, 112px);
   padding-bottom: clamp(40px, 13.2571428571px + 6.8571428571vw, 112px);
@@ -4808,9 +4687,6 @@ html:has(.read-aloud:not([hidden])) {
   object-fit: contain;
 }
 
-/*
-* Layout: Programm & Line-up (layout_programm) – dark section: head with PDF button, day tabs (active red), programme rows (time, title, subtitle, image, place; live row red), Alle Acts grid with white cards and red top line
-*/
 .layout-programm {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
   padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -5178,9 +5054,6 @@ html:has(.read-aloud:not([hidden])) {
     transition: none;
   }
 }
-/*
-* Layout: Geländeplan (layout_gelaendeplan) – map (swisstopo aerial / plan graphic) with black label markers (number + title, arrow down) next to the numbered legend (rows divided by lines; red = highlighted, active = red title and number), PDF button, Food & Drinks points with icons on off-white
-*/
 .layout-gelaendeplan {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
   padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -5429,9 +5302,6 @@ html:has(.read-aloud:not([hidden])) {
   color: #444444;
 }
 
-/*
-* Layout: Anreise & Parken (layout_anreise) – dark section: head with Anfahrtsplan button, softened grey swisstopo map (simple, or with the off-white layer panel and red checkboxes), label markers (icon + title, destination red), Wege boxes (#333, red top line, red icon)
-*/
 .layout-anreise {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
   padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -5780,9 +5650,6 @@ html:has(.read-aloud:not([hidden])) {
   z-index: 1;
 }
 
-/*
-* Layout: Übernachten (layout_uebernachten) – off-white or white section, head left of the accommodation cards from 1280 (above below), white cards with red top line, red icon and type label, phone and website link; 3 / 1 columns
-*/
 .layout-uebernachten {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
   padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -5905,9 +5772,6 @@ html:has(.read-aloud:not([hidden])) {
   padding-top: 0.5rem;
 }
 
-/*
-* Layout: Gut zu wissen (layout_gut_zu_wissen) – dark section, title, points in one row (columns = number of points, max 4; 2 below 1024, 1 on mobile) with red top line, red icon, white title, grey text
-*/
 .layout-gut-zu-wissen {
   padding-top: clamp(48px, 39.0857142857px + 2.2857142857vw, 72px);
   padding-bottom: clamp(48px, 39.0857142857px + 2.2857142857vw, 72px);
@@ -5979,9 +5843,6 @@ html:has(.read-aloud:not([hidden])) {
   color: #B3AFA8;
 }
 
-/*
-* Layout: FAQ (layout_faq) – white section, head with buttons left of the accordion from 1280 (above below), questions divided by lines, "+" turns into a red "–" when open, answer slides open
-*/
 .layout-faq {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
   padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -6122,9 +5983,6 @@ html:has(.read-aloud:not([hidden])) {
     transition: none;
   }
 }
-/*
-* Layout: Karten-Grid (layout_karten) – section head and cards in 2 / 3 / 4 columns: icon on top or left (optionally with number 01, 02 …), red label, cards without title show the text larger, title (small / standard / large), text, link; cards off-white on white, white on off-white, #333 on dark (#1A1A1A), red when highlighted, optional red top line, footer line (bold, optional icon) at the bottom of the card, dark box (icon, title, text, white button) and Tickets button below; Zeitleiste = one row of steps with a grey top line (highlighted step red, 6px), large time / year
-*/
 .layout-karten {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
   padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -6514,9 +6372,6 @@ html:has(.read-aloud:not([hidden])) {
   color: var(--scheme-text);
 }
 
-/*
-* Layout: Text & Karte (layout_text_karte) – text column (head with red-square list, buttons) next to the map of one Anreise layer / own route or its placeholder box (grey, icon, title, note); wide variant 420 / 796 with larger placeholder; stacked below 991
-*/
 .layout-text-karte {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
   padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -6679,9 +6534,6 @@ html:has(.read-aloud:not([hidden])) {
   text-transform: none;
 }
 
-/*
-* Layout: Banner (layout_banner) – band with optional icon, title (large 40 / medium 32 / small 24 = compact band, icon 36 centred) and text left, buttons right (stacked on mobile); red (white text, white button), dark #1A1A1A (white button, outline hover) or off-white
-*/
 .layout-banner {
   padding-top: clamp(40px, 34.0571428571px + 1.5238095238vw, 56px);
   padding-bottom: clamp(40px, 34.0571428571px + 1.5238095238vw, 56px);
@@ -6800,9 +6652,6 @@ html:has(.read-aloud:not([hidden])) {
   flex: none;
 }
 
-/*
-* Layout: Hinweis-Box (layout_hinweis_box) – centred white box (max 1028) with a 3px red frame on off-white or white: icon in a red circle, tagline, title (H4), text, link
-*/
 .layout-hinweis-box {
   padding-top: clamp(48px, 42.0571428571px + 1.5238095238vw, 64px);
   padding-bottom: clamp(48px, 42.0571428571px + 1.5238095238vw, 64px);
@@ -6875,9 +6724,6 @@ html:has(.read-aloud:not([hidden])) {
   text-align: center;
 }
 
-/*
-* Layout: Schritte (layout_schritte) – numbered steps with red circle numbers, contact person box (label, name, phone, e-mail, button) and note with icon; white / off-white / dark (#1A1A1A), optionally without top spacing; contact details as list with icons in off-white squares; with box: head across, steps divided by lines next to the off-white box (icon points, note); with facts: head left, off-white box with red top line and label / value rows right; with form: head and compact steps left, white form box with red top line right; stacked below 991
-*/
 .layout-schritte {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
   padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -7321,9 +7167,6 @@ html:has(.read-aloud:not([hidden])) {
   color: #CE0E2D;
 }
 
-/*
-* Layout: Spenden (layout_spenden) – red section: call (white head, white online button, note) next to a white panel with further ways to donate divided by lines (icon in off-white square, red label, title, text, link or copy IBAN); stacked below 991
-*/
 .layout-spenden {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
   padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -7458,9 +7301,6 @@ html:has(.read-aloud:not([hidden])) {
   cursor: pointer;
 }
 
-/*
-* Layout: Sponsoren (layout_sponsoren) – white section, one block per tier with red label (or off-white intro box): portraits (one wide: logo left, text right; several: cards with logo on top, 2 columns), logo grid with grey frame (2 / 3 / 4 columns, off-white name tile without logo), name list (.namensliste in layouts/_listen.scss)
-*/
 .layout-sponsoren {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
   padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -7710,9 +7550,6 @@ html:has(.read-aloud:not([hidden])) {
   color: #CE0E2D;
 }
 
-/*
-* Layout: Aussteller (layout_aussteller) – white section, category filter buttons (active dark), exhibitor cards in 4 / 2 / 1 columns: white logo box, red category, name, website link
-*/
 .layout-aussteller {
   padding-top: clamp(48px, 42.0571428571px + 1.5238095238vw, 64px);
   padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -7847,9 +7684,6 @@ html:has(.read-aloud:not([hidden])) {
   color: #A50B24;
 }
 
-/*
-* Layout: Team (layout_team) – white section, team members in 4 / 2 columns (1 below 360px): photo (302:340, off-white behind), red function, name, profession
-*/
 .layout-team {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
   padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -7944,9 +7778,6 @@ html:has(.read-aloud:not([hidden])) {
   color: #444444;
 }
 
-/*
-* Layout: Medienmitteilungen (layout_medienmitteilungen) – Aktuell: head and download rows (red document icon, title, file type, download icon, lines) next to the dark info box (red top line, label, title, facts with lines, full-width white button), stacked below 991; Archiv: rows (red year, title, download icon) in a white box on off-white
-*/
 .layout-medienmitteilungen {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
   padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -8205,9 +8036,6 @@ html:has(.read-aloud:not([hidden])) {
   transition-timing-function: ease-in-out;
 }
 
-/*
-* Layout: Bilder-Download (layout_bilder_download) – head with buttons at its bottom right (below on mobile), press photos as white cards (photo 416:280, bold title, red download icon) in 3 / 2 / 1 columns on off-white or white
-*/
 .layout-bilder-download {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
   padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -8324,9 +8152,6 @@ html:has(.read-aloud:not([hidden])) {
   transition-timing-function: ease-in-out;
 }
 
-/*
-* Layout: Kontaktperson (layout_kontaktperson) – round photo 96 (dark behind), red label, name, Ressort left; phone and e-mail with red icons right (below on mobile)
-*/
 .layout-kontaktperson {
   padding-top: clamp(48px, 39.0857142857px + 2.2857142857vw, 72px);
   padding-bottom: clamp(48px, 39.0857142857px + 2.2857142857vw, 72px);
@@ -8444,9 +8269,6 @@ html:has(.read-aloud:not([hidden])) {
   color: #DC0D15;
 }
 
-/*
-* Layout: Jahrgänge (layout_jahrgaenge) – head with year buttons (filter chips, „Ältere Jahre“ select) at its bottom right; Jahreskarten: white cards with red top line in 2 columns (year, red edition, date, 4 numbers with lines, „–“ grey) and square pagination; Aftermovie: poster 2:1 with dark overlay and red play circle, video inline; Fotogalerie: square photos in 4 / 2 columns; Helferliste: name list, organisations, „Alle … anzeigen“
-*/
 .layout-jahrgaenge {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
   padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -8847,9 +8669,6 @@ html:has(.read-aloud:not([hidden])) {
   margin-top: 1.5rem;
 }
 
-/*
-* Layout: Preise (layout_preise) – off-white section, price cards in 4 / 2 / 1 columns (white with grey border; free = red price; highlighted = dark with red border and the red Tickets button, own button white), small footnote; with benefits: white box (red top line, two-column red-square list) next to the price cards (red top line, button at the bottom)
-*/
 .layout-preise {
   padding-top: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
   padding-bottom: clamp(48px, 30.1714285714px + 4.5714285714vw, 96px);
@@ -9067,9 +8886,6 @@ html:has(.read-aloud:not([hidden])) {
   background-color: #CE0E2D;
 }
 
-/*
-* Layout: Zahlenband (layout_zahlenband) – gross: red gradient with faded image, head, numbers with red bar, footnote; kompakt: dark row of numbers with red top line
-*/
 .layout-zahlenband {
   --scheme-text: #FFFFFF;
   --scheme-background: #333333;
@@ -9235,9 +9051,6 @@ html:has(.read-aloud:not([hidden])) {
   color: #B3AFA8;
 }
 
-/*
-* Layout: Live-Hinweise (layout_live) – red-framed box with info line, notice and tiles; Home, Anreise
-*/
 .layout-live {
   padding-top: clamp(40px, 17.7142857143px + 5.7142857143vw, 100px);
   padding-bottom: clamp(40px, 17.7142857143px + 5.7142857143vw, 100px);
@@ -9442,9 +9255,6 @@ html:has(.read-aloud:not([hidden])) {
   margin-top: auto;
 }
 
-/*
-* Layout: Dein Love Ride (layout_dein_love_ride) – white section with dark target-group cards in 3 / 2 / 1 columns, link at the card bottom, whole card clickable
-*/
 .layout-dein-love-ride {
   padding-top: clamp(40px, 13.2571428571px + 6.8571428571vw, 112px);
   padding-bottom: clamp(40px, 13.2571428571px + 6.8571428571vw, 112px);
@@ -9573,9 +9383,6 @@ html:has(.read-aloud:not([hidden])) {
     transition: none;
   }
 }
-/*
-* Layout: Event-Teaser (layout_event_teaser) – photo under a dark red gradient, centred year logo, title, text, countdown box, Save the Date, programme note, white Tickets button
-*/
 .layout-event-teaser {
   --scheme-text: #FFFFFF;
   --scheme-background: #333333;
@@ -9821,12 +9628,6 @@ html:has(.read-aloud:not([hidden])) {
   line-height: 1.5;
 }
 
-/*
-* Pages: template-specific styles
-*/
-/*
-* Page: fallback page header (no Page-Hero), block editor content below the layouts (e.g. Impressum, Datenschutz), 404
-*/
 .page-header {
   width: 100%;
   max-width: calc(1280px + var(--padding-global) * 2);
@@ -9907,12 +9708,6 @@ html:has(.read-aloud:not([hidden])) {
   margin-top: 2rem;
 }
 
-/*
-* Vendor: third-party library styles
-*/
-/*
-* Slick 1.8: base slider mechanics (track, list, slides), all sliders
-*/
 .slick-slider {
   position: relative;
   display: block;
@@ -9987,9 +9782,6 @@ html:has(.read-aloud:not([hidden])) {
   display: none;
 }
 
-/*
-* Vendor: Leaflet 1.9.4 core styles (map tiles, panes, controls), used by Geländeplan
-*/
 /* required styles */
 .leaflet-pane,
 .leaflet-tile,

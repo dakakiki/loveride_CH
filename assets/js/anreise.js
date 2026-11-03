@@ -1,7 +1,3 @@
-/*
-* Anreise & Parken (layout_anreise) and Text & Karte (layout_text_karte): Leaflet map with the grey swisstopo national map (no key, no cookies), red destination marker, one layer per Ebene (label markers with icon + GeoJSON lines); layer checkboxes toggle the layers
-*/
-
 import L from "leaflet";
 
 document.querySelectorAll("[data-anreise]").forEach(function (section) {

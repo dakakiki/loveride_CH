@@ -1,7 +1,3 @@
-/*
-* Image watch: syncs assets/images → dist/images
-*/
-
 import chokidar from "chokidar";
 import fs from "fs";
 import path from "path";

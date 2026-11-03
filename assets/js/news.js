@@ -1,7 +1,3 @@
-/*
-* News: „Ältere Beiträge laden“ appends the next page of cards without reload (News-Archiv); „Link kopieren“ copies the post URL (single News)
-*/
-
 (function () {
     "use strict";
 

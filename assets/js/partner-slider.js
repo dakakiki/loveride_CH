@@ -1,7 +1,3 @@
-/*
-* Partner logo slider in the footer (random order on each load; Slick: infinite autoplay, pauses on hover/focus)
-*/
-
 jQuery(function ($) {
     "use strict";
 

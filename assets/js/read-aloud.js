@@ -1,7 +1,3 @@
-/*
-* Read aloud ("Seite vorlesen" floater, all pages): reads the main content sentence by sentence with a German Web Speech API voice and highlights the current block
-*/
-
 (function () {
     "use strict";
 

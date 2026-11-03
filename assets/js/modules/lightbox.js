@@ -1,7 +1,3 @@
-/*
-* Lightbox (template_parts/components/lightbox.php): photos with prev / next, keys and swipe, or the aftermovie (YouTube without cookies) in a <dialog>; used by galerie.js and jahrgaenge.js
-*/
-
 export function createLightbox(dialog) {
     if (!dialog || typeof dialog.showModal !== "function") return null;
 

@@ -1,7 +1,3 @@
-/*
-* JS watch: rebuilds on change of any entry in js-entries.mjs
-*/
-
 import chokidar from "chokidar";
 import { exec } from "child_process";
 import { entries } from "./js-entries.mjs";

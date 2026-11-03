@@ -1,7 +1,3 @@
-/*
-* Galerie-Slider (layout_galerie): photos and the aftermovie (YouTube without cookies, loaded only on click) open in the shared lightbox (modules/lightbox.js); photo slider = native scroll-snap with dots per scroll position and prev / next arrows
-*/
-
 import { createLightbox } from "./modules/lightbox.js";
 
 (function () {

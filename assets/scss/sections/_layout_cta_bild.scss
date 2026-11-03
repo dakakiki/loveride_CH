@@ -1,7 +1,3 @@
-/*
-* Layout: Bild & Text (layout_cta_bild) – photo to the edge (half 1:1 or narrow 4:5) or cover (square 400 with red frame inside the container), text panel aligned with the container, list with red squares and H4 note with red line in the text; backgrounds light grey (#F2F0ED) / off-white / white / dark (red tagline, red primary button; white on cover); mobile: photo on top
-*/
-
 @use '../abstracts' as *;
 
 $cta-bild-edge: max(var(--padding-global), calc(100% - #{$container-large} / 2));

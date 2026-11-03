@@ -1,7 +1,3 @@
-/*
-* JS build: terser for plain files, esbuild for bundles (entries in js-entries.mjs)
-*/
-
 import fs from "fs";
 import path from "path";
 import { minify } from "terser";

@@ -1,7 +1,3 @@
-/*
-* Image build: copies assets/images → dist/images
-*/
-
 import fs from "fs";
 import path from "path";
 

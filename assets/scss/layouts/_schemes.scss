@@ -1,7 +1,3 @@
-/*
-* Color schemes: .scheme-weiss / -offwhite / -dunkel / -rot on sections (ACF "farbschema")
-*/
-
 @use '../abstracts' as *;
 
 @each $name, $values in $schemes {

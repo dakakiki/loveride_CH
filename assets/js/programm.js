@@ -1,7 +1,3 @@
-/*
-* Programm & Line-up (layout_programm): day tabs (arrow keys; today's tab opens on a programme day, otherwise the event day) and the live bar – the running programme point is marked red and moves with the time
-*/
-
 (function () {
     "use strict";
 

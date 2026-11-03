@@ -1,7 +1,3 @@
-/*
-* Layout: Schritte (layout_schritte) – numbered steps with red circle numbers, contact person box (label, name, phone, e-mail, button) and note with icon; white / off-white / dark (#1A1A1A), optionally without top spacing; contact details as list with icons in off-white squares; with box: head across, steps divided by lines next to the off-white box (icon points, note); with facts: head left, off-white box with red top line and label / value rows right; with form: head and compact steps left, white form box with red top line right; stacked below 991
-*/
-
 @use '../abstracts' as *;
 
 .layout-schritte {

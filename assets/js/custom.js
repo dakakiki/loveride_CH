@@ -1,7 +1,3 @@
-/*
-* Global JS: header scroll state, mega menu (opens on hover, click follows the link, first tap opens on touch; GSAP slide), mobile menu (GSAP fade) with accordion (GSAP fade + height), header offset (--header-offset for hero heights), all pages
-*/
-
 (function () {
     "use strict";
 

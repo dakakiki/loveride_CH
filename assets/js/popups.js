@@ -1,7 +1,3 @@
-/*
-* Popups (inc/popups.php): links with data-popup or to #loverider-anmeldung / #aussteller-anmeldung open the <dialog>, also from the URL hash; close on X, Esc and outside click with a short fade out, focus back to the opener; data-popup-wahl preselects the radio option starting with it; Loverider form: partner and children only for „Family“ (hidden fields disabled), „Weiteres Kind hinzufügen“ shows up to 3 children
-*/
-
 (function () {
     "use strict";
 

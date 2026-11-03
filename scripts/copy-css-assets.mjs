@@ -1,7 +1,3 @@
-/*
-* CSS assets: copies vendor CSS from assets/css → dist/css
-*/
-
 import fs from "fs";
 import path from "path";
 

@@ -1,7 +1,3 @@
-/*
-* Layout: Jahrgänge (layout_jahrgaenge) – head with year buttons (filter chips, „Ältere Jahre“ select) at its bottom right; Jahreskarten: white cards with red top line in 2 columns (year, red edition, date, 4 numbers with lines, „–“ grey) and square pagination; Aftermovie: poster 2:1 with dark overlay and red play circle, video inline; Fotogalerie: square photos in 4 / 2 columns; Helferliste: name list, organisations, „Alle … anzeigen“
-*/
-
 @use '../abstracts' as *;
 
 .layout-jahrgaenge {

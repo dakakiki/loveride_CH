@@ -1,7 +1,3 @@
-/*
-* Lists: Sponsoren (layout_sponsoren) „Alle … anzeigen“ shows the hidden names; Aussteller (layout_aussteller) filter buttons show the exhibitors of one category
-*/
-
 document.querySelectorAll("[data-sponsoren] [data-alle]").forEach(function (button) {
     button.addEventListener("click", function () {
         const list = button.previousElementSibling;

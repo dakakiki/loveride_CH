@@ -1,7 +1,3 @@
-/*
-* Popup (template_parts/global/popup.php): full-screen <dialog> with dark backdrop, scrolling white box 760 with red top line (label, title, close, note, form); full screen on mobile; fades in and out (box slides up slightly, .is-closing set by popups.js), no motion with reduced motion
-*/
-
 @use '../abstracts' as *;
 
 .has-popup {

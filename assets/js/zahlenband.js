@@ -1,7 +1,3 @@
-/*
-* Zahlenband (layout_zahlenband): numbers count up once when they enter the viewport (GSAP); years and texts without numbers stay as they are, reduced motion shows the final value
-*/
-
 (function () {
     "use strict";
 

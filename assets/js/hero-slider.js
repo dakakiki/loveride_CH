@@ -1,7 +1,3 @@
-/*
-* Hero slider (Hero-Slider, Page-Hero): crossfade with zoom, staggered content, counter roll, autoplay, arrows, swipe, keyboard, MP4 backgrounds
-*/
-
 (function () {
     "use strict";
 

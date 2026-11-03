@@ -1,7 +1,3 @@
-/*
-* CSS watch: minifies dist/css/style.css on change
-*/
-
 import chokidar from "chokidar";
 import { exec } from "child_process";
 

@@ -1,7 +1,3 @@
-/*
-* Geländeplan (layout_gelaendeplan): Leaflet map with swisstopo aerial tiles (no key, no cookies) or the site plan graphic, markers = black labels (number + title) with an arrow pointing to the place; legend buttons zoom to the place and highlight it, markers do the same
-*/
-
 import L from "leaflet";
 
 document.querySelectorAll("[data-gelaendeplan]").forEach(function (section) {

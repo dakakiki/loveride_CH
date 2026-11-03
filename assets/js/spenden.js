@@ -1,7 +1,3 @@
-/*
-* Spenden (layout_spenden): "IBAN kopieren" copies the IBAN to the clipboard and confirms it on the button for a moment
-*/
-
 document.querySelectorAll("[data-spenden] [data-copy]").forEach(function (button) {
     const label = button.querySelector("span");
     const text = label.textContent;

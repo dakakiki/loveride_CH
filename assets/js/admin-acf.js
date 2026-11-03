@@ -1,7 +1,3 @@
-/*
-* ACF admin: icon preview in "icon" select fields (Select2)
-*/
-
 (function ($) {
     "use strict";
 

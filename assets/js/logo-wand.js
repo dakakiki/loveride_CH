@@ -1,7 +1,3 @@
-/*
-* Logo-Wand (layout_logo_wand): shows a random selection of partner logos on each load (count from data-logo-wand); the „Dein Logo hier?“ tile stays last
-*/
-
 (function () {
     "use strict";
 

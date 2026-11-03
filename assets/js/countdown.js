@@ -1,7 +1,3 @@
-/*
-* Event-Teaser (layout_event_teaser): countdown to the Love Ride opening (Event-Daten), updated every second; hidden once the event has started
-*/
-
 (function () {
     "use strict";
 

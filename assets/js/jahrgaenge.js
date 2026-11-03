@@ -1,7 +1,3 @@
-/*
-* Jahrgänge (layout_jahrgaenge): year buttons (tabs, arrow keys) and the „Ältere Jahre“ select switch the year panel and the year in the head; aftermovie plays inline (YouTube without cookies, loaded on click); gallery „Mehr Bilder laden“ and lightbox; helper list „Alle … anzeigen“
-*/
-
 import { createLightbox, youtubeEmbed } from "./modules/lightbox.js";
 
 document.querySelectorAll("[data-jahrgaenge]").forEach(function (section) {
