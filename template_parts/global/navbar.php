@@ -44,7 +44,11 @@ $lr_buttons = lr_header_buttons();
 			<?php endif; ?>
 
 			<?php if ( ! empty( $lr_buttons['spenden'] ) ) : ?>
-				<a class="btn--dark btn--small navbar__spenden" <?= lr_link_attrs( $lr_buttons['spenden'] ); ?>><?= esc_html( $lr_buttons['spenden']['title'] ); ?></a>
+				<?php $lr_words = preg_split( '/\s+/', trim( $lr_buttons['spenden']['title'] ) ); ?>
+				<?php $lr_last = array_pop( $lr_words ); ?>
+				<a class="btn--dark btn--small navbar__spenden" <?= lr_link_attrs( $lr_buttons['spenden'] ); ?>>
+					<span><?php if ( $lr_words ) : ?><span class="navbar__spenden-lead"><?= esc_html( implode( ' ', $lr_words ) ); ?> </span><?php endif; ?><?= esc_html( $lr_last ); ?></span>
+				</a>
 			<?php endif; ?>
 
 			<?php if ( $lr_tree ) : ?>

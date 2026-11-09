@@ -41,6 +41,14 @@
             min-height: $navbar-height-mobile;
             padding-block: rem(8);
         }
+
+        @include respond-max(xs) {
+            gap: rem(12);
+        }
+
+        @media (max-width: 389px) {
+            gap: rem(8);
+        }
     }
 
     &__logo {
@@ -55,6 +63,10 @@
 
             @media (max-width: $nav-breakpoint) {
                 height: rem(44);
+            }
+
+            @media (max-width: 389px) {
+                height: rem(36);
             }
         }
 
@@ -73,11 +85,37 @@
         @media (max-width: $nav-breakpoint) {
             gap: rem(8);
         }
+
+        @include respond-max(xs) {
+            gap: rem(6);
+        }
+
+        @media (max-width: 389px) {
+            gap: rem(4);
+        }
     }
 
-    &__tickets-rest,
-    &__spenden {
+    &__tickets-rest {
         @media (max-width: $nav-breakpoint) {
+            display: none;
+        }
+    }
+
+    &__tickets,
+    &__spenden {
+        @include respond-max(xs) {
+            min-height: rem(40);
+            padding: rem(6) rem(10);
+            font-size: rem(14);
+        }
+
+        @media (max-width: 389px) {
+            padding-inline: rem(8);
+        }
+    }
+
+    &__spenden-lead {
+        @media (max-width: 359px) {
             display: none;
         }
     }
@@ -99,6 +137,10 @@
 
         @media (max-width: $nav-breakpoint) {
             display: inline-flex;
+        }
+
+        @media (max-width: 389px) {
+            width: rem(40);
         }
 
         .icon {
